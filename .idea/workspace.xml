@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="" />
+    <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/forgot-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/forgot-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/register.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +14,9 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kHLCF6C9fl7FrSk39yy63yjMAD" />
   <component name="ProjectViewState">
@@ -28,7 +36,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605352441568</updated>
-      <workItem from="1605352443094" duration="407000" />
+      <workItem from="1605352443094" duration="1006000" />
+      <workItem from="1605459691880" duration="1608000" />
     </task>
     <servers />
   </component>

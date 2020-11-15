@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 
@@ -31,7 +32,7 @@
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-7 p-0">
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Crear un compte!</h1>
@@ -61,15 +62,13 @@
                                             id="exampleRepeatPassword" placeholder="Repeteix al contrasenya">
                                     </div>
                                 </div>
+                                <div class="g-recaptcha mb-3" data-sitekey="6LevP-MZAAAAABZnHhp6jWTxtHJPbLwzgYha1_Lk"></div>
+                                <div class="text-center">
+                                    <a class="small" href="register.html">Crear un compte!</a>
+                                </div>
+
                                 <a href="login.html" class="btn btn-primary btn-user btn-block">
                                     Registrar el compte
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Registrar amb Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Registrar amb Facebook
                                 </a>
                             </form>
                             <hr>
@@ -79,6 +78,9 @@
                             <div class="text-center">
                                 <a class="small" href="login.html">Ja tens compte? Login!</a>
                             </div>
+                        </div>
+                        <div class=" p-0 m-0">
+                            <a href="../botiga_view/index.php" class="btn btn-dark btn-user btn-block" style="color: white;background-color: #201F1E;border-radius: 0px;">Tornar a la botiga</a>
                         </div>
                     </div>
                 </div>
