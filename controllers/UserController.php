@@ -1,6 +1,8 @@
 <?php
 include_once ("../controllers/MainController.php");
+include_once ("../modals/Database.php");
 if(isset($_POST["name_register"])){
+    $database = new Database();
     unset($_SESSION["register_errors"]);
         $vars = array(
             "data"=>array($_POST["name_register"],$_POST["lastnames_register"],$_POST["email_register"],$_POST["password_register"],$_POST["password_confirm_register"]),
