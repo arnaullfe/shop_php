@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>SB Admin 2 - Register</title>
+    <title>Eshop</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../botiga_view/images/favicon.png">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +24,7 @@
 
 </head>
 
-<body style="background-color: #F7941D;">
+<body>
 
     <div class="container">
 
@@ -33,54 +34,46 @@
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7 p-0">
+                        <div class=" p-0 m-0">
+                            <a href="../botiga_view/index.php" class="btn btn-dark btn-user btn-block" style="color: white;background-color: #201F1E;border-radius: 0px;">Tornar a la botiga</a>
+                        </div>
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Crear un compte!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" action="../../controllers/UserController.php" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Nom">
+                                        <input type="text" name="name_register" class="form-control form-control-user" placeholder="Nom">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Cognoms">
+                                        <input type="text" name="lastnames_register" class="form-control form-control-user" placeholder="Cognoms">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email">
+                                    <input type="email" name="email_register" class="form-control form-control-user" placeholder="Email">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Contrasenya">
+                                        <input type="password" name="password_register" class="form-control form-control-user" placeholder="Contrasenya">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeteix al contrasenya">
+                                        <input type="password" name="password_confirm_register" class="form-control form-control-user" placeholder="Repeteix al contrasenya">
                                     </div>
                                 </div>
-                                <div class="g-recaptcha mb-3" data-sitekey="6LevP-MZAAAAABZnHhp6jWTxtHJPbLwzgYha1_Lk"></div>
-                                <div class="text-center">
-                                    <a class="small" href="register.html">Crear un compte!</a>
-                                </div>
+                                <div class="g-recaptcha mb-3" name="captcha" data-sitekey="6LevP-MZAAAAABZnHhp6jWTxtHJPbLwzgYha1_Lk"></div>
 
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" href="login.html" class="btn btn-primary btn-user btn-block">
                                     Registrar el compte
-                                </a>
+                                </button>
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Has oblidat la contrasenya?</a>
+                                <a class="small" href="forgot-password.php">Has oblidat la contrasenya?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Ja tens compte? Login!</a>
+                                <a class="small" href="login.php">Ja tens compte? Login!</a>
                             </div>
-                        </div>
-                        <div class=" p-0 m-0">
-                            <a href="../botiga_view/index.php" class="btn btn-dark btn-user btn-block" style="color: white;background-color: #201F1E;border-radius: 0px;">Tornar a la botiga</a>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/MainController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modals/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/blank.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/buttons.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/buttons.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/cards.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/cards.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/charts.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/forgot-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/forgot-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/tables.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/tables.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/utilities-animation.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/utilities-animation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/utilities-border.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/utilities-border.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/utilities-color.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/utilities-color.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/utilities-other.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/utilities-other.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/vendor/bootstrap/scss/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/vendor/bootstrap/scss/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/blog-single-sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/blog-single-sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +58,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kHLCF6C9fl7FrSk39yy63yjMAD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -37,21 +79,44 @@
       <option name="presentableId" value="Default" />
       <updated>1605352441568</updated>
       <workItem from="1605352443094" duration="1006000" />
-      <workItem from="1605459691880" duration="1608000" />
+      <workItem from="1605459691880" duration="2327000" />
+      <workItem from="1605632591343" duration="1819000" />
+      <workItem from="1605706829616" duration="2705000" />
+      <workItem from="1605724330265" duration="1979000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1605633102580">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605633102580" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605352707974">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605352707974" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605352455733">
+    <state x="784" y="242" key="NewPhpClassDialog" timestamp="1605708948884">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605352455733" />
+    <state x="784" y="242" key="NewPhpClassDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605708948884" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605708964330">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605708964330" />
   </component>
 </project>
