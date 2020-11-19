@@ -12,10 +12,31 @@ function checkPostRequest($data)
         for ($i = 0; $i < $count_data; $i++) {
             if (strlen(trim($data["data"][$i])) == 0) {
                 array_push($errors, "error_".$data["names"][$i]);
-            }
+            } 
         }
         return $errors;
     }
     return $data["names"];
 
+}
+
+function checkOnlyLetters($string){
+    if(ctype_alpha($string)){
+        return true;
+    }
+    return false;
+}
+
+function checkEmail($email){
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;
+      }
+        return false;
+}
+
+function comparePasswords($pasword,$confirm){
+    if(strcmp($pasword,$confirm)){
+        return true;
+    }
+    return false;
 }

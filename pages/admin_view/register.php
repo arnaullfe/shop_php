@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <input type="email" name="email_register" class="form-control form-control-user" placeholder="Email" value="<?php echo $_SESSION["email_register"]?>">
                                     <?php if(isset($_SESSION["register_errors"]) && in_array("error_email_register",$_SESSION["register_errors"])):?>
-                                        <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Email introduït erroni</label>
+                                        <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Email invàlid o ja existent</label>
                                     <?php endif;?>
                                 </div>
                                 <div class="form-group row">
