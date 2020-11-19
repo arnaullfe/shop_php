@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\Exception;
 require ('../dependencies/PHPMailer/src/Exception.php');
 require ('../dependencies/PHPMailer/src/PHPMailer.php');
 require ('../dependencies/PHPMailer/src/SMTP.php');
+require ('./MailContentController.php');
 function sendMail(){
     $mail = new PHPMailer;
 
@@ -27,9 +28,7 @@ function sendMail(){
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
     $mail->isHTML(true);                                  // Set email format to HTML
 
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Body    = RECOVER_PASSWORD_HTML;
 
     if(!$mail->send()) {
         echo 'Message could not be sent.';
