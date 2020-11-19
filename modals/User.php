@@ -3,7 +3,7 @@
 
 class User
 {
-    private $id,$name,$lastnames,$email,$password,$group,$banned,$activated,$last_session,$token_pass,$token_login;
+    private $id,$name,$lastnames,$email,$password,$role,$banned,$activated,$last_session,$token_pass,$token_login;
 
     public function __construct($name, $lastnames, $email, $password)
     {
@@ -11,7 +11,7 @@ class User
         $this->lastnames = $lastnames;
         $this->email = $email;
         $this->password = $password;
-        $this->group = 0;
+        $this->role = 0;
         $this->banned = 0;
         $this->activated = 0;
         $this->last_session = null;
@@ -39,6 +39,12 @@ class User
         return $this->password;
     }
 
+    public function setId($id){
+        $this->id = $id;
+    }
 
+    public function  getDataInsertSql(){
+        return array($this->email,$this->name,$this->lastnames,$this->password,$this->role,$this->banned,$this->activated,$this->last_session,$this->token_login,$this->token_pass);
+    }
 
 }

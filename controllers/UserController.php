@@ -2,6 +2,7 @@
 include_once("../controllers/MainController.php");
 include_once("../modals/Database.php");
 include_once("../modals/User.php");
+include_once ("../controllers/MailController.php");
 session_start();
 
 if (isset($_POST["name_register"])) {
@@ -38,7 +39,9 @@ if (isset($_POST["name_register"])) {
 
         if (count($errors) == 0) {
             $user = new User($_POST["name_register"],$_POST["lastnames_register"],$_POST["email_register"],password_hash($_POST["password_register"],PASSWORD_DEFAULT));
-            //insert
+            $database->executeQuery("INSERT INTO users (email,name,lastnames,password,role,banned,activated,last_session,token_login,token_pass) values (?,?,?,?,?,?,?,?,?,?)",$user->getDataInsertSql());
+           // $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ? AND name = ? AND lastnames = ? ANDpassword = ? ANDrole = ? AND banned = ? AND activated = ? AND last_session = ? AND token_login = ? AND token_pass")[0]["id"]);
+            sendMail();
         } else{
             $_SESSION["register_errors"] = $errors;
             $_SESSION["name_register"] = $_POST["name_register"];

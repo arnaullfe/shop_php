@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/MailController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +62,7 @@
       <workItem from="1605632591343" duration="1819000" />
       <workItem from="1605706829616" duration="2705000" />
       <workItem from="1605724330265" duration="4728000" />
+      <workItem from="1605812127119" duration="2431000" />
     </task>
     <servers />
   </component>
@@ -88,13 +90,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605352707974" />
-    <state x="784" y="242" key="NewPhpClassDialog" timestamp="1605732929279">
+    <state x="784" y="242" key="NewPhpClassDialog" timestamp="1605813295949">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="784" y="242" key="NewPhpClassDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605732929279" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605708964330">
+    <state x="784" y="242" key="NewPhpClassDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605813295949" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605813506729">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605708964330" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605813506729" />
   </component>
 </project>
