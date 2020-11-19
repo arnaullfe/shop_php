@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,26 +47,43 @@
                             <form class="user" action="../../controllers/UserController.php" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="name_register" class="form-control form-control-user" placeholder="Nom">
+                                        <input type="text" name="name_register" class="form-control form-control-user" placeholder="Nom" value="<?php echo $_SESSION["name_register"]?>">
+                                        <?php if(isset($_SESSION["register_errors"]) && in_array("error_name_register",$_SESSION["register_errors"])):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Nom introduït erroni</label>
+                                        <?php endif;?>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="lastnames_register" class="form-control form-control-user" placeholder="Cognoms">
+                                        <input type="text" name="lastnames_register" class="form-control form-control-user" placeholder="Cognoms" value="<?php echo $_SESSION["lastnames_register"]?>">
+                                        <?php if(isset($_SESSION["register_errors"]) && in_array("error_lastnames_register",$_SESSION["register_errors"])):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Cognom introduït erroni</label>
+                                        <?php endif;?>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email_register" class="form-control form-control-user" placeholder="Email">
+                                    <input type="email" name="email_register" class="form-control form-control-user" placeholder="Email" value="<?php echo $_SESSION["email_register"]?>">
+                                    <?php if(isset($_SESSION["register_errors"]) && in_array("error_email_register",$_SESSION["register_errors"])):?>
+                                        <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Email introduït erroni</label>
+                                    <?php endif;?>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" name="password_register" class="form-control form-control-user" placeholder="Contrasenya">
+                                        <input type="password" name="password_register" class="form-control form-control-user" placeholder="Contrasenya" value="<?php echo $_SESSION["password_register"]?>">
+                                        <?php if(isset($_SESSION["register_errors"]) && in_array("error_password_register",$_SESSION["register_errors"])):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>La contrasenya ha de tenir 5 caràcters com a mínim</label>
+                                        <?php endif;?>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" name="password_confirm_register" class="form-control form-control-user" placeholder="Repeteix al contrasenya">
+                                        <?php if(isset($_SESSION["register_errors"]) && in_array("error_password_confirm_register",$_SESSION["register_errors"])):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Les contrasenyes no concideixen</label>
+                                        <?php endif;?>
                                     </div>
                                 </div>
-                                <div class="g-recaptcha mb-3" name="captcha" data-sitekey="6LevP-MZAAAAABZnHhp6jWTxtHJPbLwzgYha1_Lk"></div>
-
-                                <button type="submit" href="login.html" class="btn btn-primary btn-user btn-block">
+                                <div class="g-recaptcha" data-sitekey="6LevP-MZAAAAABZnHhp6jWTxtHJPbLwzgYha1_Lk"></div>
+                                <?php if(isset($_SESSION["register_errors"]) && in_array("error_recaptcha_register",$_SESSION["register_errors"])):?>
+                                    <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Fés clic el reCAPTCHA per continuar</label>
+                                <?php endif;?>
+                                <button type="submit" href="login.html" class="btn btn-primary btn-user btn-block mt-3">
                                     Registrar el compte
                                 </button>
                             </form>
@@ -95,3 +115,7 @@
 </body>
 
 </html>
+
+<?php
+    unset($_SESSION["register_errors"]);
+?>

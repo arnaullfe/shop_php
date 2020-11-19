@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function checkPostRequest($data)
 {
@@ -10,7 +11,7 @@ function checkPostRequest($data)
     } else if ($count_data == $count_names) {
         for ($i = 0; $i < $count_data; $i++) {
             if (strlen(trim($data["data"][$i])) == 0) {
-                array_push($errors, $data["names"][$i]);
+                array_push($errors, "error_".$data["names"][$i]);
             }
         }
         return $errors;
