@@ -12,8 +12,8 @@ if (isset($_POST["name_register"])) {
     unset($_SESSION["email_register"]);
     unset($_SESSION["password_register"]);
     $vars = array(
-        "data" => array($_POST["name_register"], $_POST["lastnames_register"], $_POST["email_register"], $_POST["password_register"], $_POST["password_confirm_register"], $_POST["g-recaptcha-response"]),
-        "names" => array("name_register", "lastnames_register", "email_register", "password_register", "password_confirm_register", "recaptcha_register")
+        "data" => array($_POST["name_register"], $_POST["lastnames_register"], $_POST["email_register"], $_POST["password_register"], $_POST["password_confirm_register"], /*$_POST["g-recaptcha-response"]*/),
+        "names" => array("name_register", "lastnames_register", "email_register", "password_register", "password_confirm_register", /*"recaptcha_register"*/)
     );
     $errors = checkPostRequest($vars);
         $database = new Database();
@@ -41,7 +41,7 @@ if (isset($_POST["name_register"])) {
             $user = new User($_POST["name_register"],$_POST["lastnames_register"],$_POST["email_register"],password_hash($_POST["password_register"],PASSWORD_DEFAULT));
             $database->executeQuery("INSERT INTO users (email,name,lastnames,password,role,banned,activated,last_session,token_login,token_pass) values (?,?,?,?,?,?,?,?,?,?)",$user->getDataInsertSql());
            // $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ? AND name = ? AND lastnames = ? ANDpassword = ? ANDrole = ? AND banned = ? AND activated = ? AND last_session = ? AND token_login = ? AND token_pass")[0]["id"]);
-            sendMail();
+            sendMailActivatedUser();
         } else{
             $_SESSION["register_errors"] = $errors;
             $_SESSION["name_register"] = $_POST["name_register"];
