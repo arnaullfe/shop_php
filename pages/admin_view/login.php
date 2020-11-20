@@ -35,9 +35,6 @@
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6 p-0">
-                                <div class=" p-0 m-0">
-                                    <a href="../botiga_view/index.php" class="btn btn-dark btn-user btn-block" style="color: white;background-color: #201F1E;border-radius: 0px;">Tornar a la botiga</a>
-                                </div>
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Benvingut!</h1>
@@ -58,7 +55,7 @@
                                                 <label class="custom-control-label" for="customCheck">Recorda'm</label>
                                             </div>
                                         </div>
-                                        <a href="index.php" class="btn btn-primary btn-user btn-block">
+                                        <a href="index.php" class="btn btn-primary btn-user btn-block" style="background-color: #F6931D;border-color: #f5a342">
                                             Login
                                         </a>
                                     </form>
@@ -70,6 +67,9 @@
                                         <a class="small" href="register.php">Crear un compte!</a>
                                     </div>
 
+                                </div>
+                                <div class=" p-0 m-0">
+                                    <a href="../botiga_view/index.php" class="btn btn-dark btn-user btn-block" style="color: white;background-color: #201F1E;border-radius: 0px;"><i class="fas fa-chevron-left" style="float: left;margin-top: 1%;margin-left: 10px"></i>Tornar a la botiga</a>
                                 </div>
                             </div>
                         </div>

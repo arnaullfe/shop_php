@@ -39,6 +39,41 @@ class User
         return $this->password;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getRole(): int
+    {
+        return $this->role;
+    }
+
+    public function getBanned(): int
+    {
+        return $this->banned;
+    }
+
+    public function getActivated(): int
+    {
+        return $this->activated;
+    }
+
+    public function getLastSession()
+    {
+        return $this->last_session;
+    }
+
+    public function getTokenPass(): string
+    {
+        return $this->token_pass;
+    }
+
+    public function getTokenLogin()
+    {
+        return $this->token_login;
+    }
+
     public function setId($id){
         $this->id = $id;
     }

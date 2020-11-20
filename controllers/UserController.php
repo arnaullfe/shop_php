@@ -40,8 +40,8 @@ if (isset($_POST["name_register"])) {
         if (count($errors) == 0) {
             $user = new User($_POST["name_register"],$_POST["lastnames_register"],$_POST["email_register"],password_hash($_POST["password_register"],PASSWORD_DEFAULT));
             $database->executeQuery("INSERT INTO users (email,name,lastnames,password,role,banned,activated,last_session,token_login,token_pass) values (?,?,?,?,?,?,?,?,?,?)",$user->getDataInsertSql());
-           // $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ? AND name = ? AND lastnames = ? ANDpassword = ? ANDrole = ? AND banned = ? AND activated = ? AND last_session = ? AND token_login = ? AND token_pass")[0]["id"]);
-            sendMailActivatedUser();
+            $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ?",array($_POST["email_register"]))[0]["id"]);
+            sendMailActivatedUser($user);
         } else{
             $_SESSION["register_errors"] = $errors;
             $_SESSION["name_register"] = $_POST["name_register"];

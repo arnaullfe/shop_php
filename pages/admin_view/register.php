@@ -37,9 +37,6 @@
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7 p-0">
-                        <div class=" p-0 m-0">
-                            <a href="../botiga_view/index.php" class="btn btn-dark btn-user btn-block" style="color: white;background-color: #201F1E;border-radius: 0px;">Tornar a la botiga</a>
-                        </div>
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Crear un compte!</h1>
@@ -83,7 +80,7 @@
                                 <?php if(isset($_SESSION["register_errors"]) && in_array("error_recaptcha_register",$_SESSION["register_errors"])):?>
                                     <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Fés clic el reCAPTCHA per continuar</label>
                                 <?php endif;?>
-                                <button type="submit" href="login.html" class="btn btn-primary btn-user btn-block mt-3">
+                                <button type="submit" href="login.html" class="btn btn-primary btn-user btn-block mt-3" style="background-color: #F6931D;border-color: #f5a342">
                                     Registrar el compte
                                 </button>
                             </form>
@@ -94,6 +91,9 @@
                             <div class="text-center">
                                 <a class="small" href="login.php">Ja tens compte? Login!</a>
                             </div>
+                        </div>
+                        <div class=" p-0 m-0">
+                            <a href="../botiga_view/index.php" class="btn btn-dark btn-user btn-block" style="color: white;background-color: #201F1E;border-radius: 0px;"><i class="fas fa-chevron-left" style="float: left;margin-top: 1%;margin-left: 10px"></i>Tornar a la botiga</a>
                         </div>
                     </div>
                 </div>

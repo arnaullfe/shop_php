@@ -20,10 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/admin_view/css/finish_buy.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin_view/recover_password.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin_view/user_activated.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/MailContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MailContentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/MailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MailController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/forgot-password.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/forgot-password.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/register.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +40,13 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,6 +62,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -64,7 +80,8 @@
       <workItem from="1605724330265" duration="4728000" />
       <workItem from="1605812127119" duration="3763000" />
       <workItem from="1605879976742" duration="601000" />
-      <workItem from="1605891798170" duration="2960000" />
+      <workItem from="1605891798170" duration="3613000" />
+      <workItem from="1605911451330" duration="3419000" />
     </task>
     <servers />
   </component>
@@ -84,10 +101,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1605633102580">
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1605914242075">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605633102580" />
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605914242075" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605352707974">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -96,9 +113,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="242" key="NewPhpClassDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605813295949" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605818934953">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1605912776937">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605818934953" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1605912776937" />
   </component>
 </project>

@@ -1,10 +1,11 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require ('../dependencies/PHPMailer/src/Exception.php');
-require ('../dependencies/PHPMailer/src/PHPMailer.php');
-require ('../dependencies/PHPMailer/src/SMTP.php');
-require ('./MailContentController.php');
+require_once ('../dependencies/PHPMailer/src/Exception.php');
+require_once ('../dependencies/PHPMailer/src/PHPMailer.php');
+require_once ('../dependencies/PHPMailer/src/SMTP.php');
+require_once ('./MailContentController.php');
+require_once ('../modals/User.php');
 function sendMailRecoverPassword(){
     $mail = new PHPMailer;
 
@@ -37,7 +38,7 @@ function sendMailRecoverPassword(){
     }
 }
 
-function sendMailActivatedUser(){
+function sendMailActivatedUser($user){
     $mail = new PHPMailer;
 
     $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -48,8 +49,8 @@ function sendMailActivatedUser(){
     $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
     $mail->SMTPDebug = 2;
     $mail->From = 'hola.eshop.online@gmail.com';
-    $mail->FromName = 'Mailer';
-    $mail->addAddress('arnaullfe@gmail.com', 'Joe User');     // Add a recipient
+    $mail->FromName = 'eshop';
+    $mail->addAddress($user->getEmail(), $user->getName()." ".$user->getLastnames());     // Add a recipient
 //$mail->addAddress('ellen@example.com');               // Name is optional
 //$mail->addReplyTo('info@example.com', 'Information');
 //$mail->addCC('cc@example.com');
@@ -59,7 +60,8 @@ function sendMailActivatedUser(){
 //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Body    = ACTIVATE_USER_HTML;
+    $mail->Subject = "Activa el teu usuari";
+    $mail->Body    = activateUserEmail($user->getId(),$user->getTokenPass());
 
     if(!$mail->send()) {
         echo 'Message could not be sent.';

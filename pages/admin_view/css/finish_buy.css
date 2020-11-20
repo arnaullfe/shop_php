@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: SF Pro Text,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.check{
+    background-color: #43B649;
+    color: #FCFCFC;
+    margin: auto;
+    margin-top: 10%;
+    width: 35%;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+
+}
+
+.button-close{
+    background-color: #1D8348;
+    border: none;
+    color: white;
+    margin-top: 5%;
+    width: 100%;
+    height: 70px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+
+.compra-text{
+    font-size: 25px;
+}
+
+.icon-check{
+    margin-right: 5%;
+    font-size: 80px;
+}
+
+
+@media (max-width: 1400px) {
+    .check{
+        width: 70%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .check{
+        width: 90%;
+    }
+}
+
+
+@media (max-width: 620px) {
+    .check{
+        width: 90%;
+    }
+    .icon-check{
+        font-size: 70px;
+    }
+    .compra-text{
+        font-size: 25px;
+    }
+
+    .button-close{
+        font-size: 25px;
+    }
+}
