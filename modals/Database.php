@@ -71,7 +71,8 @@ class Database
                                             activated int DEFAULT 0,
                                             last_session DATE ,
                                             token_login varchar(255),
-                                            token_pass varchar(255));");
+                                            token_pass varchar(255),
+                                            image varchar(255));");
         } catch (PDOException $err) {
             echo $err;
         }
