@@ -38,7 +38,7 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #e8840c">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
@@ -112,14 +112,14 @@
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-               aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-users"></i>
-                <span>Usuaris</span>
+               aria-expanded="true" aria-controls="collapsePages" style="color: white">
+               <b> <i class="fas fa-users" style="color: white"></i>
+                   <span>Usuaris</span></b>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar usuaris:</h6>
-                    <a class="collapse-item" href="list-users.php">Tots els usuaris</a>
+                    <a class="collapse-item" href="list-users.php" style="color: gray">Tots els usuaris</a>
                     <a class="collapse-item" href="register.php">Usuaris banejats</a>
                     <a class="collapse-item" href="forgot-password.php">Usuaris no verificats</a>
                 </div>
@@ -352,7 +352,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Usuaris</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #e8840c">Usuaris</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
