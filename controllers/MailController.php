@@ -47,7 +47,7 @@ function sendMailActivatedUser($user){
     $mail->Username = 'app.eshop.online@gmail.com';                 // SMTP username
     $mail->Password = 'testroot123';                           // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-    $mail->SMTPDebug = 2;
+    $mail->SMTPDebug = 0;
     $mail->From = 'hola.eshop.online@gmail.com';
     $mail->FromName = 'eshop';
     $mail->addAddress($user->getEmail(), $user->getName()." ".$user->getLastnames());     // Add a recipient

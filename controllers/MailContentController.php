@@ -83,7 +83,7 @@ define('RECOVER_PASSWORD_HTML',"
  function activateUserEmail($id,$token_pass){
     $url_server = 'http://'.$_SERVER["SERVER_NAME"];
     $url_image = $url_server.'/pages/botiga_view/images/logo.png';
-    $url_button = $url_server.'/pages/admin_view/user_activated.php?id='.$id.'&token_passs='.$token_pass;
+    $url_button = $url_server.'/pages/admin_view/user_activated.php?id='.$id.'&token_pass='.$token_pass;
     $html = " <!doctype html>
 <html lang='en-US'>
 

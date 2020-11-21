@@ -1,4 +1,13 @@
+<?php
+include('../../controllers/UserFunctions.php');
+include ('../../modals/Database.php');
+if(!isset($_GET["id"]) || !isset($_GET["token_pass"]) || checkUserActivated($_GET["id"],$_GET["token_pass"])){
+    header("location: ./login.php");
+} else{
+    activeUser($_GET["id"],$_GET["token_pass"]);
+}
 
+?>
 <!doctype html>
 <html lang="en">
 <head>
