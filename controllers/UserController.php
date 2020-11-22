@@ -46,6 +46,7 @@ if (isset($_POST["name_register"])) {
             $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ?",array($_POST["email_register"]))[0]["id"]);
             sendMailActivatedUser($user);
             $database->closeConnection();
+            header("location: ../index.php");
         } else{
             $_SESSION["register_errors"] = $errors;
             $_SESSION["name_register"] = $_POST["name_register"];
@@ -54,5 +55,26 @@ if (isset($_POST["name_register"])) {
             $_SESSION["password_register"] = $_POST["password_register"];
             header("location: ../pages/admin_view/register.php");   
         }
+}
+
+if(isset($_POST["email_recover"])){
+    unset($_SESSION["email_recover"]);
+    unset($_SESSION["recover_errors"]);
+    if(checkEmail($_POST["email_recover"])){
+        $database = new Database();
+        $num = $database->executeQuery("SELECT * FROM users WHERE email = ?",array($_POST["email_recover"]));
+        if(count($num)==0){
+            $_SESSION["recover_errors"] = array("error_email_exists_recover");
+            $_SESSION["email_recover"] = $_POST["email_recover"];
+            header("location: ../pages/admin_view/forgot-password.php");
+        } else{
+
+        }
+    } else{
+        $_SESSION["recover_errors"] = array("error_email_format_recover");
+        $_SESSION["email_recover"] = $_POST["email_recover"];
+        header("location: ../pages/admin_view/forgot-password.php");
+    }
+
 }
 

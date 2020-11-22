@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,17 +45,20 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">Has oblidat la contrasenya?</h1>
-                                        <p class="mb-4">No passa res, de vegades passa. Només cal que introdueixis el teu email i a continuació us enviarem un enllaç per restablir al contrasenya!</p>
+                                        <p class="mb-4">No passa res, de vegades passa. Només cal que introdueixis el teu email i a continuació us enviarem un enllaç per restablir la contrasenya!</p>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="../../controllers/UserController.php" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Introdueix el teu email...">
+                                            <input type="email" name="email_recover" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Introdueix el teu email..." value="<?php echo $_SESSION["email_recover"]?>">
+                                            <?php if(isset($_SESSION["recover_errors"]) && in_array("error_email_format_recover",$_SESSION["recover_errors"])):?>
+                                                <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>El correu introduït té un format incorrecte</label>
+                                            <?php elseif (isset($_SESSION["recover_errors"]) && in_array("error_email_exists_recover",$_SESSION["recover_errors"])):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>L'email intoduït no existeix</label>
+                                            <?php endif;?>
                                         </div>
-                                        <a href="login.php" class="btn btn-primary btn-user btn-block" style="background-color: #F6931D;border-color: #f5a342">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: #F6931D;border-color: #f5a342">
                                             Restablir contrasenya
-                                        </a>
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">

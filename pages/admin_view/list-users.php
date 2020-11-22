@@ -408,7 +408,9 @@
 
                                         </td>
                                         <td>
+                                            <?php if($user["banned"]==0):?>
                                             <button class="btn btn-warning btn-sm" title="Banejar"><i class="fas fa-minus-circle"></i></button>
+                                            <?php endif;?>
                                             <button class="btn btn-danger btn-sm"  title="Eliminar usuari"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>

@@ -1,7 +1,11 @@
 <?php
 require_once ('../modals/User.php');
-/*
-define('RECOVER_PASSWORD_HTML',"
+
+function recoverUserEmail($id,$token_pass){
+    $url_server = 'http://'.$_SERVER["SERVER_NAME"];
+    $url_image = $url_server.'/pages/botiga_view/images/logo.png';
+    $url_button = $url_server.'/pages/admin_view/recover_password.php?id='.$id.'&token_pass='.$token_pass;
+    $html = "
     <!doctype html>
 <html lang='en-US'>
 
@@ -26,8 +30,8 @@ define('RECOVER_PASSWORD_HTML',"
             </tr>
             <tr>
                 <td style='text-align:center;'>
-                    <a href='https://rakeshmandal.com' title='logo' target='_blank'>
-                        <img width='60' src='https://i.ibb.co/ZdX0Nb8/logo.png' title='logo' alt='logo'>
+                    <a href=$url_server title='logo' target='_blank'>
+                        <img width='100' src='https://i.ibb.co/dpWNpYh/logo.png' title='logo' alt='logo'>
                     </a>
                 </td>
             </tr>
@@ -50,7 +54,7 @@ define('RECOVER_PASSWORD_HTML',"
                                 No et podem enviar la teva contrasenya anterior per seguretat, però si que et podem ajudar a canviar-la.
                                 Fés clic al botó per procedir a fer el canvi de la teva contrasenya.
                                 </p>
-                                <a href='www.google.com'
+                                <a href=$url_button
                                    style='background:#F6931D;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;cursor: pointer'>
                                    Recuperar contrasenya</a>
                             </td>
@@ -77,7 +81,8 @@ define('RECOVER_PASSWORD_HTML',"
 </table>
 </body>
 
-</html>")*/
+</html>";
+}
 
 
  function activateUserEmail($id,$token_pass){
