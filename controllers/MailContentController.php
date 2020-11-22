@@ -1,6 +1,6 @@
 <?php
 require_once ('../modals/User.php');
-
+ob_start();
 function recoverUserEmail($id,$token_pass){
     $url_server = 'http://'.$_SERVER["SERVER_NAME"];
     $url_image = $url_server.'/pages/botiga_view/images/logo.png';
@@ -82,6 +82,7 @@ function recoverUserEmail($id,$token_pass){
 </body>
 
 </html>";
+    return $html;
 }
 
 

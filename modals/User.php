@@ -78,6 +78,58 @@ class User
         $this->id = $id;
     }
 
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function setLastnames($lastnames)
+    {
+        $this->lastnames = $lastnames;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function setRole(int $role)
+    {
+        $this->role = $role;
+    }
+
+    public function setBanned(int $banned)
+    {
+        $this->banned = $banned;
+    }
+
+    public function setActivated(int $activated)
+    {
+        $this->activated = $activated;
+    }
+
+    public function setLastSession($last_session)
+    {
+        $this->last_session = $last_session;
+    }
+
+    public function setTokenPass(string $token_pass)
+    {
+        $this->token_pass = $token_pass;
+    }
+
+    public function setTokenLogin($token_login)
+    {
+        $this->token_login = $token_login;
+    }
+
+
+
     public function  getDataInsertSql(){
         return array($this->email,$this->name,$this->lastnames,$this->password,$this->role,$this->banned,$this->activated,$this->last_session,$this->token_login,$this->token_pass);
     }

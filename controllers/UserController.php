@@ -68,8 +68,18 @@ if(isset($_POST["email_recover"])){
             $_SESSION["email_recover"] = $_POST["email_recover"];
             header("location: ../pages/admin_view/forgot-password.php");
         } else{
-
+            $user = new User($num[0]["name"],$num[0]["lastnames"],$num[0]["email"],$num[0]["password"]);
+            $user->setRole($num[0]["role"]);
+            $user->setBanned($num[0]["banned"]);
+            $user->setActivated($num[0]["activated"]);
+            $user->setLastSession($num[0]["last_session"]);
+            $user->setTokenLogin($num[0]["token_login"]);
+            $database->executeQuery("UPDATE users SET token_pass=? WHERE email=?",array($user->getTokenPass(),$user->getEmail()));
+            sendMailRecoverPassword($user);
+            header("location: ../pages/botiga_view/index.php");
+            echo "<script>alert('Correu enviat per recuperar la contrasenya')</script>";
         }
+        $database->closeConnection();
     } else{
         $_SESSION["recover_errors"] = array("error_email_format_recover");
         $_SESSION["email_recover"] = $_POST["email_recover"];
