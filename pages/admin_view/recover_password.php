@@ -1,3 +1,12 @@
+<?php
+include('../../controllers/UserFunctions.php');
+include ('../../modals/Database.php');
+session_start();
+
+if(!isset($_GET["id"]) || !isset($_GET["token_pass"]) || !checkTokenPass($_GET["id"],$_GET["token_pass"])){
+    header("location: ./login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,18 +48,23 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Canvia la contrasenya!</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" action="../../controllers/UserController.php" method="post">
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Contrasenya">
+                                        <input type="password" class="form-control form-control-user" name="recover_password" placeholder="Contrasenya" value="<?php echo $_SESSION["recover_password"]?>">
+                                        <?php if(isset($_SESSION["recover_errors"]) && in_array("error_password_recover",$_SESSION["recover_errors"])):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>La contrasenya ha de tenir 5 caràcters com a mínim</label>
+                                        <?php endif;?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Repeteix la Contrasenya">
+                                        <input type="password" class="form-control form-control-user" name="recover_password_confirm" placeholder="Repeteix la Contrasenya">
+                                        <?php if(isset($_SESSION["recover_errors"]) && in_array("error_password_confirm_recover",$_SESSION["recover_errors"])):?>
+                                        <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Les contrasenyes no concideixen</label>
+                                        <?php endif;?>
                                     </div>
-                                    <a href="index.php" class="btn btn-primary btn-user btn-block">
-                                        Canviar contrasenya
-                                    </a>
+                                    <input type="text" name="recover_id" style="display: none" value="<?php echo $_GET["id"]?>">
+                                    <input type="text"  name="recover_token_pass"  style="display: none" value="<?php echo $_GET["token_pass"]?>">
+
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">Canviar contrasenya</button>
 
                                 </form>
                             </div>
@@ -80,3 +94,7 @@
 </body>
 
 </html>
+<?php
+unset($_SESSION["recover_password"]);
+unset($_SESSION["recover_errors"]);
+?>

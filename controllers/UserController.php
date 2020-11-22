@@ -75,6 +75,7 @@ if(isset($_POST["email_recover"])){
             $user->setLastSession($num[0]["last_session"]);
             $user->setTokenLogin($num[0]["token_login"]);
             $database->executeQuery("UPDATE users SET token_pass=? WHERE email=?",array($user->getTokenPass(),$user->getEmail()));
+            $user->setId($database->executeQuery("SELECT id FROM users WHERE token_pass=? AND email=?",array($user->getTokenPass(),$user->getEmail()))[0]["id"]);
             sendMailRecoverPassword($user);
             header("location: ../pages/botiga_view/index.php");
             echo "<script>alert('Correu enviat per recuperar la contrasenya')</script>";
@@ -85,6 +86,27 @@ if(isset($_POST["email_recover"])){
         $_SESSION["email_recover"] = $_POST["email_recover"];
         header("location: ../pages/admin_view/forgot-password.php");
     }
+}
 
+if(isset($_POST["recover_password"])){
+    unset($_SESSION["recover_password"]);
+    unset($_SESSION["recover_errors"]);
+    if(strlen($_POST["recover_password"])<5){
+        echo "inside";
+        $_SESSION["recover_errors"] = ["error_password_recover"];
+        $_SESSION["recover_password"] = $_POST["recover_password"];
+        header("location: ../pages/admin_view/recover_password.php?id=".$_POST["recover_id"]."&token_pass=".$_POST["recover_token_pass"]);
+    } else if($_POST["recover_password"]!==$_POST["recover_password_confirm"]){
+        echo "inside 2";
+        $_SESSION["recover_errors"] = ["error_password_confirm_recover"];
+        $_SESSION["recover_password"] = $_POST["recover_password"];
+        header("location: ../pages/admin_view/recover_password.php?id=".$_POST["recover_id"]."&token_pass=".$_POST["recover_token_pass"]);
+    } else{
+        $password = password_hash($_POST["password_register"],PASSWORD_DEFAULT);
+        $database = new Database();
+        $database->executeQuery("UPDATE users SET password = ?,token_pass = ?, token_login = ? WHERE id=? AND token_pass = ?",array($password,null,null,$_POST["recover_id"],$_POST["recover_token_pass"]));
+        $database->closeConnection();
+        header("location: ../pages/admin_view/login.php");
+    }
 }
 
