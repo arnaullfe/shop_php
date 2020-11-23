@@ -20,43 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/admin_view/img/forgot_password.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/admin_view/img/login_image.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/admin_view/img/register.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/admin_view/img/text2image_H7607480_20201123_152814.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/botiga_view/profile.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/b.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/c.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/d.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/e.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/f.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/g.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/h.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/i.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/j.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/k.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/l.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/m.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/n.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/o.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/p.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/q.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/r.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/s.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/t.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/u.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/v.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/w.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/y.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/z.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/css/sb-admin-2.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/css/sb-admin-2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/css/sb-admin-2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/css/sb-admin-2.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/scss/_login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/scss/_login.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/scss/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/scss/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/css/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +77,7 @@
       <workItem from="1605911451330" duration="5420000" />
       <workItem from="1605953656797" duration="8382000" />
       <workItem from="1606041429925" duration="7016000" />
-      <workItem from="1606143676579" duration="5032000" />
+      <workItem from="1606143676579" duration="8928000" />
     </task>
     <servers />
   </component>

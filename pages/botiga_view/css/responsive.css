@@ -461,7 +461,7 @@ Version:1.0
 	display: none;
 }
 .header.shop .right-bar {
-	display: none;
+	display: block;
 }
 .header .middle-inner{
 	width:100%;
@@ -936,7 +936,7 @@ Version:1.0
 }
 .shop-list .list-content .btn {
 	height: auto;
-	line-height: auto;
+	line-height: normal;
 	padding: 12px 32px;
 }
 .single-product {
@@ -1174,7 +1174,7 @@ Version:1.0
 	display: none;
 }
 .header.shop .right-bar {
-	display: none;
+	display: block;
 }
 /* Header Search */
 .header.shop .search-top {
@@ -1454,7 +1454,6 @@ Version:1.0
 }
 .shop .nice-select {
 	width: 100%;
-	display: ;
 	margin-top: 4px;
 }
 .shop .view-mode {
@@ -1473,7 +1472,6 @@ Version:1.0
 	width: 100%;
 	display: block;
 	display: inline-block;
-	display: ;
 }
 .shop .view-mode li a {
 	width: 80px;

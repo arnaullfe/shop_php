@@ -1,7 +1,6 @@
 <?php
 session_start();
 ob_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -90,7 +89,7 @@ ob_start();
 						<!--/ End Search Form -->
 						<div class="mobile-nav"></div>
 					</div>
-					<div class="col-lg-8 col-md-7 col-12">
+					<div class="col-lg-7 col-md-5 col-12">
 						<div class="search-bar-top">
 							<div class="search-bar">
 								<select>
@@ -106,15 +105,32 @@ ob_start();
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-3 col-12">
+					<div class="col-lg-3 col-md-5 col-12">
 						<div class="right-bar">
 							<!-- Search Form -->
 							<div class="sinlge-bar">
 								<a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
 							</div>
-							<div class="sinlge-bar">
-								<a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-							</div>
+							<?php if(true):?>
+                                <div class="sinlge-bar ">
+                                    <div class="dropdown">
+                                        <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 16px;background-color: white;cursor: pointer">
+                                            <img class="" src="../../resouces/images/a.png" style="vertical-align: middle;width: 30px;height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                            Arnau
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="./profile.php">El meu perfil</a>
+                                            <a class="dropdown-item" href="#">Les meves comandes</a>
+                                            <a class="dropdown-item" href="#"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?else:?>
+                                <div class="sinlge-bar ">
+                                    <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                                </div>
+                            <?endif;?>
 							<div class="sinlge-bar shopping">
 								<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
 								<!-- Shopping Item -->
