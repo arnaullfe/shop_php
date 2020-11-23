@@ -92,12 +92,10 @@ if(isset($_POST["recover_password"])){
     unset($_SESSION["recover_password"]);
     unset($_SESSION["recover_errors"]);
     if(strlen($_POST["recover_password"])<5){
-        echo "inside";
         $_SESSION["recover_errors"] = ["error_password_recover"];
         $_SESSION["recover_password"] = $_POST["recover_password"];
         header("location: ../pages/admin_view/recover_password.php?id=".$_POST["recover_id"]."&token_pass=".$_POST["recover_token_pass"]);
     } else if($_POST["recover_password"]!==$_POST["recover_password_confirm"]){
-        echo "inside 2";
         $_SESSION["recover_errors"] = ["error_password_confirm_recover"];
         $_SESSION["recover_password"] = $_POST["recover_password"];
         header("location: ../pages/admin_view/recover_password.php?id=".$_POST["recover_id"]."&token_pass=".$_POST["recover_token_pass"]);
