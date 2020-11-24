@@ -17,10 +17,11 @@ ob_start();
 	<link rel="icon" type="image/png" href="images/favicon.png">
 	<!-- Web Font -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-	
+
 	<!-- StyleSheet -->
-	
-	<!-- Bootstrap -->
+    <script src="https://kit.fontawesome.com/e7269a261c.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<!-- Magnific Popup -->
     <link rel="stylesheet" href="css/magnific-popup.min.css">
@@ -46,8 +47,8 @@ ob_start();
 	<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
-	
-	
+
+
 </head>
 <body class="js">
 	
@@ -108,21 +109,20 @@ ob_start();
 					<div class="col-lg-3 col-md-5 col-12">
 						<div class="right-bar">
 							<!-- Search Form -->
-							<div class="sinlge-bar">
-								<a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-							</div>
-							<?php if(true):?>
+                            <?php if(true):?>
                                 <div class="sinlge-bar ">
                                     <div class="dropdown">
-                                        <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 16px;background-color: white;cursor: pointer">
-                                            <img class="" src="../../resouces/images/a.png" style="vertical-align: middle;width: 30px;height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                        <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">
+                                            <img class="" src="../../resouces/images/a.png" style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
                                             Arnau
                                         </a>
 
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="./profile.php">El meu perfil</a>
-                                            <a class="dropdown-item" href="#">Les meves comandes</a>
-                                            <a class="dropdown-item" href="#"></a>
+                                        <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="./profile.php"><i class="fas fa-user mr-3"></i>El meu perfil</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les meves comandes</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar sessió</a>
                                         </div>
                                     </div>
                                 </div>
@@ -131,6 +131,9 @@ ob_start();
                                     <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                                 </div>
                             <?endif;?>
+							<div class="sinlge-bar">
+								<a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+							</div>
 							<div class="sinlge-bar shopping">
 								<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
 								<!-- Shopping Item -->

@@ -16,6 +16,7 @@
           rel="stylesheet">
 
     <!-- StyleSheet -->
+    <script src="https://kit.fontawesome.com/e7269a261c.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -215,13 +216,18 @@
 <section class="shop checkout section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-12">
-                <div class="checkout-form">
+            <div class="col-12">
+                <div class="order-details ">
+                <div class="single-widget">
                     <h2>El teu perfil</h2>
-                    <p>Aquí pordràs modificar les teves dades del perfil</p>
                     <!-- Form -->
-                    <form class="form" method="post" action="#">
-                        <div class="row ">
+                    <form class="form mt-3 pr-4 pl-4" method="post" action="#">
+                        <div class="row">
+                            <div class="col-12" style="text-align: center">
+                                <img class="" src="../../resouces/images/a.png" style="vertical-align: middle;width: 7vw;height: 7vw;min-width: 90px;min-height: 90px;border-radius: 50%;"/>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Nom<span>*</span></label>
@@ -240,20 +246,27 @@
                                     <input type="email" name="email" placeholder="" required="required">
                                 </div>
                             </div>
-                            <button class="btn btn-warning btn-block" style="background-color: #F7941D">Guardar</button>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group" >
+                                    <label>Estat del compte<span></span></label>
+                                    <p class="bg-success pl-5 pr-5" readonly style="color: white;height: 45px;display: table-cell;vertical-align: middle;font-size: 17px "><i class="fas fa-check-double mr-3"></i>Activat</p>
+                                   <!-- <p class="bg-danger pl-5 pr-5" readonly style="color: white;height: 45px;display: table-cell;vertical-align: middle;font-size: 17px "><i class="fas fa-times mr-3"></i>No Activat</p>-->
+                                </div>
+                            </div>
                         </div>
+                        <button class="btn btn-warning btn-block" style="background-color: #F7941D">Guardar</button>
                     </form>
-                    <!--/ End Form -->
+                </div><!--/ End Form -->
                 </div>
             </div>
-            <div class="col-lg-4 col-12">
+            <div class=" col-12 mt-4">
                 <div class="order-details">
                     <!-- Order Widget -->
                     <div class="single-widget">
                         <h2>Les teves adreçes</h2>
                         <br>
-                        <div class="content pr-3 pl-3 ">
-                            <select class="pr-5 pl-5">
+                        <div class="content pr-4 pl-4 ">
+                            <select>
                                 <option selected="selected">Adreça 1</option>
                                 <option>Adreça 2</option>
                                 <option>Adreça 3</option>
@@ -261,52 +274,61 @@
                         </div>
 
                     </div>
-                    <button class="btn btn-success bg-success center">Nova Adreça</button>
-                    <button class="btn btn-danger bg-danger">Eliminar adreça</button>
+                    <div class="row pr-4 pl-4">
+                        <div class="col-md-6 col-12 mt-2">
+                            <button class="btn btn-success bg-success btn-block">Nova Adreça</button>
+                        </div>
+                        <div class="col-md-6 col-12 mt-2">
+                            <button class="btn btn-danger bg-danger btn-block">Eliminar adreça</button>
+                        </div>
+                    </div>
+
                     <!--/ End Order Widget -->
                     <!-- Order Widget -->
-                    <div class="single-widget">
+                    <div class="single-widget mt-4">
                         <h2>Dades</h2>
                         <form class="form" method="post" action="#">
-                            <div class="row p-3 pr-3">
-                                <div class="col-12">
+                            <div class="row p-4 pr-4">
+                                <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label>Nom de l'adreça<span>*</span></label>
+                                        <label>Àlies<span>*</span></label>
                                         <input type="text" name="name" placeholder="" required="required">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Adreça<span>*</span></label>
                                         <input type="text" name="name" placeholder="" required="required">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Codi postal<span>*</span></label>
                                         <input type="text" name="name" placeholder="" required="required">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Població<span>*</span></label>
                                         <input type="email" name="email" placeholder="" required="required">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Païs<span>*</span></label>
                                         <input type="email" name="email" placeholder="" required="required">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Provincia<span>*</span></label>
                                         <input type="email" name="email" placeholder="" required="required">
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-warning btn-block" style="background-color: #F7941D">Guardar</button>
+                            <div class="col-12 pl-4 pr-4">
+                                <button class="btn btn-warning btn-block" style="background-color: #F7941D">Guardar</button>
+                            </div>
                         </form>
 
                     </div>
@@ -326,8 +348,8 @@
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-rocket"></i>
-                    <h4>Free shiping</h4>
-                    <p>Orders over $100</p>
+                    <h4>Enviament gratuït</h4>
+                    <p>En comandes de més de 50€</p>
                 </div>
                 <!-- End Single Service -->
             </div>
@@ -335,8 +357,8 @@
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-reload"></i>
-                    <h4>Free Return</h4>
-                    <p>Within 30 days returns</p>
+                    <h4>Devolucions gratuïtes</h4>
+                    <p>Amb compres de menys de 30 dies</p>
                 </div>
                 <!-- End Single Service -->
             </div>
@@ -344,8 +366,8 @@
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-lock"></i>
-                    <h4>Sucure Payment</h4>
-                    <p>100% secure payment</p>
+                    <h4>Pagament segur</h4>
+                    <p>Seguretat 100% a l'hora de pagar</p>
                 </div>
                 <!-- End Single Service -->
             </div>
@@ -353,8 +375,8 @@
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-tag"></i>
-                    <h4>Best Peice</h4>
-                    <p>Guaranteed price</p>
+                    <h4>El millor preu</h4>
+                    <p>Garantim el millor preu del mercat</p>
                 </div>
                 <!-- End Single Service -->
             </div>
@@ -372,7 +394,7 @@
                     <!-- Start Newsletter Inner -->
                     <div class="inner">
                         <h4>Newsletter</h4>
-                        <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                        <p> Subscriu-te al nostre butlletí de notícies i obtindràs un <span>10%</span> de descompte en la primera compra</p>
                         <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
                             <input name="EMAIL" placeholder="Your email address" required="" type="email">
                             <button class="btn">Subscribe</button>
