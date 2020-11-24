@@ -108,3 +108,33 @@ if(isset($_POST["recover_password"])){
     }
 }
 
+if(isset($_POST["email_login"])){
+    unset($_SESSION["login_email"]);
+    unset($_SESSION["login_errors"]);
+    $vars = array(
+        "data" => array($_POST["email_login"], $_POST["password_login"]),
+        "names" => array("email_login", "password_login",)
+    );
+    $errors = checkPostRequest($vars);
+    $database = new Database();
+    $user_info = $database->executeQuery("SELECT * FROM users WHERE email LIKE ?",array($_POST["email_login"]));
+    $database->closeConnection();
+    if (count($errors)==0 && checkEmail($_POST["email_login"]) == false || count($user_info)==0) {
+        array_push($errors, "error_email_login");
+    } else{
+        $password_enc = $user_info[0]["password"]
+        if(password_verify($_POST["password_login"],$password_enc)==false){
+            array_push($errors, "error_email_password");
+        }
+    }
+    if(count($errors)==0){
+        if($user_info[0]["role"]==1 || $user_info[0]["role"]==2){
+
+        }else{
+
+        }
+    } else{
+        $_SESSION["login_email"] = $_POST["email_login"];
+        $_SESSION["login_errors"] = $errors;
+    }
+}

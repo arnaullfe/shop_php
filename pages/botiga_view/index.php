@@ -1,6 +1,9 @@
 <?php
+include_once ('../../controllers/UserTokenController.php');
 session_start();
 ob_start();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -109,7 +112,7 @@ ob_start();
 					<div class="col-lg-3 col-md-5 col-12">
 						<div class="right-bar">
 							<!-- Search Form -->
-                            <?php if(true):?>
+                            <?php if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"])):?>
                                 <div class="sinlge-bar ">
                                     <div class="dropdown">
                                         <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">

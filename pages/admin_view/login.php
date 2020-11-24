@@ -41,13 +41,17 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                            <input type="email" class="form-control form-control-user" name="email_login" aria-describedby="emailHelp"
                                                 placeholder="Introdueix el teu email...">
+                                            <?if($_SESSION[]):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Email incorrecte o inexistent</label>
+                                            <?endif;?>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Contrasenya">
+                                            <input type="password" class="form-control form-control-user" name="password_login"placeholder="Contrasenya">
+                                            <?if($_SESSION[]):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Contrasenya incorrecte</label>
+                                            <?endif;?>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

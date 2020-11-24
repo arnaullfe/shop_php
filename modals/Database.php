@@ -11,7 +11,7 @@ class Database
 
     public function __construct()
     {
-        $this->host = "172.19.0.3";
+        $this->host = "172.19.0.2";
         $this->db = "shop";
         $this->dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db . ';';
         $this->user = 'admin';
