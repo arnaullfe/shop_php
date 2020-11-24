@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,29 +42,36 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Benvingut!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="../../controllers/UserController.php" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" name="email_login" aria-describedby="emailHelp"
-                                                placeholder="Introdueix el teu email...">
-                                            <?if($_SESSION[]):?>
+                                                placeholder="Introdueix el teu email..." value="<?php echo $_SESSION["login_email"]?>">
+                                            <?if(isset($_SESSION["login_errors"]) && in_array("error_email_login",$_SESSION["login_errors"])):?>
                                             <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Email incorrecte o inexistent</label>
                                             <?endif;?>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="password_login"placeholder="Contrasenya">
-                                            <?if($_SESSION[]):?>
+                                            <?if(isset($_SESSION["login_errors"]) && in_array("error_password_login",$_SESSION["login_errors"])):?>
                                             <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Contrasenya incorrecte</label>
                                             <?endif;?>
                                         </div>
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                            <div class="custom-control custom-checkbox small ml-2">
+                                                <?php if(!isset($_SESSION["login_remember"]) || $_SESSION["login_remember"]==true):?>
+                                                    <input type="checkbox" class="custom-control-input" name="remember_login" id="customCheck" checked>
+                                                <?else:?>
+                                                    <input type="checkbox" class="custom-control-input" name="remember_login" id="customCheck">
+                                                <?endif;?>
                                                 <label class="custom-control-label" for="customCheck">Recorda'm</label>
                                             </div>
                                         </div>
-                                        <a href="index.php" class="btn btn-primary btn-user btn-block" style="background-color: #F6931D;border-color: #f5a342">
+                                        <?if(isset($_SESSION["login_errors"]) && in_array("error_banned_login",$_SESSION["login_errors"])):?>
+                                            <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Aquest usuari està banejat del sistema</label>
+                                        <?endif;?>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" style="background-color: #F6931D;border-color: #f5a342">
                                             Login
-                                        </a>
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
@@ -99,3 +109,8 @@
 </body>
 
 </html>
+<?php
+unset($_SESSION["login_email"]);
+unset($_SESSION["login_errors"]);
+unset($_SESSION["login_remember"]);
+?>

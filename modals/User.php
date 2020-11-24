@@ -3,7 +3,7 @@
 
 class User
 {
-    private $id,$name,$lastnames,$email,$password,$role,$banned,$activated,$last_session,$token_pass,$token_login;
+    private $id,$name,$lastnames,$email,$password,$role,$banned,$activated,$last_session,$token_pass,$token_login,$image;
 
     public function __construct($name, $lastnames, $email, $password)
     {
@@ -17,6 +17,7 @@ class User
         $this->last_session = null;
         $this->token_pass = bin2hex(random_bytes(16));
         $this->token_login = null;
+        $this->image = 'http://'.$_SERVER["SERVER_NAME"]."/resouces/images/".substr(strtolower($name),0,1).".png";
     }
 
     public function getName()
@@ -131,7 +132,7 @@ class User
 
 
     public function  getDataInsertSql(){
-        return array($this->email,$this->name,$this->lastnames,$this->password,$this->role,$this->banned,$this->activated,$this->last_session,$this->token_login,$this->token_pass);
+        return array($this->email,$this->name,$this->lastnames,$this->password,$this->role,$this->banned,$this->activated,$this->last_session,$this->token_login,$this->token_pass,$this->image);
     }
 
 }

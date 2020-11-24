@@ -1,9 +1,14 @@
 <?php
+include_once ("../../modals/Database.php");
 include_once ('../../controllers/UserTokenController.php');
 session_start();
-ob_start();
-
-
+echo $_SESSION["token_login"]." login";
+die();
+if(isset($_SESSION["token_login"])){
+    $database = new Database();
+    $name = $database->executeQuery("SELECT * FROM users WHERE id = ? AND token_login=?",array($_SESSION["user_id"],$_SESSION["token_login"]))[0]["name"];
+    $database->closeConnection();
+}
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -117,7 +122,7 @@ ob_start();
                                     <div class="dropdown">
                                         <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">
                                             <img class="" src="../../resouces/images/a.png" style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
-                                            Arnau
+                                            <?php if(isset($name)){echo $name;}?>
                                         </a>
 
                                         <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">

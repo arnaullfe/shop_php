@@ -5,11 +5,12 @@ if(isset($_COOKIE["token_login"]) && isset($_COOKIE["user_id"])){
     $_SESSION["user_id"] = $_COOKIE["user_id"];
 }
 
+
 if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"])){
     $database = new Database();
-    $result = $database->executeQuery("SELECT * FROM users WHERE token=? AND id=? AND role=?",array($_SESSION["token_login"],$_SESSION["user_id"],0));
+    $result = $database->executeQuery("SELECT * FROM users WHERE token_login=? AND id=? AND role=?",array($_SESSION["token_login"],$_SESSION["user_id"],0));
     $database->closeConnection();
-    if(count($result)!=1){
+    if(count($result)==0){
         deleteCokiesAndSession();
     }
 } else{

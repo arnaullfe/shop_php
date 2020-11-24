@@ -42,7 +42,7 @@ if (isset($_POST["name_register"])) {
         if (count($errors) == 0) {
             $user = new User($_POST["name_register"],$_POST["lastnames_register"],$_POST["email_register"],password_hash($_POST["password_register"],PASSWORD_DEFAULT));
             $database = new Database();
-            $database->executeQuery("INSERT INTO users (email,name,lastnames,password,role,banned,activated,last_session,token_login,token_pass) values (?,?,?,?,?,?,?,?,?,?)",$user->getDataInsertSql());
+            $database->executeQuery("INSERT INTO users (email,name,lastnames,password,role,banned,activated,last_session,token_login,token_pass,image) values (?,?,?,?,?,?,?,?,?,?,?)",$user->getDataInsertSql());
             $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ?",array($_POST["email_register"]))[0]["id"]);
             sendMailActivatedUser($user);
             $database->closeConnection();
@@ -100,7 +100,7 @@ if(isset($_POST["recover_password"])){
         $_SESSION["recover_password"] = $_POST["recover_password"];
         header("location: ../pages/admin_view/recover_password.php?id=".$_POST["recover_id"]."&token_pass=".$_POST["recover_token_pass"]);
     } else{
-        $password = password_hash($_POST["password_register"],PASSWORD_DEFAULT);
+        $password = password_hash($_POST["recover_password"],PASSWORD_DEFAULT);
         $database = new Database();
         $database->executeQuery("UPDATE users SET password = ?,token_pass = ?, token_login = ? WHERE id=? AND token_pass = ?",array($password,null,null,$_POST["recover_id"],$_POST["recover_token_pass"]));
         $database->closeConnection();
@@ -111,30 +111,43 @@ if(isset($_POST["recover_password"])){
 if(isset($_POST["email_login"])){
     unset($_SESSION["login_email"]);
     unset($_SESSION["login_errors"]);
-    $vars = array(
-        "data" => array($_POST["email_login"], $_POST["password_login"]),
-        "names" => array("email_login", "password_login",)
-    );
-    $errors = checkPostRequest($vars);
+    unset($_SESSION["login_remember"]);
+    $errors = array();
     $database = new Database();
     $user_info = $database->executeQuery("SELECT * FROM users WHERE email LIKE ?",array($_POST["email_login"]));
-    $database->closeConnection();
     if (count($errors)==0 && checkEmail($_POST["email_login"]) == false || count($user_info)==0) {
         array_push($errors, "error_email_login");
-    } else{
-        $password_enc = $user_info[0]["password"]
-        if(password_verify($_POST["password_login"],$password_enc)==false){
-            array_push($errors, "error_email_password");
-        }
+    } else if(strlen($_POST["password_login"])==0 || password_verify($_POST["password_login"],$user_info[0]["password"])==false){
+            array_push($errors, "error_password_login");
+    } else if($user_info[0]["banned"]==true){
+        array_push($errors, "error_banned_login");
     }
     if(count($errors)==0){
+        $token = bin2hex(random_bytes(16));
+        $database->executeQuery("UPDATE users SET token_login = ? WHERE id=?",array($token,$user_info[0]["id"]));
+        unset($_COOKIE["token_login"]);
+        unset($_COOKIE["user_id"]);
+        if(isset($_POST["remember_login"])){
+            setcookie("token_login", $token, time() + (86400 * 30), "/");
+            $_COOKIE["user_id"]= $user_info[0]["id"];
+        }
+        $_SESSION["token_login"] = $token;
+        $_SESSION["user_id"] = $user_info[0]["id"];
         if($user_info[0]["role"]==1 || $user_info[0]["role"]==2){
-
+            header("location: ../pages/admin_view/index.php");
         }else{
-
+            header("location: ../pages/botiga_view/index.php");
         }
     } else{
+        if(isset($_POST["remember_login"])){
+            $_SESSION["login_remember"] = true;
+        } else{
+            $_SESSION["login_remember"] = false;
+        }
         $_SESSION["login_email"] = $_POST["email_login"];
+
         $_SESSION["login_errors"] = $errors;
+        header("location: ../pages/admin_view/login.php");
     }
+    $database->closeConnection();
 }
