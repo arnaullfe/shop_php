@@ -69,7 +69,7 @@ class Database
                                             role int DEFAULT 0,
                                             banned int DEFAULT 0,
                                             activated int DEFAULT 0,
-                                            last_session DATE ,
+                                            last_session DATETIME ,
                                             token_login varchar(255),
                                             token_pass varchar(255),
                                             image varchar(255));");

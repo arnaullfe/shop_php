@@ -21,7 +21,7 @@ function checkPostRequest($data)
 }
 
 function checkOnlyLetters($string){
-    if(ctype_alpha($string)){
+    if (preg_match('/[A-Za-z]+/', $string)) {
         return true;
     }
     return false;

@@ -408,10 +408,17 @@
 
                                         </td>
                                         <td>
+                                            <?php if($user["role"]<2 || $user["banned"]==1):?>
                                             <?php if($user["banned"]==0):?>
                                             <button class="btn btn-warning btn-sm" title="Banejar"><i class="fas fa-ban"></i></button>
+                                            <?php else:?>
+                                                <button class="btn btn-success btn-sm" title="Desbanejar"><i class="fas fa-undo-alt"></i></button>
                                             <?php endif;?>
                                             <button class="btn btn-danger btn-sm"  title="Eliminar usuari"><i class="fas fa-trash-alt"></i></button>
+                                            <?else:?>
+                                                <button class="btn btn-warning btn-sm" title="Banejar" disabled><i class="fas fa-ban"></i></button>
+                                                <button class="btn btn-danger btn-sm"  title="Eliminar usuari" disabled><i class="fas fa-trash-alt"></i></button>
+                                            <?endif;?>
                                         </td>
                                     </tr>
                                 <?endforeach;?>
