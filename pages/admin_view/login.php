@@ -1,5 +1,9 @@
 <?php
 session_start();
+unset($_SESSION["token_login"]);
+unset($_SESSION["user_id"]);
+unset($_COOKIE["token_login"]);
+unset($_COOKIE["user_id"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +32,17 @@ session_start();
 <body >
     <div class="container">
         <!-- Outer Row -->
+        <?php if($_SESSION["email_message"]):?>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <?php echo $_SESSION["email_message"]?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?endif;?>
+
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -113,4 +124,5 @@ session_start();
 unset($_SESSION["login_email"]);
 unset($_SESSION["login_errors"]);
 unset($_SESSION["login_remember"]);
+unset($_SESSION["email_message"]);
 ?>

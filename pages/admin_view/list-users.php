@@ -1,8 +1,14 @@
 <?php
-    include_once ('../../modals/Database.php');
+include_once('../../modals/Database.php');
+include_once ('../../controllers/AdminTokenController.php');
+session_start();
+if(!isset($_SESSION["user_info"])){
+    header("location: ../botiga_view/index.php");
+} else{
     $database = new Database();
-    $users = $database->executeQuery("SELECT * FROM users",array());
+    $users = $database->executeQuery("SELECT * FROM users", array());
     $database->closeConnection();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +27,8 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -113,8 +119,8 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                aria-expanded="true" aria-controls="collapsePages" style="color: white">
-               <b> <i class="fas fa-users" style="color: white"></i>
-                   <span>Usuaris</span></b>
+                <b> <i class="fas fa-users" style="color: white"></i>
+                    <span>Usuaris</span></b>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -260,7 +266,8 @@
                                 </div>
                                 <div class="font-weight-bold">
                                     <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
+                                        problem I've been having.
+                                    </div>
                                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                                 </div>
                             </a>
@@ -272,7 +279,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
+                                        would you like them sent to you?
+                                    </div>
                                     <div class="small text-gray-500">Jae Chun · 1d</div>
                                 </div>
                             </a>
@@ -284,7 +292,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
+                                        the progress so far, keep up the good work!
+                                    </div>
                                     <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                 </div>
                             </a>
@@ -296,7 +305,8 @@
                                 </div>
                                 <div>
                                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
+                                        told me that people say this to all dogs, even if they aren't good...
+                                    </div>
                                     <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                 </div>
                             </a>
@@ -307,12 +317,11 @@
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"  id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle"
-                                 src="../../resouces/images/a.png">
-                            <span class="ml-2 d-none d-lg-inline text-gray-600 small">Arnau Llopart</span>
+                            <img class="img-profile rounded-circle" src='<?php echo $_SESSION["user_info"][0]["image"]?>'>
+                            <span class="ml-2 d-none d-lg-inline text-gray-600 small"> <?php echo $_SESSION["user_info"][0]["name"]." ".$_SESSION["user_info"][0]["lastnames"];?></span>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -378,50 +387,56 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <?php foreach ($users as $user):?>
+                                <?php foreach ($users as $user): ?>
                                     <tr>
-                                        <td><?php echo $user["name"]." ".$user["lastnames"]?></td>
-                                        <td><?php echo $user["email"]?></td>
+                                        <td><?php echo $user["name"] . " " . $user["lastnames"] ?></td>
+                                        <td><?php echo $user["email"] ?></td>
                                         <td style="text-align: center;">
-                                        <?php if($user["role"]==0):?>
-                                            <input type="checkbox" class="form-check-input" >
-                                        <?php elseif ($user["role"]==1):?>
-                                            <input type="checkbox" class="form-check-input" checked>
-                                        <?php else:?>
-                                            <input type="checkbox" class="form-check-input" checked disabled>
-                                        <?endif;?>
+                                            <?php if ($user["role"] == 0): ?>
+                                                <input type="checkbox" class="form-check-input">
+                                            <?php elseif ($user["role"] == 1): ?>
+                                                <input type="checkbox" class="form-check-input" checked>
+                                            <?php else: ?>
+                                                <input type="checkbox" class="form-check-input" checked disabled>
+                                            <? endif; ?>
                                         </td>
-                                        <td><?php if($user["banned"]==1):?>
-                                            Banejat
-                                            <?php elseif ($user["activated"]==1):?>
-                                            Activat
-                                            <?php else:?>
-                                            No activat
-                                            <?endif;?>
+                                        <td><?php if ($user["banned"] == 1): ?>
+                                                Banejat
+                                            <?php elseif ($user["activated"] == 1): ?>
+                                                Activat
+                                            <?php else: ?>
+                                                No activat
+                                            <? endif; ?>
                                         </td>
-                                        <td><?php if($user["last_session"]==null):?>
-                                            No ha fet login
-                                            <?php else:
-                                            $user["last_session"]
+                                        <td><?php
+                                            if ($user["last_session"] == null) {
+                                                echo "No ha fet login";
+                                            } else {
+                                                echo formatDate($user["last_session"]);
+                                            }
                                             ?>
-                                            <?endif;?>
 
                                         </td>
                                         <td>
-                                            <?php if($user["role"]<2 || $user["banned"]==1):?>
-                                            <?php if($user["banned"]==0):?>
-                                            <button class="btn btn-warning btn-sm" title="Banejar"><i class="fas fa-ban"></i></button>
-                                            <?php else:?>
-                                                <button class="btn btn-success btn-sm" title="Desbanejar"><i class="fas fa-undo-alt"></i></button>
-                                            <?php endif;?>
-                                            <button class="btn btn-danger btn-sm"  title="Eliminar usuari"><i class="fas fa-trash-alt"></i></button>
-                                            <?else:?>
-                                                <button class="btn btn-warning btn-sm" title="Banejar" disabled><i class="fas fa-ban"></i></button>
-                                                <button class="btn btn-danger btn-sm"  title="Eliminar usuari" disabled><i class="fas fa-trash-alt"></i></button>
-                                            <?endif;?>
+                                            <?php if ($user["role"] < 2 || $user["banned"] == 1): ?>
+                                                <?php if ($user["banned"] == 0): ?>
+                                                    <button class="btn btn-warning btn-sm" title="Banejar"><i
+                                                                class="fas fa-ban"></i></button>
+                                                <?php else: ?>
+                                                    <button class="btn btn-success btn-sm" title="Desbanejar"><i
+                                                                class="fas fa-undo-alt"></i></button>
+                                                <?php endif; ?>
+                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari"><i
+                                                            class="fas fa-trash-alt"></i></button>
+                                            <? else: ?>
+                                                <button class="btn btn-warning btn-sm" title="Banejar" disabled><i
+                                                            class="fas fa-ban"></i></button>
+                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari" disabled>
+                                                    <i class="fas fa-trash-alt"></i></button>
+                                            <? endif; ?>
                                         </td>
                                     </tr>
-                                <?endforeach;?>
+                                <? endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -495,3 +510,10 @@
 </body>
 
 </html>
+<?php
+
+function formatDate($date){
+    $date = new DateTime($date);
+    return date_format($date,"d/m/Y H:i:s");
+}
+?>

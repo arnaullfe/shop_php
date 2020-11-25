@@ -3,7 +3,7 @@ function checkUserActivated($id,$token_pass){
     $database = new Database();
     $activated = $database->executeQuery("SELECT activated FROM users WHERE id=? AND token_pass=?",array($id,$token_pass));
     $database->closeConnection();
-    if(count($activated)>0 && $activated[0]["activated"]==true){
+    if(count($activated)==0 || $activated[0]["activated"]==true){
         return true;
     }
     return false;
@@ -23,4 +23,10 @@ function checkTokenPass($id,$token_pass){
         return true;
     }
     return false;
+}
+
+function changeEmail($id,$token_pass,$email){
+    $database = new Database();
+    $database->executeQuery("update users set email = ?,token_pass = ? WHERE id=? and token_pass LIKE ?",array($email,null,$id,$token_pass));
+    $database->closeConnection();
 }

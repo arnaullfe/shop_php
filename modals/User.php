@@ -129,7 +129,9 @@ class User
         $this->token_login = $token_login;
     }
 
-
+    public function getImage(){
+        return $this->image;
+    }
 
     public function  getDataInsertSql(){
         return array($this->email,$this->name,$this->lastnames,$this->password,$this->role,$this->banned,$this->activated,$this->last_session,$this->token_login,$this->token_pass,$this->image);

@@ -243,13 +243,30 @@ if(!isset($_SESSION["user_info"])){
 <!-- Start Checkout -->
 <section class="shop checkout section">
     <div class="container">
+        <?php if($_SESSION["changes_email_message"]):?>
+            <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                <?php echo $_SESSION["changes_email_message"]?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?endif;?>
+
+        <?php if($_SESSION["changes_message"]):?>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <?php echo $_SESSION["changes_message"]?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?endif;?>
         <div class="row">
             <div class="col-12">
                 <div class="order-details ">
                 <div class="single-widget">
                     <h2>El teu perfil</h2>
                     <!-- Form -->
-                    <form class="form mt-3 pr-4 pl-4" method="post" action="#">
+                    <form class="form mt-3 pr-4 pl-4" method="post" action="../../controllers/UserController.php">
                         <div class="row">
                             <div class="col-12" style="text-align: center">
                                 <img class="" src='<?php echo $_SESSION["user_info"][0]["image"]?>' style="vertical-align: middle;width: 7vw;height: 7vw;min-width: 90px;min-height: 90px;border-radius: 50%;"/>
@@ -259,19 +276,40 @@ if(!isset($_SESSION["user_info"])){
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Nom<span>*</span></label>
-                                    <input type="text" name="name" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["name"]?>'>
+                                    <?php if(isset($_SESSION["name_changes"])):?>
+                                        <input type="text" name="name_changes" placeholder="" required="required" value='<?php echo $_SESSION["name_changes"]?>'>
+                                    <?else:?>
+                                        <input type="text" name="name_changes" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["name"]?>'>
+                                    <?php endif;?>
+                                    <?php if (isset($_SESSION["changes_errors"]) && in_array("error_name_changes", $_SESSION["changes_errors"])): ?>
+                                        <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Nom introduït erroni</label>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Cognoms<span>*</span></label>
-                                    <input type="text" name="name" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["lastnames"]?>'>
+                                    <?php if(isset($_SESSION["lastnames_changes"])):?>
+                                        <input type="text" name="lastnames_changes" placeholder="" required="required" value='<?php echo $_SESSION["lastnames_changes"]?>'>
+                                    <?else:?>
+                                        <input type="text" name="lastnames_changes" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["lastnames"]?>'>
+                                    <?php endif;?>
+                                    <?php if (isset($_SESSION["changes_errors"]) && in_array("error_lastnames_changes", $_SESSION["changes_errors"])): ?>
+                                        <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Cognom introduït erroni</label>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Email<span>*</span></label>
-                                    <input type="email" name="email" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["email"]?>'>
+                                    <?php if(isset($_SESSION["email_changes"])):?>
+                                        <input type="text" name="email_changes" placeholder="" required="required" value='<?php echo $_SESSION["email_changes"]?>'>
+                                    <?else:?>
+                                        <input type="text" name="email_changes" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["email"]?>'>
+                                    <?php endif;?>
+                                    <?php if (isset($_SESSION["changes_errors"]) && in_array("error_email_changes", $_SESSION["changes_errors"])): ?>
+                                        <label class="ml-3 text-danger" style="font-size: 14px;"><i class="fas fa-exclamation-circle mr-1"></i>Email no vàlid o ja existent</label>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
@@ -574,3 +612,11 @@ if(!isset($_SESSION["user_info"])){
 <script src="js/active.js"></script>
 </body>
 </html>
+<?php
+unset($_SESSION["lastnames_changes"]);
+unset($_SESSION["name_changes"]);
+unset($_SESSION["email_changes"]);
+unset($_SESSION["changes_errors"]);
+unset($_SESSION["changes_message"]);
+unset($_SESSION["changes_email_message"]);
+?>
