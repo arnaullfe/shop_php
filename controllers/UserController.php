@@ -125,6 +125,7 @@ if(isset($_POST["email_login"])){
     if(count($errors)==0){
         $token = bin2hex(random_bytes(16));
         $date = new DateTime();
+        $date = date_format($date,"Y-m-d H:i:s");
         $database->executeQuery("UPDATE users SET token_login = ?, last_session =? WHERE id=?",array($token,$date,$user_info[0]["id"]));
         unset($_COOKIE["token_login"]);
         unset($_COOKIE["user_id"]);
