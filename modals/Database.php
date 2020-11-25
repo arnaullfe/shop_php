@@ -11,11 +11,11 @@ class Database
 
     public function __construct()
     {
-        $this->host = "172.19.0.2";
+        $this->host = "esshop.cqnbcumf2too.us-east-1.rds.amazonaws.com";
         $this->db = "shop";
         $this->dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db . ';';
         $this->user = 'admin';
-        $this->pass = "root";
+        $this->pass = "adminroot";
         $this->openConnection();
         $this->createTables();
     }

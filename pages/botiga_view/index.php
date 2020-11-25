@@ -2,13 +2,7 @@
 include_once ("../../modals/Database.php");
 include_once ('../../controllers/UserTokenController.php');
 session_start();
-echo $_SESSION["token_login"]." login";
-die();
-if(isset($_SESSION["token_login"])){
-    $database = new Database();
-    $name = $database->executeQuery("SELECT * FROM users WHERE id = ? AND token_login=?",array($_SESSION["user_id"],$_SESSION["token_login"]))[0]["name"];
-    $database->closeConnection();
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -117,12 +111,12 @@ if(isset($_SESSION["token_login"])){
 					<div class="col-lg-3 col-md-5 col-12">
 						<div class="right-bar">
 							<!-- Search Form -->
-                            <?php if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"])):?>
+                            <?php if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])):?>
                                 <div class="sinlge-bar ">
                                     <div class="dropdown">
                                         <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">
-                                            <img class="" src="../../resouces/images/a.png" style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
-                                            <?php if(isset($name)){echo $name;}?>
+                                            <img class="" src='<?php echo  $_SESSION["user_info"][0]["image"]?>' style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                            <?php echo  $_SESSION["user_info"][0]["name"]?>
                                         </a>
 
                                         <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">

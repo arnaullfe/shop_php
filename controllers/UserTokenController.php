@@ -1,8 +1,9 @@
 <?php
 session_start();
+unset($_SESSION["user_info"]);
 if(isset($_COOKIE["token_login"]) && isset($_COOKIE["user_id"])){
-    $_SESSION["token_login"] = $_COOKIE["token_login"];
-    $_SESSION["user_id"] = $_COOKIE["user_id"];
+   // $_SESSION["token_login"] = $_COOKIE["token_login"];
+    //$_SESSION["user_id"] = $_COOKIE["user_id"];
 }
 
 
@@ -12,6 +13,8 @@ if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"])){
     $database->closeConnection();
     if(count($result)==0){
         deleteCokiesAndSession();
+    }else{
+        $_SESSION["user_info"] = $result;
     }
 } else{
         deleteCokiesAndSession();

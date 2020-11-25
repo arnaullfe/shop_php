@@ -1,3 +1,12 @@
+<?php
+include_once ("../../modals/Database.php");
+include_once ('../../controllers/UserTokenController.php');
+session_start();
+if(!isset($_SESSION["user_info"])){
+    header("location: ./index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -85,7 +94,7 @@
                     <!--/ End Search Form -->
                     <div class="mobile-nav"></div>
                 </div>
-                <div class="col-lg-8 col-md-7 col-12">
+                <div class="col-lg-7 col-md-4 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
                             <select>
@@ -101,14 +110,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-12">
+                <div class="col-lg-3 col-md-5 col-12">
                     <div class="right-bar">
                         <!-- Search Form -->
+                        <?php if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])):?>
+                            <div class="sinlge-bar ">
+                                <div class="dropdown">
+                                    <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">
+                                        <img class="" src='<?php echo $_SESSION["user_info"][0]["image"]?>' style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                        <?php echo $_SESSION["user_info"][0]["name"];?>
+                                    </a>
+
+                                    <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="./profile.php"><i class="fas fa-user mr-3"></i>El meu perfil</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les meves comandes</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar sessió</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?else:?>
+                            <div class="sinlge-bar ">
+                                <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                            </div>
+                        <?endif;?>
                         <div class="sinlge-bar">
                             <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar shopping">
                             <a href="#" class="single-icon"><i class="ti-bag"></i> <span
@@ -224,33 +252,36 @@
                     <form class="form mt-3 pr-4 pl-4" method="post" action="#">
                         <div class="row">
                             <div class="col-12" style="text-align: center">
-                                <img class="" src="../../resouces/images/a.png" style="vertical-align: middle;width: 7vw;height: 7vw;min-width: 90px;min-height: 90px;border-radius: 50%;"/>
+                                <img class="" src='<?php echo $_SESSION["user_info"][0]["image"]?>' style="vertical-align: middle;width: 7vw;height: 7vw;min-width: 90px;min-height: 90px;border-radius: 50%;"/>
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Nom<span>*</span></label>
-                                    <input type="text" name="name" placeholder="" required="required">
+                                    <input type="text" name="name" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["name"]?>'>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Cognoms<span>*</span></label>
-                                    <input type="text" name="name" placeholder="" required="required">
+                                    <input type="text" name="name" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["lastnames"]?>'>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>Email<span>*</span></label>
-                                    <input type="email" name="email" placeholder="" required="required">
+                                    <input type="email" name="email" placeholder="" required="required" value='<?php echo $_SESSION["user_info"][0]["email"]?>'>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group" >
                                     <label>Estat del compte<span></span></label>
+                                    <?php if($_SESSION["user_info"][0]["activated"]==true):?>
                                     <p class="bg-success pl-5 pr-5" readonly style="color: white;height: 45px;display: table-cell;vertical-align: middle;font-size: 17px "><i class="fas fa-check-double mr-3"></i>Activat</p>
-                                   <!-- <p class="bg-danger pl-5 pr-5" readonly style="color: white;height: 45px;display: table-cell;vertical-align: middle;font-size: 17px "><i class="fas fa-times mr-3"></i>No Activat</p>-->
+                                    <?php else:?>
+                                    <p class="bg-danger pl-5 pr-5" readonly style="color: white;height: 45px;display: table-cell;vertical-align: middle;font-size: 17px "><i class="fas fa-times mr-3"></i>No Activat</p>
+                                    <?endif;?>
                                 </div>
                             </div>
                         </div>
