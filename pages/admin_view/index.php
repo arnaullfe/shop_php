@@ -90,21 +90,11 @@ if(!isset($_SESSION["user_info"])){
                 Opcions
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link" href="list-users.php">
                     <i class="fas fa-users"></i>
-                    <span>Usuaris</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Administrar usuaris:</h6>
-                        <a class="collapse-item" href="list-users.php">Tots els usuaris</a>
-                        <a class="collapse-item" href="register.php">Usuaris banejats</a>
-                        <a class="collapse-item" href="forgot-password.php">Usuaris no verificats</a>
-                    </div>
-                </div>
+                    <span>Usuaris</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
@@ -701,7 +691,6 @@ if(!isset($_SESSION["user_info"])){
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -226,7 +226,7 @@ if($_GET["id_delete"]){
 
 if(isset($_GET["id_admin"]) && isset($_GET["status_admin"])){
     $database = new Database();
-    $database->executeQuery("UPDATE users set role=? WHERE id=?",array($_GET["status_admin"],$_GET["id_ban"]));
+    $database->executeQuery("UPDATE users set role=? WHERE id=?",array($_GET["status_admin"],$_GET["id_admin"]));
     $database->closeConnection();
-    header("location: ../pages/admin_view/list-users.php");
+    echo "succes";
 }

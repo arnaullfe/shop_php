@@ -22,7 +22,8 @@
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/js/demo/datatables-demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/js/demo/datatables-demo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/list-users.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-users.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +89,7 @@
       <workItem from="1606327368914" duration="8620000" />
       <workItem from="1606393063342" duration="1212000" />
       <workItem from="1606394411274" duration="256000" />
-      <workItem from="1606394676586" duration="1488000" />
+      <workItem from="1606394676586" duration="6148000" />
     </task>
     <servers />
   </component>

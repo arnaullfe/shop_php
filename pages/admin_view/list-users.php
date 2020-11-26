@@ -35,6 +35,12 @@ if(!isset($_SESSION["user_info"])){
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 </head>
 
@@ -44,7 +50,7 @@ if(!isset($_SESSION["user_info"])){
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #e8840c">
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #F7941D">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
@@ -69,7 +75,7 @@ if(!isset($_SESSION["user_info"])){
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Interface
+            Botiga
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -88,48 +94,19 @@ if(!isset($_SESSION["user_info"])){
             </div>
         </li>
 
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.php">Colors</a>
-                    <a class="collapse-item" href="utilities-border.php">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.php">Animations</a>
-                    <a class="collapse-item" href="utilities-other.php">Other</a>
-                </div>
-            </div>
-        </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Addons
+            Opcions
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-               aria-expanded="true" aria-controls="collapsePages" style="color: white">
-                <b> <i class="fas fa-users" style="color: white"></i>
-                    <span>Usuaris</span></b>
-            </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Administrar usuaris:</h6>
-                    <a class="collapse-item" href="list-users.php" style="color: gray">Tots els usuaris</a>
-                    <a class="collapse-item" href="register.php">Usuaris banejats</a>
-                    <a class="collapse-item" href="forgot-password.php">Usuaris no verificats</a>
-                </div>
-            </div>
+            <a class="nav-link" href="list-users.php" >
+                <i class="fas fa-users" style="color: white"></i>
+                <span style="color: white">Usuaris</span></a>
         </li>
 
         <!-- Nav Item - Charts -->
@@ -393,9 +370,9 @@ if(!isset($_SESSION["user_info"])){
                                         <td><?php echo $user["email"] ?></td>
                                         <td style="text-align: center;">
                                             <?php if ($user["role"] == 0): ?>
-                                                <input type="checkbox" class="form-check-input">
+                                                <input type="checkbox" class="form-check-input" id="<?php echo "check-".$user["id"]?>" onchange="adminAction(<?php echo $user["id"]?>)">
                                             <?php elseif ($user["role"] == 1): ?>
-                                                <input type="checkbox" class="form-check-input" checked>
+                                                <input type="checkbox" class="form-check-input" checked id="<?php echo "check-".$user["id"]?>" onchange="adminAction(<?php echo $user["id"]?>)">
                                             <?php else: ?>
                                                 <input type="checkbox" class="form-check-input" checked disabled>
                                             <? endif; ?>
@@ -474,20 +451,19 @@ if(!isset($_SESSION["user_info"])){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Clica logout si realment vols tancar la sessió.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel·lar</button>
                 <a class="btn btn-primary" href="login.php">Logout</a>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -504,6 +480,28 @@ if(!isset($_SESSION["user_info"])){
 
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
+
+<script>
+    function adminAction(id){
+        var action = 0;
+        var check = document.getElementById("check-"+id);
+        if(check.checked == true){
+            action = 1;
+        }
+        $.ajax({
+            type: "GET",
+            url: '../../controllers/UserController.php',
+            data: {"id_admin": id,"status_admin":action},
+            dataType: 'JSON',
+            success: function (response) {
+                console.log("END")
+                location.reload();
+            }
+        })
+    }
+
+</script>
+
 
 </body>
 
