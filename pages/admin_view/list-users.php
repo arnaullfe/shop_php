@@ -420,11 +420,6 @@ if(!isset($_SESSION["user_info"])){
                                         <td>
                                             <?php if ($user["role"] < 2 || $user["banned"] == 1): ?>
                                                 <?php if ($user["banned"] == 0): ?>
-
-
-                                                    $url_button = $url_server.'/pages/admin_view/change_email.php?id='.$id.'&token_pass='.$token_pass.'&email='.$email;
-
-
                                                     <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=1"?>' class="btn btn-warning btn-sm" title="Banejar"><i class="fas fa-ban"></i></a>
                                                 <?php else: ?>
                                                     <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=0"?>' class="btn btn-success btn-sm" title="Desbanejar"><i

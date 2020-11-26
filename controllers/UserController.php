@@ -47,6 +47,8 @@ if (isset($_POST["name_register"])) {
         $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ?", array($_POST["email_register"]))[0]["id"]);
         sendMailActivatedUser($user);
         $database->closeConnection();
+        $_SESSION["token_login"] = $user->getTokenLogin();
+        $_SESSION["user_id"] = $user->getId();
         $_SESSION["email_message"] = "<strong>Registre!</strong> Activa el teu usuari amb l'email que t'hem enviat.";
         header("location: ../index.php");
     } else {
@@ -210,14 +212,14 @@ if (isset($_POST["email_changes"]) || isset($_POST["name_changes"]) || isset($_P
 
 if(isset($_GET["id_ban"]) && isset($_GET["status_ban"])){
     $database = new Database();
-    $database->executeQuery("UPDATE users SET ban=? WHERE id=?",array($_GET["status_ban"],$_GET["id_ban"]));
+    $database->executeQuery("UPDATE users SET banned=? WHERE id=?",array($_GET["status_ban"],$_GET["id_ban"]));
     $database->closeConnection();
     header("location: ../pages/admin_view/list-users.php");
 }
 
 if($_GET["id_delete"]){
     $database = new Database();
-    $database->executeQuery("DELETE FROM users WHERE id=?",array($_GET["id_ban"]));
+    $database->executeQuery("DELETE FROM users WHERE id=?",array($_GET["id_delete"]));
     $database->closeConnection();
     header("location: ../pages/admin_view/list-users.php");
 }

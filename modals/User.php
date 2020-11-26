@@ -16,7 +16,7 @@ class User
         $this->activated = 0;
         $this->last_session = null;
         $this->token_pass = bin2hex(random_bytes(16));
-        $this->token_login = null;
+        $this->token_login = bin2hex(random_bytes(16));
         $this->image = 'http://'.$_SERVER["SERVER_NAME"]."/resouces/images/".substr(strtolower($this->remove_accents($name)),0,1).".png";
     }
 
