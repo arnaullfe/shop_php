@@ -173,7 +173,7 @@ function recoverUserEmail($id,$token_pass){
 function changeUserEmail($id,$token_pass,$email){
     $url_server = 'http://'.$_SERVER["SERVER_NAME"];
     $url_image = $url_server.'/pages/botiga_view/images/logo.png';
-    $url_button = $url_server.'/pages/admin_view/change_email.php?id='.$id.'&token_pass='.$token_pass.'$email='.$email;
+    $url_button = $url_server.'/pages/admin_view/change_email.php?id='.$id.'&token_pass='.$token_pass.'&email='.$email;
     $html = "
     <!doctype html>
 <html lang='en-US'>
@@ -224,7 +224,7 @@ function changeUserEmail($id,$token_pass,$email){
                                 </p>
                                 <a href=$url_button
                                    style='background:#F6931D;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;cursor: pointer'>
-                                   Recuperar contrasenya</a>
+                                   Canviar email</a>
                             </td>
                         </tr>
                         <tr>

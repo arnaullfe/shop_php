@@ -420,14 +420,17 @@ if(!isset($_SESSION["user_info"])){
                                         <td>
                                             <?php if ($user["role"] < 2 || $user["banned"] == 1): ?>
                                                 <?php if ($user["banned"] == 0): ?>
-                                                    <button class="btn btn-warning btn-sm" title="Banejar"><i
-                                                                class="fas fa-ban"></i></button>
+
+
+                                                    $url_button = $url_server.'/pages/admin_view/change_email.php?id='.$id.'&token_pass='.$token_pass.'&email='.$email;
+
+
+                                                    <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=1"?>' class="btn btn-warning btn-sm" title="Banejar"><i class="fas fa-ban"></i></a>
                                                 <?php else: ?>
-                                                    <button class="btn btn-success btn-sm" title="Desbanejar"><i
-                                                                class="fas fa-undo-alt"></i></button>
+                                                    <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=0"?>' class="btn btn-success btn-sm" title="Desbanejar"><i
+                                                                class="fas fa-undo-alt"></i></a>
                                                 <?php endif; ?>
-                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari"><i
-                                                            class="fas fa-trash-alt"></i></button>
+                                                <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_delete=".$user["id"]?>' class="btn btn-danger btn-sm" title="Eliminar usuari"><i class="fas fa-trash-alt"></i></a>
                                             <? else: ?>
                                                 <button class="btn btn-warning btn-sm" title="Banejar" disabled><i
                                                             class="fas fa-ban"></i></button>

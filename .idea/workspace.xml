@@ -20,24 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/admin_view/change_email.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AdminTokenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminTokenController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/MailContentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MailContentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/MailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MainController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/UserFunctions.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserFunctions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/forgot-password.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/forgot-password.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/change_email.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/change_email.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/list-users.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/recover_password.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/recover_password.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/user_activated.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/user_activated.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/profile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +89,10 @@
       <workItem from="1606143676579" duration="8928000" />
       <workItem from="1606224384730" duration="19129000" />
       <workItem from="1606308924476" duration="9133000" />
-      <workItem from="1606327368914" duration="8020000" />
+      <workItem from="1606327368914" duration="8620000" />
+      <workItem from="1606393063342" duration="1212000" />
+      <workItem from="1606394411274" duration="256000" />
+      <workItem from="1606394676586" duration="826000" />
     </task>
     <servers />
   </component>

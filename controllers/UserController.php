@@ -182,6 +182,7 @@ if (isset($_POST["email_changes"]) || isset($_POST["name_changes"]) || isset($_P
         $last_user = $database->executeQuery("SELECT * FROM users WHERE id=?", array($_SESSION["user_id"]));
         $database->closeConnection();
         $user = new User($_POST["name_changes"],$_POST["email_changes"],$_POST["email_changes"], $user_info[0]["password"]);
+        $user->setId($_SESSION["user_id"]);
         if($_POST["name_changes"]!=$last_user[0]["name"] || $_POST["lastnames_changes"]!=$last_user[0]["lastnames"]){
             $database = new Database();
             $database->executeQuery("UPDATE users SET name = ?, lastnames = ?, image = ? WHERE id=? ",array($_POST["name_changes"],$_POST["lastnames_changes"],$user->getImage(),$_SESSION["user_id"]));
@@ -205,6 +206,25 @@ if (isset($_POST["email_changes"]) || isset($_POST["name_changes"]) || isset($_P
     }
 
     header("location: ../pages/botiga_view/profile.php");
+}
 
+if(isset($_GET["id_ban"]) && isset($_GET["status_ban"])){
+    $database = new Database();
+    $database->executeQuery("UPDATE users SET ban=? WHERE id=?",array($_GET["status_ban"],$_GET["id_ban"]));
+    $database->closeConnection();
+    header("location: ../pages/admin_view/list-users.php");
+}
 
+if($_GET["id_delete"]){
+    $database = new Database();
+    $database->executeQuery("DELETE FROM users WHERE id=?",array($_GET["id_ban"]));
+    $database->closeConnection();
+    header("location: ../pages/admin_view/list-users.php");
+}
+
+if(isset($_GET["id_admin"]) && isset($_GET["status_admin"])){
+    $database = new Database();
+    $database->executeQuery("UPDATE users set role=? WHERE id=?",array($_GET["status_admin"],$_GET["id_ban"]));
+    $database->closeConnection();
+    header("location: ../pages/admin_view/list-users.php");
 }
