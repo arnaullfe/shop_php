@@ -5,9 +5,9 @@ session_start();
 if(!isset($_SESSION["user_info"])){
     header("location: ../botiga_view/index.php");
 } else{
-    $database = new Database();
-    $users = $database->executeQuery("SELECT * FROM users", array());
-    $database->closeConnection();
+    //$database = new Database();
+   // $users = $database->executeQuery("SELECT * FROM users", array());
+    //$database->closeConnection();
 }
 ?>
 <!DOCTYPE html>
@@ -27,8 +27,8 @@ if(!isset($_SESSION["user_info"])){
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -66,10 +66,10 @@ if(!isset($_SESSION["user_info"])){
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="index.php">
-               <b>
-                   <i class="fas fa-fw fa-tachometer-alt"></i>
-                   <span>Tauler de control</span></a>
-               </b>
+                <b>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Tauler de control</span></a>
+            </b>
         </li>
 
         <!-- Divider -->
@@ -83,8 +83,8 @@ if(!isset($_SESSION["user_info"])){
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <b><i class="fas fa-clipboard-check"></i>
+               aria-expanded="true" aria-controls="collapseTwo" style="color: white">
+                <b><i class="fas fa-clipboard-check"  style="color: white"></i>
                     <span>Productes</span></b>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -108,15 +108,15 @@ if(!isset($_SESSION["user_info"])){
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="list-users.php" >
-               <b><i class="fas fa-users" style="color: white"></i>
-                   <span style="color: white">Usuaris</span></a></b>
+                <b><i class="fas fa-users"></i>
+                    <span>Usuaris</span></a></b>
         </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="charts.php">
-               <b><i class="fas fa-fw fa-chart-area"></i>
-                   <span>Informació</span></a></b>
+                <b><i class="fas fa-fw fa-chart-area"></i>
+                    <span>Informació</span></a></b>
         </li>
 
         <!-- Divider -->
@@ -335,86 +335,55 @@ if(!isset($_SESSION["user_info"])){
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Llista d'usuaris</h1>
-                <p class="mb-4">Administració de tot el llistat d'usuaris del sistema.</p>
+                <h1 class="h3 mb-2 text-gray-800">Llista de categories</h1>
+                <p class="mb-4">Administració de totes les categories de productes del sistema</p>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold" style="color: #e8840c">Usuaris</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #e8840c">Categories</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Nom i cognoms</th>
-                                    <th>Email</th>
-                                    <th>Admin</th>
+                                    <th>Nom</th>
+                                    <th>Descripció</th>
                                     <th>Estat</th>
-                                    <th>Últim login</th>
+                                    <th>Última modificació</th>
                                     <th>Accions</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Nom i cognoms</th>
-                                    <th>Email</th>
-                                    <th>Admin</th>
+                                    <th>Nom</th>
+                                    <th>Descripció</th>
                                     <th>Estat</th>
-                                    <th>Últim login</th>
+                                    <th>Última modificació</th>
                                     <th>Accions</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <?php foreach ($users as $user): ?>
+                                <?php //foreach ($users as $user): ?>
                                     <tr>
-                                        <td><?php echo $user["name"] . " " . $user["lastnames"] ?></td>
-                                        <td><?php echo $user["email"] ?></td>
+                                        <td><?php //echo $user["name"] . " " . $user["lastnames"] ?>Categoria test</td>
+                                        <td><?php //echo $user["email"] ?>Categoria de test</td>
                                         <td style="text-align: center;">
-                                            <?php if ($user["role"] == 0): ?>
-                                                <input type="checkbox" class="form-check-input" id="<?php echo "check-".$user["id"]?>" onchange="adminAction(<?php echo $user["id"]?>)">
-                                            <?php elseif ($user["role"] == 1): ?>
-                                                <input type="checkbox" class="form-check-input" checked id="<?php echo "check-".$user["id"]?>" onchange="adminAction(<?php echo $user["id"]?>)">
-                                            <?php else: ?>
-                                                <input type="checkbox" class="form-check-input" checked disabled>
-                                            <? endif; ?>
+                                            <select class="form-control" >
+                                                <option>Actiu</option>
+                                                <option>Desactivat</option>
+                                            </select>
                                         </td>
-                                        <td><?php if ($user["banned"] == 1): ?>
-                                                Banejat
-                                            <?php elseif ($user["activated"] == 1): ?>
-                                                Activat
-                                            <?php else: ?>
-                                                No activat
-                                            <? endif; ?>
-                                        </td>
-                                        <td><?php
-                                            if ($user["last_session"] == null) {
-                                                echo "No ha fet login";
-                                            } else {
-                                                echo formatDate($user["last_session"]);
-                                            }
-                                            ?>
-
+                                        <td>23/03/2019
                                         </td>
                                         <td>
-                                            <?php if ($user["role"] < 2 || $user["banned"] == 1): ?>
-                                                <?php if ($user["banned"] == 0): ?>
-                                                    <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=1"?>' class="btn btn-warning btn-sm" title="Banejar"><i class="fas fa-ban"></i></a>
-                                                <?php else: ?>
-                                                    <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=0"?>' class="btn btn-success btn-sm" title="Desbanejar"><i
-                                                                class="fas fa-undo-alt"></i></a>
-                                                <?php endif; ?>
-                                                <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_delete=".$user["id"]?>' class="btn btn-danger btn-sm" title="Eliminar usuari"><i class="fas fa-trash-alt"></i></a>
-                                            <? else: ?>
-                                                <button class="btn btn-warning btn-sm" title="Banejar" disabled><i
-                                                            class="fas fa-ban"></i></button>
-                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari" disabled>
+                                                <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari">
                                                     <i class="fas fa-trash-alt"></i></button>
-                                            <? endif; ?>
                                         </td>
                                     </tr>
-                                <? endforeach; ?>
+                                <?// endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

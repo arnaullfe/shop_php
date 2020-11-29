@@ -132,7 +132,7 @@ session_start();
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les meves comandes</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt mr-3 text-danger"></i>Logout</a>
+                                            <a class="dropdown-item" href="../admin_view/login.php"><i class="fas fa-sign-out-alt mr-3 text-danger"></i>Logout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -2425,24 +2425,6 @@ session_start();
 		</div>
 	</footer>
 	<!-- /End Footer Area -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Clica logout si realment vols tancar la sessió.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel·lar</button>
-                    <a class="btn btn-primary" href="../admin_view/login.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 	<!-- Jquery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.0.js"></script>

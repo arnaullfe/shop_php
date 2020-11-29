@@ -1,6 +1,8 @@
 <?php
 include('../../controllers/UserFunctions.php');
 include ('../../modals/Database.php');
+session_start();
+
 unset($_SESSION["token_login"]);
 unset($_SESSION["user_id"]);
 unset($_COOKIE["token_login"]);

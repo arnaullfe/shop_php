@@ -70,14 +70,15 @@ if(!isset($_SESSION["user_info"])){
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Opcions</span>
+                    <b><i class="fas fa-clipboard-check"></i>
+                    <span>Productes</span></b>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opcions de la botiga:</h6>
-                        <a class="collapse-item" href="buttons.php">Administrar productes</a>
-                        <a class="collapse-item" href="cards.php">Administrar vendes</a>
+                        <h6 class="collapse-header">Administrar productes:</h6>
+                        <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
+                        <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
+                        <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
                     </div>
                 </div>
             </li>
@@ -93,15 +94,15 @@ if(!isset($_SESSION["user_info"])){
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="list-users.php">
-                    <i class="fas fa-users"></i>
-                    <span>Usuaris</span></a>
+                    <b><i class="fas fa-users"></i>
+                    <span>Usuaris</span></a></b>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Informació</span></a>
+                   <b><i class="fas fa-fw fa-chart-area"></i>
+                       <span>Informació</span></a></b>
             </li>
 
             <!-- Divider -->
