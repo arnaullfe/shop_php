@@ -90,8 +90,8 @@ if(!isset($_SESSION["user_info"])){
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar productes:</h6>
-                    <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
+                    <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
                 </div>
             </div>
@@ -148,30 +148,6 @@ if(!isset($_SESSION["user_info"])){
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                             aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                           placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
 
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
@@ -341,7 +317,7 @@ if(!isset($_SESSION["user_info"])){
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold" style="color: #e8840c">Usuaris</h6>
+                        <h6 class="m-0 font-weight-bold" style="color: #F7941D">Usuaris</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -454,15 +430,15 @@ if(!isset($_SESSION["user_info"])){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h5>
+                <h6 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h6>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">Clica logout si realment vols tancar la sessió.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel·lar</button>
-                <a class="btn btn-primary" href="login.php">Logout</a>
+                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel·lar</button>
+                <a class="btn btn-danger btn-sm" href="login.php">Logout</a>
             </div>
         </div>
     </div>
@@ -505,6 +481,12 @@ if(!isset($_SESSION["user_info"])){
 
 </script>
 
+<style>
+    .page-item.active .page-link {
+        background-color: #F7941D !important;
+        border: 1px solid #F7941D;
+    }
+</style>
 
 </body>
 

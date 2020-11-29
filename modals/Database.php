@@ -73,6 +73,13 @@ class Database
                                             token_login varchar(255),
                                             token_pass varchar(255),
                                             image varchar(255));");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS productCategory (
+	                                        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                                            name varchar(255) NOT NULL,
+                                            description varchar(255) NOT NULL,
+                                            activated int DEFAULT 1,
+                                            created_at DATETIME ,
+                                            last_modified DATETIME);");
         } catch (PDOException $err) {
             echo $err;
         }

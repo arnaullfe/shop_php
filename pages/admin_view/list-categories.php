@@ -5,9 +5,9 @@ session_start();
 if(!isset($_SESSION["user_info"])){
     header("location: ../botiga_view/index.php");
 } else{
-    //$database = new Database();
-   // $users = $database->executeQuery("SELECT * FROM users", array());
-    //$database->closeConnection();
+    $database = new Database();
+    $categories = $database->executeQuery("SELECT * FROM productCategory", array());
+    $database->closeConnection();
 }
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,6 @@ if(!isset($_SESSION["user_info"])){
 </head>
 
 <body id="page-top">
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -129,7 +128,6 @@ if(!isset($_SESSION["user_info"])){
 
     </ul>
     <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -148,30 +146,6 @@ if(!isset($_SESSION["user_info"])){
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                             aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                           placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
 
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
@@ -333,7 +307,14 @@ if(!isset($_SESSION["user_info"])){
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
+                <?php if(isset($_SESSION["message"])):?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?php echo $_SESSION["message"]?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?endif;?>
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Llista de categories</h1>
                 <p class="mb-4">Administració de totes les categories de productes del sistema</p>
@@ -341,8 +322,8 @@ if(!isset($_SESSION["user_info"])){
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #e8840c">Categories</h6>
-                        <button class="btn btn-primary float-right m-0 d-inline-block" data-toggle="modal" data-target="#createCategory"><i class="fas fa-plus-circle"></i> Nova categoria</button>
+                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Categories</h6>
+                        <button class="btn btn-warning float-right m-0 d-inline-block" data-toggle="modal" data-target="#createCategory" style="background-color: #F7941D"><i class="fas fa-plus-circle"></i> Nova categoria</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -366,17 +347,18 @@ if(!isset($_SESSION["user_info"])){
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <?php //foreach ($users as $user): ?>
+                                <?php foreach ($categories as $category): ?>
                                     <tr>
-                                        <td><?php //echo $user["name"] . " " . $user["lastnames"] ?>Categoria test</td>
-                                        <td><?php //echo $user["email"] ?>Categoria de test</td>
+                                        <td><?php echo $category["name"]?></td>
+                                        <td><?php echo $category["description"]?></td>
                                         <td style="text-align: center;">
-                                            <select class="form-control" >
-                                                <option>Actiu</option>
-                                                <option>Desactivat</option>
+                                            <select class="form-control" id="<?php echo "status-".$category["id"];?>" onchange="changeState(<?php echo $category['id']?>)">
+                                                <option value="1">Actiu</option>
+                                                <option  value="0" <?php  if($category["activated"]==0){echo "selected";}?>>Desactivat</option>
                                             </select>
                                         </td>
-                                        <td>23/03/2019
+                                        <td>
+                                            <?php echo formatDate($category["last_modified"]);?>
                                         </td>
                                         <td>
                                                 <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
@@ -384,7 +366,7 @@ if(!isset($_SESSION["user_info"])){
                                                     <i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
-                                <?// endforeach; ?>
+                                <? endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -446,22 +428,23 @@ if(!isset($_SESSION["user_info"])){
             <div class="modal-header">
                 <h6 class="modal-title" id="exampleModalLabel">Nova categoria</h6>
             </div>
-            <div class="modal-body">
-                <form>
+                <form action="../../controllers/ProductCategoryController.php" method="post">
+                    <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nom de la categoria:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" class="form-control" name="name_productCategory" id="recipient-name">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Descripció:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" name="description_productCategory" id="message-text"></textarea>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
+                        <button type="submit" class="btn btn-sm btn-primary">Crear categoria</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
-                <button type="button" class="btn btn-sm btn-primary">Crear categoria</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -486,16 +469,14 @@ if(!isset($_SESSION["user_info"])){
 <script src="js/demo/datatables-demo.js"></script>
 
 <script>
-    function adminAction(id){
-        var action = 0;
-        var check = document.getElementById("check-"+id);
-        if(check.checked == true){
-            action = 1;
-        }
+    function changeState(id){
+            var action = document.getElementById("status-"+id).value;
+            console.log(id);
+            console.log(action)
         $.ajax({
-            type: "GET",
-            url: '../../controllers/UserController.php',
-            data: {"id_admin": id,"status_admin":action},
+            type: "POST",
+            url: '../../controllers/ProductCategoryController.php',
+            data: {"id_changeState": id,"status_category":action},
             dataType: 'JSON',
             success: function (response) {
                 console.log("END")
@@ -505,6 +486,13 @@ if(!isset($_SESSION["user_info"])){
     }
 
 </script>
+
+<style>
+    .page-item.active .page-link {
+        background-color: #F7941D !important;
+        border: 1px solid #F7941D;
+    }
+</style>
 
 
 </body>
@@ -516,4 +504,5 @@ function formatDate($date){
     $date = new DateTime($date);
     return date_format($date,"d/m/Y H:i:s");
 }
+unset($_SESSION["message"]);
 ?>

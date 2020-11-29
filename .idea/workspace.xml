@@ -20,9 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/ProductCategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/ProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/ProductCategory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/list-categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-categories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-users.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-users.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +92,7 @@
       <workItem from="1606393063342" duration="1212000" />
       <workItem from="1606394411274" duration="256000" />
       <workItem from="1606394676586" duration="9296000" />
-      <workItem from="1606646060583" duration="3898000" />
+      <workItem from="1606646060583" duration="8830000" />
     </task>
     <servers />
   </component>
@@ -111,10 +115,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1606043640694">
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1606662204119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1606043640694" />
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1606662204119" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605352707974">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -123,10 +127,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="784" y="242" key="NewPhpClassDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1606648405022" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1606648204445">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1606661977626">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1606648204445" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1606661977626" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1605955924849">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
