@@ -90,8 +90,8 @@ if(!isset($_SESSION["user_info"])){
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar productes:</h6>
-                    <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
+                    <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
                 </div>
             </div>
@@ -341,7 +341,8 @@ if(!isset($_SESSION["user_info"])){
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold" style="color: #e8840c">Categories</h6>
+                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #e8840c">Categories</h6>
+                        <button class="btn btn-primary float-right m-0 d-inline-block" data-toggle="modal" data-target="#createCategory"><i class="fas fa-plus-circle"></i> Nova categoria</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -423,19 +424,50 @@ if(!isset($_SESSION["user_info"])){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h5>
+                <h6 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h6>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">Clica logout si realment vols tancar la sessió.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel·lar</button>
-                <a class="btn btn-primary" href="login.php">Logout</a>
+                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel·lar</button>
+                <a class="btn btn-danger btn-sm" href="login.php">Logout</a>
             </div>
         </div>
     </div>
 </div>
+
+<!--create category modal-->
+
+<div class="modal fade" id="createCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Nova categoria</h6>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nom de la categoria:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Descripció:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
+                <button type="button" class="btn btn-sm btn-primary">Crear categoria</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -76,8 +76,8 @@ if(!isset($_SESSION["user_info"])){
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Administrar productes:</h6>
-                        <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
                         <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
+                        <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
                         <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
                     </div>
                 </div>
@@ -679,15 +679,15 @@ if(!isset($_SESSION["user_info"])){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h5>
+                    <h6 class="modal-title" id="exampleModalLabel">Ja vols marxar?</h6>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Clica logout si realment vols tancar la sessió.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel·lar</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel·lar</button>
+                    <a class="btn btn-danger btn-sm" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
