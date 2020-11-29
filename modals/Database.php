@@ -80,12 +80,22 @@ class Database
                                             activated int DEFAULT 1,
                                             created_at DATETIME ,
                                             last_modified DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS products (
+	                                        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                                            name varchar(255) NOT NULL,
+                                            description varchar(255) NOT NULL,
+                                            units int,
+                                            price_iva float, 
+                                            price_no_iva float,
+                                            category_id int,
+                                            tag varchar(255),
+                                            discount int,
+                                            image varchar(255),
+                                            activated int DEFAULT 1,
+                                            created_at DATETIME ,
+                                            last_modified DATETIME);");
         } catch (PDOException $err) {
             echo $err;
         }
-        /*
-         * QUERY DATES
-         * SELECT distinct(date) FROM day_room_busy WHERE room_id IN (SELECT id FROM rooms WHERE persons = 3 OR persons = 4) group by date having count(*)= (SELECT count(*) FROM rooms WHERE persons = 3 OR persons = 4);
-         * */
     }
 }

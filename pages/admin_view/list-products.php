@@ -90,7 +90,7 @@ if(!isset($_SESSION["user_info"])){
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar productes:</h6>
                     <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
-                    <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
+                    <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
                 </div>
             </div>
@@ -316,13 +316,13 @@ if(!isset($_SESSION["user_info"])){
                     </div>
                 <?endif;?>
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Llista de categories</h1>
-                <p class="mb-4">Administració de totes les categories de productes del sistema</p>
+                <h1 class="h3 mb-2 text-gray-800">Productes i estoc</h1>
+                <p class="mb-4">Administració dels productes i l'estoc de la botiga</p>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Categories</h6>
+                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Productes i estoc</h6>
                         <button class="btn btn-warning float-right m-0 d-inline-block" data-toggle="modal" data-target="#createCategory" style="background-color: #F7941D"><i class="fas fa-plus-circle"></i> Nova categoria</button>
                     </div>
                     <div class="card-body">
@@ -331,18 +331,18 @@ if(!isset($_SESSION["user_info"])){
                                 <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Descripció</th>
-                                    <th>Estat</th>
-                                    <th>Última modificació</th>
+                                    <th>Imatge</th>
+                                    <th>Unitats</th>
+                                    <th>Preu amb IVA</th>
                                     <th>Accions</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Descripció</th>
-                                    <th>Estat</th>
-                                    <th>Última modificació</th>
+                                    <th>Imatge</th>
+                                    <th>Unitats</th>
+                                    <th>Preu amb IVA</th>
                                     <th>Accions</th>
                                 </tr>
                                 </tfoot>
@@ -361,9 +361,9 @@ if(!isset($_SESSION["user_info"])){
                                             <?php echo formatDate($category["last_modified"]);?>
                                         </td>
                                         <td>
-                                                <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari">
-                                                    <i class="fas fa-trash-alt"></i></button>
+                                            <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-danger btn-sm" title="Eliminar usuari">
+                                                <i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                 <? endforeach; ?>
@@ -426,10 +426,10 @@ if(!isset($_SESSION["user_info"])){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">Nova categoria</h6>
+                <h6 class="modal-title" id="exampleModalLabel">Nou producte</h6>
             </div>
-                <form action="../../controllers/ProductCategoryController.php" method="post">
-                    <div class="modal-body">
+            <form action="../../controllers/ProductCategoryController.php" method="post">
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nom de la categoria:</label>
                         <input type="text" class="form-control" name="name_productCategory" id="recipient-name">
@@ -438,12 +438,12 @@ if(!isset($_SESSION["user_info"])){
                         <label for="message-text" class="col-form-label">Descripció:</label>
                         <textarea class="form-control" name="description_productCategory" id="message-text"></textarea>
                     </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
-                        <button type="submit" class="btn btn-sm btn-primary">Crear categoria</button>
-                    </div>
-                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Crear categoria</button>
+                </div>
+            </form>
 
         </div>
     </div>
@@ -470,9 +470,9 @@ if(!isset($_SESSION["user_info"])){
 
 <script>
     function changeState(id){
-            var action = document.getElementById("status-"+id).value;
-            console.log(id);
-            console.log(action)
+        var action = document.getElementById("status-"+id).value;
+        console.log(id);
+        console.log(action)
         $.ajax({
             type: "POST",
             url: '../../controllers/ProductCategoryController.php',
@@ -506,3 +506,4 @@ function formatDate($date){
 }
 unset($_SESSION["message"]);
 ?>
+

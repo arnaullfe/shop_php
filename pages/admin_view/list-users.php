@@ -91,7 +91,7 @@ if(!isset($_SESSION["user_info"])){
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar productes:</h6>
                     <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
-                    <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
+                    <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
                 </div>
             </div>
