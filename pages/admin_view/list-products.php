@@ -90,7 +90,7 @@ if(!isset($_SESSION["user_info"])){
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Administrar productes:</h6>
                     <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
-                    <a class="collapse-item" href="buttons.php"><b>Productes i estoc</b></a>
+                    <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
                 </div>
             </div>
@@ -323,7 +323,7 @@ if(!isset($_SESSION["user_info"])){
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Productes i estoc</h6>
-                        <button class="btn btn-warning float-right m-0 d-inline-block" data-toggle="modal" data-target="#createCategory" style="background-color: #F7941D"><i class="fas fa-plus-circle"></i> Nova categoria</button>
+                        <a class="btn btn-warning float-right m-0 d-inline-block" href="./new-product.php" style="background-color: #F7941D"><i class="fas fa-plus-circle"></i> Nou Producte</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -420,36 +420,6 @@ if(!isset($_SESSION["user_info"])){
     </div>
 </div>
 
-<!--create category modal-->
-
-<div class="modal fade" id="createCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">Nou producte</h6>
-            </div>
-            <form action="../../controllers/ProductCategoryController.php" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nom de la categoria:</label>
-                        <input type="text" class="form-control" name="name_productCategory" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Descripció:</label>
-                        <textarea class="form-control" name="description_productCategory" id="message-text"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
-                    <button type="submit" class="btn btn-sm btn-primary">Crear categoria</button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-</div>
-
-
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
@@ -469,6 +439,7 @@ if(!isset($_SESSION["user_info"])){
 <script src="js/demo/datatables-demo.js"></script>
 
 <script>
+
     function changeState(id){
         var action = document.getElementById("status-"+id).value;
         console.log(id);
