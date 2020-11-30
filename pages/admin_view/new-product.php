@@ -328,13 +328,40 @@ if(!isset($_SESSION["user_info"])){
                     <div class="card-body">
                         <form action="" >
                            <div class="container pl-5 pr-5">
-                               <div class="form-group">
-                                   <label class="mr-5"><b>Producte activat:</b> </label>
-                                   <input type="checkbox" name="product_activated_new_product" checked data-toggle="toggle" data-onstyle="success" >
+                               <div class="form-group mb-4 row">
+                                   <div class="col-4 text-right pr-5">
+                                       <label class="mr-5"><b>Producte activat:</b> </label>
+                                   </div>
+                                   <div class="col-8">
+                                       <input type="checkbox" name="product_activated_new_product" checked data-toggle="toggle" data-onstyle="success" >
+                                   </div>
                                </div>
-                               <div class="form-group">
-                                   <label class="mr-5"><b>Categoria:</b> </label>
-
+                               <div class="form-group d-flex row">
+                                   <div class="col-4 text-right pr-5">
+                                       <label class="mr-5"><b>Categoria:</b> </label>
+                                   </div>
+                                   <div class="col-8">
+                                       <select class="form-control w-75">
+                                           <option value="1">Actiu</option>
+                                           <option  value="0">Desactivat</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div class="form-group d-flex">
+                                   <div class="col-4 text-right pr-5">
+                                       <label class="mr-5"><b>Nom:</b> </label>
+                                   </div>
+                                   <div class="col-8">
+                                       <input class="form-control w-75" placeholder="Introdueix el nom...">
+                                   </div>
+                               </div>
+                               <div class="form-group d-flex">
+                                   <div class="col-4 text-right pr-5">
+                                       <label class="mr-5"><b>Descripció:</b> </label>
+                                   </div>
+                                   <div class="col-8">
+                                       <textarea class="form-control w-75" placeholder="Introdueix una descripció..."></textarea>
+                                   </div>
                                </div>
                            </div>
                         </form>
