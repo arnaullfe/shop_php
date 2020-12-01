@@ -363,6 +363,15 @@ if(!isset($_SESSION["user_info"])){
                                        <textarea class="form-control w-75" placeholder="Introdueix una descripció..."></textarea>
                                    </div>
                                </div>
+                               <div class="form-group d-flex">
+                                   <div class="col-4 text-right pr-5">
+                                       <label class="mr-5"><b>Unitats:</b> </label>
+                                   </div>
+                                   <div class="col-8">
+                                       <input class="form-control w-75" type="number" placeholder="Unitats">
+                                   </div>
+                               </div>
+                           </div>
                            </div>
                         </form>
 
