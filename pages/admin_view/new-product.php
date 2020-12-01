@@ -1,10 +1,10 @@
 <?php
 include_once('../../modals/Database.php');
-include_once ('../../controllers/AdminTokenController.php');
+include_once('../../controllers/AdminTokenController.php');
 session_start();
-if(!isset($_SESSION["user_info"])){
+if (!isset($_SESSION["user_info"])) {
     header("location: ../botiga_view/index.php");
-} else{
+} else {
     $database = new Database();
     $categories = $database->executeQuery("SELECT * FROM productCategory", array());
     $database->closeConnection();
@@ -27,8 +27,8 @@ if(!isset($_SESSION["user_info"])){
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -40,8 +40,10 @@ if(!isset($_SESSION["user_info"])){
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="../../dependencies/Dropzone/dist/dropzone.js"></script>
 
 </head>
 
@@ -84,7 +86,7 @@ if(!isset($_SESSION["user_info"])){
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo" style="color: white">
-                <b><i class="fas fa-clipboard-check"  style="color: white"></i>
+                <b><i class="fas fa-clipboard-check" style="color: white"></i>
                     <span>Productes</span></b>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -107,7 +109,7 @@ if(!isset($_SESSION["user_info"])){
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="list-users.php" >
+            <a class="nav-link" href="list-users.php">
                 <b><i class="fas fa-users"></i>
                     <span>Usuaris</span></a></b>
         </li>
@@ -273,10 +275,11 @@ if(!isset($_SESSION["user_info"])){
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle"  id="userDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle" src='<?php echo $_SESSION["user_info"][0]["image"]?>'>
-                            <span class="ml-2 d-none d-lg-inline text-gray-600 small"> <?php echo $_SESSION["user_info"][0]["name"]." ".$_SESSION["user_info"][0]["lastnames"];?></span>
+                            <img class="img-profile rounded-circle"
+                                 src='<?php echo $_SESSION["user_info"][0]["image"] ?>'>
+                            <span class="ml-2 d-none d-lg-inline text-gray-600 small"> <?php echo $_SESSION["user_info"][0]["name"] . " " . $_SESSION["user_info"][0]["lastnames"]; ?></span>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -308,14 +311,14 @@ if(!isset($_SESSION["user_info"])){
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <?php if(isset($_SESSION["message"])):?>
+                <?php if (isset($_SESSION["message"])): ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <?php echo $_SESSION["message"]?>
+                        <?php echo $_SESSION["message"] ?>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                <?endif;?>
+                <? endif; ?>
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Nou producte</h1>
                 <p class="mb-4">Crear un nou producte</p>
@@ -326,76 +329,161 @@ if(!isset($_SESSION["user_info"])){
                         <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Nou producte</h6>
                     </div>
                     <div class="card-body">
-                        <form action="" >
-                           <div class="container pl-5 pr-5">
-                               <div class="form-group mb-4 row">
-                                   <div class="col-4 text-right pr-5">
-                                       <label class="mr-5"><b>Producte activat:</b> </label>
-                                   </div>
-                                   <div class="col-8">
-                                       <input type="checkbox" name="product_activated_new_product" checked data-toggle="toggle" data-onstyle="success" >
-                                   </div>
-                               </div>
-                               <div class="form-group d-flex row">
-                                   <div class="col-4 text-right pr-5">
-                                       <label class="mr-5"><b>Categoria:</b> </label>
-                                   </div>
-                                   <div class="col-8">
-                                       <select class="form-control w-75">
-                                           <option value="1">Actiu</option>
-                                           <option  value="0">Desactivat</option>
-                                       </select>
-                                   </div>
-                               </div>
-                               <div class="form-group d-flex">
-                                   <div class="col-4 text-right pr-5">
-                                       <label class="mr-5"><b>Nom:</b> </label>
-                                   </div>
-                                   <div class="col-8">
-                                       <input class="form-control w-75" placeholder="Introdueix el nom...">
-                                   </div>
-                               </div>
-                               <div class="form-group d-flex">
-                                   <div class="col-4 text-right pr-5">
-                                       <label class="mr-5"><b>Descripció:</b> </label>
-                                   </div>
-                                   <div class="col-8">
-                                       <textarea class="form-control w-75" placeholder="Introdueix una descripció..."></textarea>
-                                   </div>
-                               </div>
-                               <div class="form-group d-flex">
-                                   <div class="col-4 text-right pr-5">
-                                       <label class="mr-5"><b>Unitats:</b> </label>
-                                   </div>
-                                   <div class="col-8">
-                                       <input class="form-control w-75" type="number" placeholder="Unitats">
-                                   </div>
-                               </div>
-                           </div>
-                           </div>
-                        </form>
+                            <div class="container pl-5 pr-5">
+                                <div class="form-group mb-4 row">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Imatges:</b> </label>
+                                    </div>
+                                    <div id="dropzone">
+                                        <form class="dropzone needsclick" id="demo-upload" action="/upload">
+                                            <div class="dz-message needsclick">
+                                                <strong>Arrosega</strong> imatges o fés <strong>click</strong> per pujar imatges.<br>
+                                                <span class="note needsclick">(Aquestes imatges seran pels productes i seràn  <STRONG>publiques</STRONG>.</span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
 
+                                <div class="container pl-5 pr-5">
+                                    <div class="row text-center justify-content-center">
+                                        <div class="col-12 col-md-3 mt-3 mr-5 image-area">
+                                            <img src="https://cdn.pocket-lint.com/r/s/1200x/assets/images/152659-laptops-feature-apple-silicon-what-does-it-mean-for-your-existing-mac-and-your-next-one-image3-ompkj48tmh.jpg" class="img-fluid border" alt="Responsive image">
+                                            <button class="remove-image" href="#" style="display: inline;">&#215;</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <form action="../../controllers/ProductController.php" method="post" class="mt-5">
+                                <div class="form-group mb-4 row">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Producte activat:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="checkbox" name="activated_newProduct" checked data-toggle="toggle"
+                                               data-onstyle="success">
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex row">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Categoria:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <select class="form-control w-75" name="category_newProduct">
+                                            <?php foreach ($categories as $category): ?>
+                                                "
+                                                <option value="<?php echo $category["id"] ?>"><?php echo $category["name"] ?></option>
+                                            <? endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Nom:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control w-75" placeholder="Introdueix el nom..."
+                                               name="name_newProduct">
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Descripció:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <textarea class="form-control w-75" placeholder="Introdueix una descripció..."
+                                                  name="description_newProduct"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Unitats:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control w-75" type="number" placeholder="Unitats"
+                                               name="units_newProduct">
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex">
+                                    <div class="col-0 col-md-3">
+                                    </div>
+                                    <div class="col-6 col-md-3 text-center">
+                                        <div class="form-check text-right">
+                                            <input class="form-check-input" type="radio" name="exampleRadios"
+                                                   id="exampleRadios2" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Amb IVA
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3 text-center">
+                                        <div class="form-check text-left">
+                                            <input class="form-check-input" type="radio" name="exampleRadios"
+                                                   id="exampleRadios2" value="option2">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Sense IVA
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-0 col-md-3">
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Preu:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control w-75" type="number" placeholder="Preu"
+                                               name="units_newProduct">
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex row">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Tipus d'IVA:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <select class="form-control w-75" name="category_newProduct">
+                                            <option value="4">4%</option>
+                                            <option value="10">10%</option>
+                                            <option value="21" selected>21%</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex mt-5">
+                                    <div class="col-0 col-md-3">
+                                    </div>
+                                    <div class="col-12 col-md-6 text-center">
+                                        <button class="btn btn-warning btn-block" type="submit"
+                                                style="background-color: #F7941D" ;>Crear
+                                        </button>
+                                    </div>
+                                    <div class="col-0 col-md-3">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
-            <!-- /.container-fluid -->
-
         </div>
-        <!-- End of Main Content -->
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Eshop Online 2020</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Eshop Online 2020</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
@@ -444,15 +532,16 @@ if(!isset($_SESSION["user_info"])){
 <script src="js/demo/datatables-demo.js"></script>
 
 <script>
-
-    function changeState(id){
-        var action = document.getElementById("status-"+id).value;
+    var myDropzone = new Dropzone("div#myId", { url: "/file/post"});
+    $("div#myId").dropzone({ url: "/file/post" });
+    function changeState(id) {
+        var action = document.getElementById("status-" + id).value;
         console.log(id);
         console.log(action)
         $.ajax({
             type: "POST",
             url: '../../controllers/ProductCategoryController.php',
-            data: {"id_changeState": id,"status_category":action},
+            data: {"id_changeState": id, "status_category": action},
             dataType: 'JSON',
             success: function (response) {
                 console.log("END")
@@ -468,6 +557,54 @@ if(!isset($_SESSION["user_info"])){
         background-color: #F7941D !important;
         border: 1px solid #F7941D;
     }
+
+    .dropzone {
+        background: white;
+        border-radius: 5px;
+        border: 2px dashed rgb(0, 135, 247);
+        border-image: none;
+        margin-left: auto;
+        margin-right: auto;
+        padding:20px;
+    }
+
+    .image-area {
+        position: relative;
+        width: 50%;
+        background: #333;
+    }
+    .image-area img{
+        max-width: 100%;
+        height: auto;
+    }
+    .remove-image {
+        display: none;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        border-radius: 10em;
+        padding: 2px 6px 3px;
+        text-decoration: none;
+        font: 700 21px/20px sans-serif;
+        background: #555;
+        border: 3px solid #fff;
+        color: #FFF;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        -webkit-transition: background 0.5s;
+        transition: background 0.5s;
+    }
+    .remove-image:hover {
+        background: #E54E4E;
+        padding: 3px 7px;
+        top: -11px;
+        right: -11px;
+    }
+    .remove-image:active {
+        background: #E54E4E;
+        top: -10px;
+        right: -11px;
+    }
 </style>
 
 
@@ -476,10 +613,12 @@ if(!isset($_SESSION["user_info"])){
 </html>
 <?php
 
-function formatDate($date){
+function formatDate($date)
+{
     $date = new DateTime($date);
-    return date_format($date,"d/m/Y H:i:s");
+    return date_format($date, "d/m/Y H:i:s");
 }
+
 unset($_SESSION["message"]);
 ?>
 
