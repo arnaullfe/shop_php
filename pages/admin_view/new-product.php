@@ -324,36 +324,46 @@ if (!isset($_SESSION["user_info"])) {
                 <p class="mb-4">Crear un nou producte</p>
 
                 <!-- DataTales Example -->
+
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Nou producte</h6>
+                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Imatges</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="container pl-5 pr-5 text-center" >
+                                <div id="dropzone">
+                                    <form class="dropzone needsclick" id="demo-upload" action="/upload">
+                                        <div class="dz-message needsclick  align-middle" >
+                                            <strong>Arrosega</strong> imatges o fés <strong>click</strong> per pujar imatges.<br>
+                                            <span class="note needsclick">(Aquestes imatges seran pels productes i seràn  <STRONG>publiques</STRONG>.</span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="container pl-5 pr-5">
+                                <div class="row text-center justify-content-center">
+                                    <div class="col-12 col-md-3 mt-3 mr-5 image-area">
+                                        <img src="https://cdn.pocket-lint.com/r/s/1200x/assets/images/152659-laptops-feature-apple-silicon-what-does-it-mean-for-your-existing-mac-and-your-next-one-image3-ompkj48tmh.jpg" class="img-fluid border" alt="Responsive image">
+                                        <button class="remove-image" href="#" style="display: inline;">&#215;</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Dades</h6>
                     </div>
                     <div class="card-body">
                             <div class="container pl-5 pr-5">
-                                <div class="form-group mb-4 row">
-                                    <div class="col-4 text-right pr-5">
-                                        <label class="mr-5"><b>Imatges:</b> </label>
-                                    </div>
-                                    <div id="dropzone">
-                                        <form class="dropzone needsclick" id="demo-upload" action="/upload">
-                                            <div class="dz-message needsclick">
-                                                <strong>Arrosega</strong> imatges o fés <strong>click</strong> per pujar imatges.<br>
-                                                <span class="note needsclick">(Aquestes imatges seran pels productes i seràn  <STRONG>publiques</STRONG>.</span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div class="container pl-5 pr-5">
-                                    <div class="row text-center justify-content-center">
-                                        <div class="col-12 col-md-3 mt-3 mr-5 image-area">
-                                            <img src="https://cdn.pocket-lint.com/r/s/1200x/assets/images/152659-laptops-feature-apple-silicon-what-does-it-mean-for-your-existing-mac-and-your-next-one-image3-ompkj48tmh.jpg" class="img-fluid border" alt="Responsive image">
-                                            <button class="remove-image" href="#" style="display: inline;">&#215;</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-
                                 <form action="../../controllers/ProductController.php" method="post" class="mt-5">
                                 <div class="form-group mb-4 row">
                                     <div class="col-4 text-right pr-5">
@@ -566,6 +576,8 @@ if (!isset($_SESSION["user_info"])) {
         margin-left: auto;
         margin-right: auto;
         padding:20px;
+        cursor: pointer;
+        min-height: 150px;
     }
 
     .image-area {

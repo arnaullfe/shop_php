@@ -20,26 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/ProductController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/.tagconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/bower.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/component.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/basic.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/dropzone-amd-module.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/dropzone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/dropzone.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/min/basic.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/min/dropzone-amd-module.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/min/dropzone.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/dist/min/dropzone.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/Dropzone/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/new-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/new-product.php" afterDir="false" />
     </list>
@@ -113,6 +93,7 @@
       <workItem from="1606746705895" duration="7505000" />
       <workItem from="1606853562274" duration="1887000" />
       <workItem from="1606856335982" duration="2778000" />
+      <workItem from="1606907824854" duration="627000" />
     </task>
     <servers />
   </component>
