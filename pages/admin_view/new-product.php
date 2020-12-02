@@ -9,7 +9,9 @@ if (!isset($_SESSION["user_info"])) {
     $categories = $database->executeQuery("SELECT * FROM productCategory", array());
     $database->closeConnection();
 }
+var_dump( $_SESSION["images_newProduct"]);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -331,24 +333,21 @@ if (!isset($_SESSION["user_info"])) {
                     <div class="card-body">
                         <div class="container pl-5 pr-5 text-center" >
                                 <div id="dropzone">
-                                    <form action="/upload" class="dropzone needsclick" id="my-awesome-dropzone">
+                                    <form action="../../controllers/ProductController.php" class="dropzone needsclick" id="my-awesome-dropzone">
                                         <div class="row text-center justify-content-center">
                                         <div class="dz-message needsclick">
                                             <strong>Arrosega imatges</strong> o <strong>fés clic</strong> per poder pujar imatges.
                                             <span class="note needsclick">(Les imatges han de ser més petites de <strong>3MB</strong>)</span>
                                         </div>
                                         </div>
+
+
                                     </form>
                                 </div>
                             </div>
 
                         </div>
                     </div>
-
-
-
-
-
 
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -600,13 +599,7 @@ if (!isset($_SESSION["user_info"])) {
 
 </html>
 <?php
-
-function formatDate($date)
-{
-    $date = new DateTime($date);
-    return date_format($date, "d/m/Y H:i:s");
-}
-
 unset($_SESSION["message"]);
+unset($_SESSION["images_newProduct"]);
 ?>
 

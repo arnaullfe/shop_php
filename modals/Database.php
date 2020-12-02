@@ -90,10 +90,15 @@ class Database
                                             category_id int,
                                             tag varchar(255),
                                             discount int,
-                                            image varchar(255),
                                             activated int DEFAULT 1,
                                             created_at DATETIME ,
                                             last_modified DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS images_product (
+	                                        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                                            id_product int,
+                                            url varchar(255),
+                                            name varchar(255),
+                                            created_at DATETIME);");
         } catch (PDOException $err) {
             echo $err;
         }

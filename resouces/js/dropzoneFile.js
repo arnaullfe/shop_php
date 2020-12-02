@@ -2,13 +2,18 @@ Dropzone.autoDiscover = false;
 
 function setup(id) {
     let options = {
+        url: "../../controllers/ProductController.php",
+        paramName: "file",
+        autoProcessQueue: false,
         thumbnailHeight: 210,
         thumbnailWidth: 140,
         maxFilesize: 3,
         maxFiles: 5,
         dictResponseError: "Servidor no configurat",
         dictFileTooBig: "La mida del fitxer ({{filesize}}MB) és massa gran. Ha de ser més petita de {{maxFilesize}}MB.",
+        dictInvalidFileType: "Tipus de fitxer invàlid",
         dictCancelUpload: "",
+        dictMaxFilesExceeded: "Only {{maxFiles}} files are allowed",
         acceptedFiles: ".png,.jpg,.jpeg",
         init: function () {
             var self = this;
@@ -36,23 +41,34 @@ function setup(id) {
             });
         },
         accept: function (file, done) {
-            console.log(file);
+            console.log("AJAX",file);
+            var data = JSON.stringify(file);
+            $.ajax({
+                url: '../../controllers/ProductController.php',
+                type: "Post",
+                data:{"image_newProduct":data},
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (response) {
+                    console.log("END",response)
+                },
+                error: function (response){
+                    console.log("error",response)
+                }
+            })
         },
 
-
         previewTemplate: `
-<div class="row text-center justify-content-center d-flex">
-             <div class="col-12 col-md-3 mt-3 mr-5 image-area">
-                  <img data-dz-thumbnail class="img-fluid border" onclick="window.open(data-dz-thumbnail)"/>
-                   <a href="javascript:undefined;" class="remove-image" href="#" style="display: inline;" data-dz-remove="">&#215;</a>
-                   <div class="dz-error-message"><i class="fa fa-warning">&nbsp;</i><span data-dz-errormessage></span></div>
-  <div class="dz-filename"><span data-dz-name></span></div>
-  <div class="dz-progress">
-    <span class="dz-upload" data-dz-uploadprogress></span>
-  </div>
-             </div>
-
-        </div>
+            <div class="row text-center justify-content-center d-flex">
+                <div class="col-12 col-md-3 mt-3 mr-5 image-area">
+                    <img data-dz-thumbnail class="img-fluid border" onclick="window.open(data-dz-thumbnail)"/>
+                    <a href="javascript:undefined;" class="remove-image" href="#" style="display: inline;" data-dz-remove="">&#215;</a>
+                    <div class="dz-error-message"><i class="fa fa-warning">&nbsp;</i><span data-dz-errormessage></span></div>
+                    <div class="dz-filename"><span data-dz-name></span></div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            </div>
 
 
 
