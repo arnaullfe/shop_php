@@ -44,7 +44,6 @@ if (!isset($_SESSION["user_info"])) {
           rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="../../dependencies/Dropzone/dist/dropzone.js"></script>
-
 </head>
 
 <body id="page-top">
@@ -332,24 +331,17 @@ if (!isset($_SESSION["user_info"])) {
                     <div class="card-body">
                         <div class="container pl-5 pr-5 text-center" >
                                 <div id="dropzone">
-                                    <form class="dropzone needsclick" id="demo-upload" action="/upload">
-                                        <div class="dz-message needsclick  align-middle" >
-                                            <strong>Arrosega</strong> imatges o fés <strong>click</strong> per pujar imatges.<br>
-                                            <span class="note needsclick">(Aquestes imatges seran pels productes i seràn  <STRONG>publiques</STRONG>.</span>
+                                    <form action="/upload" class="dropzone needsclick" id="my-awesome-dropzone">
+                                        <div class="row text-center justify-content-center">
+                                        <div class="dz-message needsclick">
+                                            <strong>Arrosega imatges</strong> o <strong>fés clic</strong> per poder pujar imatges.
+                                            <span class="note needsclick">(Les imatges han de ser més petites de <strong>3MB</strong>)</span>
+                                        </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
 
-                            <div class="container pl-5 pr-5">
-                                <div class="row text-center justify-content-center">
-                                    <div class="col-12 col-md-3 mt-3 mr-5 image-area">
-                                        <img src="https://cdn.pocket-lint.com/r/s/1200x/assets/images/152659-laptops-feature-apple-silicon-what-does-it-mean-for-your-existing-mac-and-your-next-one-image3-ompkj48tmh.jpg" class="img-fluid border" alt="Responsive image">
-                                        <button class="remove-image" href="#" style="display: inline;">&#215;</button>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -381,7 +373,6 @@ if (!isset($_SESSION["user_info"])) {
                                     <div class="col-8">
                                         <select class="form-control w-75" name="category_newProduct">
                                             <?php foreach ($categories as $category): ?>
-                                                "
                                                 <option value="<?php echo $category["id"] ?>"><?php echo $category["name"] ?></option>
                                             <? endforeach; ?>
                                         </select>
@@ -415,10 +406,11 @@ if (!isset($_SESSION["user_info"])) {
                                     </div>
                                 </div>
                                 <div class="form-group d-flex">
-                                    <div class="col-0 col-md-3">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>Preu introduït:</b> </label>
                                     </div>
-                                    <div class="col-6 col-md-3 text-center">
-                                        <div class="form-check text-right">
+                                    <div class="col-4 text-left m-0 pr-0">
+                                        <div class="form-check">
                                             <input class="form-check-input" type="radio" name="exampleRadios"
                                                    id="exampleRadios2" value="option2">
                                             <label class="form-check-label" for="exampleRadios2">
@@ -426,8 +418,8 @@ if (!isset($_SESSION["user_info"])) {
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-3 text-center">
-                                        <div class="form-check text-left">
+                                    <div class="col-4 text-left">
+                                        <div class="form-check">
                                             <input class="form-check-input" type="radio" name="exampleRadios"
                                                    id="exampleRadios2" value="option2">
                                             <label class="form-check-label" for="exampleRadios2">
@@ -435,16 +427,19 @@ if (!isset($_SESSION["user_info"])) {
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-0 col-md-3">
-                                    </div>
                                 </div>
                                 <div class="form-group d-flex">
                                     <div class="col-4 text-right pr-5">
                                         <label class="mr-5"><b>Preu:</b> </label>
                                     </div>
                                     <div class="col-8">
-                                        <input class="form-control w-75" type="number" placeholder="Preu"
-                                               name="units_newProduct">
+                                       <div class="input-group" style="max-width: 75%">
+                                           <input class="form-control" type="number" placeholder="Preu"
+                                                  name="units_newProduct">
+                                           <div class="input-group-append" style="height: 38px">
+                                               <span class="input-group-text" >€</span>
+                                           </div>
+                                       </div>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex row">
@@ -453,18 +448,18 @@ if (!isset($_SESSION["user_info"])) {
                                     </div>
                                     <div class="col-8">
                                         <select class="form-control w-75" name="category_newProduct">
-                                            <option value="4">4%</option>
-                                            <option value="10">10%</option>
-                                            <option value="21" selected>21%</option>
+                                            <option value="4">IVA Superreduït (4%)</option>
+                                            <option value="10">IVA Reduït (10%)</option>
+                                            <option value="21" selected>IVA General (21%)</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group d-flex mt-5">
-                                    <div class="col-0 col-md-3">
+                                <div class="form-group d-flex m-0 p-0 mt-5 ">
+                                    <div class="col-0 col-md-4">
                                     </div>
-                                    <div class="col-12 col-md-6 text-center">
+                                    <div class="col-12 col-md-6 text-center m-0 p-0">
                                         <button class="btn btn-warning btn-block" type="submit"
-                                                style="background-color: #F7941D" ;>Crear
+                                                style="background-color: #F7941D;width: 100%;">Crear
                                         </button>
                                     </div>
                                     <div class="col-0 col-md-3">
@@ -541,32 +536,9 @@ if (!isset($_SESSION["user_info"])) {
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
 
-<script>
-    var myDropzone = new Dropzone("div#myId", { url: "/file/post"});
-    $("div#myId").dropzone({ url: "/file/post" });
-    function changeState(id) {
-        var action = document.getElementById("status-" + id).value;
-        console.log(id);
-        console.log(action)
-        $.ajax({
-            type: "POST",
-            url: '../../controllers/ProductCategoryController.php',
-            data: {"id_changeState": id, "status_category": action},
-            dataType: 'JSON',
-            success: function (response) {
-                console.log("END")
-                location.reload();
-            }
-        })
-    }
-
-</script>
 
 <style>
-    .page-item.active .page-link {
-        background-color: #F7941D !important;
-        border: 1px solid #F7941D;
-    }
+
 
     .dropzone {
         background: white;
@@ -583,7 +555,8 @@ if (!isset($_SESSION["user_info"])) {
     .image-area {
         position: relative;
         width: 50%;
-        background: #333;
+        background: white;
+        border: 3px solid #555;
     }
     .image-area img{
         max-width: 100%;
@@ -611,6 +584,8 @@ if (!isset($_SESSION["user_info"])) {
         padding: 3px 7px;
         top: -11px;
         right: -11px;
+        color: white;
+        text-decoration: none;
     }
     .remove-image:active {
         background: #E54E4E;
@@ -619,6 +594,7 @@ if (!isset($_SESSION["user_info"])) {
     }
 </style>
 
+<script src="../../resouces/js/dropzoneFile.js"></script>
 
 </body>
 
