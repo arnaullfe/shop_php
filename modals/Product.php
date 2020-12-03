@@ -155,7 +155,7 @@ class Product
     }
 
     public function getDatabaseValues(){
-        return array($this->activated,$this->name,$this->description,$this->units,$this->category_id,$this->iva,$this->price_iva,$this->price_no_iva,$this->created_at->format("Y-m-d"), $this->last_modified->format("Y-m-d"));
+        return array($this->activated,$this->name,$this->description,$this->units,$this->category_id,$this->iva,$this->price_iva,$this->price_no_iva,$this->created_at->format("Y-m-d H:i:s"), $this->last_modified->format("Y-m-d H:i:s"));
     }
 
 
