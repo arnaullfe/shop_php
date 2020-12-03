@@ -23,8 +23,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-products.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-products.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/new-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/new-product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resouces/js/dropzoneFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/resouces/js/dropzoneFile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,8 @@
       <workItem from="1606853562274" duration="1887000" />
       <workItem from="1606856335982" duration="2778000" />
       <workItem from="1606907824854" duration="6320000" />
-      <workItem from="1606923222868" duration="10917000" />
+      <workItem from="1606923222868" duration="11517000" />
+      <workItem from="1607003514248" duration="5192000" />
     </task>
     <servers />
   </component>

@@ -9,7 +9,6 @@ if (!isset($_SESSION["user_info"])) {
     $categories = $database->executeQuery("SELECT * FROM productCategory", array());
     $database->closeConnection();
 }
-var_dump( $_SESSION["images_newProduct"]);
 ?>
 
 <!DOCTYPE html>
@@ -372,7 +371,7 @@ var_dump( $_SESSION["images_newProduct"]);
                                     <div class="col-8">
                                         <select class="form-control w-75" name="category_newProduct">
                                             <?php foreach ($categories as $category): ?>
-                                                <option value="<?php echo $category["id"] ?>"><?php echo $category["name"] ?></option>
+                                                <option value="<?php echo $category["id"] ?>" <?php if(isset($_SESSION["category_newProduct"]) && $category["id"]==$_SESSION["category_newProduct"]):?>selected<?endif;?>><?php echo $category["name"] ?></option>
                                             <? endforeach; ?>
                                         </select>
                                     </div>
@@ -383,7 +382,10 @@ var_dump( $_SESSION["images_newProduct"]);
                                     </div>
                                     <div class="col-8">
                                         <input class="form-control w-75" placeholder="Introdueix el nom..."
-                                               name="name_newProduct">
+                                               name="name_newProduct" value="<?php echo $_SESSION["name_newProduct"]?>">
+                                        <?php if (isset($_SESSION["errors_newProduct"]) && in_array("error_name_newProduct", $_SESSION["errors_newProduct"])): ?>
+                                            <label class="text-danger" style="font-size: 15px;"><i class="fas fa-exclamation-circle mr-1"></i>Nom introduït erroni</label>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex">
@@ -392,7 +394,10 @@ var_dump( $_SESSION["images_newProduct"]);
                                     </div>
                                     <div class="col-8">
                                         <textarea class="form-control w-75" placeholder="Introdueix una descripció..."
-                                                  name="description_newProduct"></textarea>
+                                                  name="description_newProduct"><?php echo $_SESSION["description_newProduct"]?></textarea>
+                                        <?php if (isset($_SESSION["errors_newProduct"]) && in_array("error_description_newProduct", $_SESSION["errors_newProduct"])): ?>
+                                            <label class="text-danger" style="font-size: 15px;"><i class="fas fa-exclamation-circle mr-1"></i>Escriu una descripció</label>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex">
@@ -401,7 +406,10 @@ var_dump( $_SESSION["images_newProduct"]);
                                     </div>
                                     <div class="col-8">
                                         <input class="form-control w-75" type="number" placeholder="Unitats"
-                                               name="units_newProduct">
+                                               name="units_newProduct" value="<?php echo $_SESSION["units_newProduct"]?>">
+                                        <?php if (isset($_SESSION["errors_newProduct"]) && in_array("error_units_newProduct", $_SESSION["errors_newProduct"])): ?>
+                                            <label class="text-danger" style="font-size: 15px;"><i class="fas fa-exclamation-circle mr-1"></i>Escriu les unitats amb un enter</label>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex">
@@ -410,8 +418,7 @@ var_dump( $_SESSION["images_newProduct"]);
                                     </div>
                                     <div class="col-4 text-left m-0 pr-0">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios"
-                                                   id="exampleRadios2" value="option2">
+                                            <input class="form-check-input" type="radio" name="priceIva_type_newProduct" value="1" <?php if(!isset($_SESSION["priceIva_type_newProduct"]) || $_SESSION["priceIva_type_newProduct"]==1):?>checked<?endif;?>>
                                             <label class="form-check-label" for="exampleRadios2">
                                                 Amb IVA
                                             </label>
@@ -419,8 +426,7 @@ var_dump( $_SESSION["images_newProduct"]);
                                     </div>
                                     <div class="col-4 text-left">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios"
-                                                   id="exampleRadios2" value="option2">
+                                            <input class="form-check-input" type="radio" name="priceIva_type_newProduct" value="0" <?php if(isset($_SESSION["priceIva_type_newProduct"]) && $_SESSION["priceIva_type_newProduct"]==0):?>checked<?endif;?>>
                                             <label class="form-check-label" for="exampleRadios2">
                                                 Sense IVA
                                             </label>
@@ -433,12 +439,15 @@ var_dump( $_SESSION["images_newProduct"]);
                                     </div>
                                     <div class="col-8">
                                        <div class="input-group" style="max-width: 75%">
-                                           <input class="form-control" type="number" placeholder="Preu"
-                                                  name="units_newProduct">
+                                           <input class="form-control" type="number" step="any" placeholder="Preu"
+                                                  name="price_newProduct" value="<?php echo  $_SESSION["price_newProduct"]?>">
                                            <div class="input-group-append" style="height: 38px">
                                                <span class="input-group-text" >€</span>
                                            </div>
                                        </div>
+                                        <?php if (isset($_SESSION["errors_newProduct"]) && in_array("error_price_newProduct", $_SESSION["errors_newProduct"])): ?>
+                                            <label class="text-danger" style="font-size: 15px;"><i class="fas fa-exclamation-circle mr-1"></i>Introdueix un preu vàlid</label>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="form-group d-flex row">
@@ -446,10 +455,10 @@ var_dump( $_SESSION["images_newProduct"]);
                                         <label class="mr-5"><b>Tipus d'IVA:</b> </label>
                                     </div>
                                     <div class="col-8">
-                                        <select class="form-control w-75" name="category_newProduct">
-                                            <option value="4">IVA Superreduït (4%)</option>
-                                            <option value="10">IVA Reduït (10%)</option>
-                                            <option value="21" selected>IVA General (21%)</option>
+                                        <select class="form-control w-75" name="iva_newProduct">
+                                            <option value="4" <?php if(isset($_SESSION["iva_newProduct"]) && $_SESSION["iva_newProduct"]==4):?>selected<?endif;?>>IVA Superreduït (4%)</option>
+                                            <option value="10" <?php if(isset($_SESSION["iva_newProduct"]) && $_SESSION["iva_newProduct"]==10):?>selected<?endif;?>>IVA Reduït (10%)</option>
+                                            <option value="21" <?php if(!isset($_SESSION["iva_newProduct"]) || $_SESSION["iva_newProduct"]==21):?>selected<?endif;?>>IVA General (21%)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -601,5 +610,13 @@ var_dump( $_SESSION["images_newProduct"]);
 <?php
 unset($_SESSION["message"]);
 unset($_SESSION["images_newProduct"]);
+unset($_SESSION["errors_newProduct"]);
+unset($_SESSION["name_newProduct"]);
+unset($_SESSION["description_newProduct"]);
+unset($_SESSION["units_newProduct"]);
+unset($_SESSION["price_newProduct"]);
+unset($_SESSION["priceIva_type_newProduct"]);
+unset($_SESSION["category_newProduct"]);
+unset($_SESSION["iva_newProduct"]);
 ?>
 

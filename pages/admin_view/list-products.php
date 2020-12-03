@@ -6,7 +6,7 @@ if(!isset($_SESSION["user_info"])){
     header("location: ../botiga_view/index.php");
 } else{
     $database = new Database();
-    $categories = $database->executeQuery("SELECT * FROM productCategory", array());
+    $products = $database->executeQuery("SELECT * FROM products", array());
     $database->closeConnection();
 }
 ?>
@@ -331,34 +331,35 @@ if(!isset($_SESSION["user_info"])){
                                 <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Imatge</th>
+                                    <th>Descripció</th>
                                     <th>Unitats</th>
                                     <th>Preu amb IVA</th>
+                                    <th>Estat</th>
                                     <th>Accions</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Imatge</th>
+                                    <th>Descripció</th>
                                     <th>Unitats</th>
                                     <th>Preu amb IVA</th>
+                                    <th>Estat</th>
                                     <th>Accions</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <?php foreach ($categories as $category): ?>
+                                <?php foreach ($products as $product): ?>
                                     <tr>
-                                        <td><?php echo $category["name"]?></td>
-                                        <td><?php echo $category["description"]?></td>
+                                        <td><?php echo $product["name"]?></td>
+                                        <td><?php echo $product["description"]?></td>
+                                        <td><?php echo $product["units"]?></td>
+                                        <td><?php echo $product["price_iva"]?></td>
                                         <td style="text-align: center;">
-                                            <select class="form-control" id="<?php echo "status-".$category["id"];?>" onchange="changeState(<?php echo $category['id']?>)">
+                                            <select class="form-control" id="<?php echo "status-".$product["id"];?>" onchange="changeState(<?php echo $product['id']?>)">
                                                 <option value="1">Actiu</option>
-                                                <option  value="0" <?php  if($category["activated"]==0){echo "selected";}?>>Desactivat</option>
+                                                <option  value="0" <?php  if($product["activated"]==0){echo "selected";}?>>Desactivat</option>
                                             </select>
-                                        </td>
-                                        <td>
-                                            <?php echo formatDate($category["last_modified"]);?>
                                         </td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>

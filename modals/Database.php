@@ -85,11 +85,10 @@ class Database
                                             name varchar(255) NOT NULL,
                                             description varchar(255) NOT NULL,
                                             units int,
+                                            iva int,
                                             price_iva float, 
                                             price_no_iva float,
                                             category_id int,
-                                            tag varchar(255),
-                                            discount int,
                                             activated int DEFAULT 1,
                                             created_at DATETIME ,
                                             last_modified DATETIME);");

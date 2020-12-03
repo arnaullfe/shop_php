@@ -3,14 +3,25 @@
 
 class Product
 {
-    private $id,$name,$description,$price_iva,$price_no_iva,$category_id,$units,$tag,$discount,$image,$activated,$created_at,$last_modified;
+    private $id,$name,$description,$price_iva,$price_no_iva,$category_id,$units,$activated,$created_at,$last_modified,$iva;
 
-    public function __construct($name, $description, $price_iva, $category_id)
+    public function __construct($activated,$name, $description, $units,$type_price,$price,$iva, $category_id)
     {
+        $this->activated = $activated;
         $this->name = $name;
         $this->description = $description;
-        $this->price_iva = $price_iva;
+        $this->units = $units;
         $this->category_id = $category_id;
+        $this->iva = $iva;
+        $this->created_at = new DateTime();
+        $this->last_modified = new DateTime();
+        if($type_price==1){
+            $this->price_iva = $price;
+            $this->price_no_iva = $this->getPriceIva() - (($this->getPriceIva()*$iva)/100);
+        } else{
+            $this->price_no_iva = $price;
+            $this->price_iva = $this->getPriceNoIva() + (($this->getPriceNoIva()*$iva)/100);
+        }
     }
 
     public function getId()
@@ -141,6 +152,10 @@ class Product
     public function setLastModified($last_modified)
     {
         $this->last_modified = $last_modified;
+    }
+
+    public function getDatabaseValues(){
+        return array($this->activated,$this->name,$this->description,$this->units,$this->category_id,$this->iva,$this->price_iva,$this->price_no_iva,$this->created_at->format("Y-m-d"), $this->last_modified->format("Y-m-d"));
     }
 
 
