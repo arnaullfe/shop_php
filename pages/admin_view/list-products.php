@@ -354,7 +354,7 @@ if(!isset($_SESSION["user_info"])){
                                         <td><?php echo $product["name"]?></td>
                                         <td><?php echo $product["description"]?></td>
                                         <td><?php echo $product["units"]?></td>
-                                        <td><?php echo $product["price_iva"]?></td>
+                                        <td><?php echo number_format($product["price_iva"],2,',','.')?> €</td>
                                         <td style="text-align: center;">
                                             <select class="form-control" id="<?php echo "status-".$product["id"];?>" onchange="changeState(<?php echo $product['id']?>)">
                                                 <option value="1">Actiu</option>
