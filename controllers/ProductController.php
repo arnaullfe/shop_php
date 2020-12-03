@@ -7,12 +7,14 @@ date_default_timezone_set('Europe/Madrid');
 session_start();
 
 if(isset($_POST["image_newProduct"])){
+    session_start();
     unset($_SESSION["images_newProduct"]);
     $_POST["image_newProduct"] = json_decode($_POST["image_newProduct"]);
+
     if(!isset($_SESSION["images_newProduct"])){
         $_SESSION["images_newProduct"] = array();
     }
-    $var = array("id_temp"=> count($_SESSION["images_newProduct"])+1,"file"=>$_POST["image_newProduct"]);
+    $var = array("id_temp"=> $_POST["image_newProduct"]->upload->uuid ,"file"=>$_POST["image_newProduct"]);
     array_push($_SESSION["images_newProduct"],$var);
     echo json_encode($var);
 }
@@ -52,5 +54,9 @@ if(isset($_POST["name_newProduct"])){
         $_SESSION["iva_newProduct"] = $_POST["iva_newProduct"];
         header("location: ../pages/admin_view/new-product.php");
     }
+}
+
+function uploadImages(){
+
 }
 

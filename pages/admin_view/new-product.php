@@ -618,5 +618,6 @@ unset($_SESSION["price_newProduct"]);
 unset($_SESSION["priceIva_type_newProduct"]);
 unset($_SESSION["category_newProduct"]);
 unset($_SESSION["iva_newProduct"]);
+unset($_SESSION["image_id_temp"]);
 ?>
 

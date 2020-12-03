@@ -1,6 +1,8 @@
 Dropzone.autoDiscover = false;
 
 function setup(id) {
+    var id_temp = '';
+
     let options = {
         url: "../../controllers/ProductController.php",
         paramName: "file",
@@ -49,7 +51,14 @@ function setup(id) {
                 data:{"image_newProduct":data},
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (response) {
-                    console.log("END",response)
+                    console.log("END",JSON.parse(response))
+                    id_temp = JSON.parse(response);
+                    document.getElementById("button").addEventListener('click',function (event){
+
+                    });
+                    document.getElementById("button").id = id_temp.id_temp;
+                    console.log( document.getElementById("button"))
+                    console.log( document.getElementById(id_temp.id_temp))
                 },
                 error: function (response){
                     console.log("error",response)
@@ -60,8 +69,8 @@ function setup(id) {
         previewTemplate: `
             <div class="row text-center justify-content-center d-flex">
                 <div class="col-12 col-md-3 mt-3 mr-5 image-area">
-                    <img data-dz-thumbnail class="img-fluid border" onclick="window.open(data-dz-thumbnail)"/>
-                    <a href="javascript:undefined;" class="remove-image" href="#" style="display: inline;" data-dz-remove="">&#215;</a>
+                    <img data-dz-thumbnail class="img-fluid border"/>
+                    <button href="javascript:undefined;" class="remove-image" href="#" style="display: inline;" data-dz-remove="" id="button">&#215;</button>
                     <div class="dz-error-message"><i class="fa fa-warning">&nbsp;</i><span data-dz-errormessage></span></div>
                     <div class="dz-filename"><span data-dz-name></span></div>
                     <div class="dz-progress">
