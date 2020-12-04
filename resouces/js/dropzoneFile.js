@@ -43,8 +43,10 @@ function setup(id) {
             });
         },
         accept: function (file, done) {
-            console.log("AJAX",file);
-            var data = JSON.stringify(file);
+            var data = file;
+            data.name_file = file.name;
+            data = JSON.stringify(data);
+            console.log(data)
             $.ajax({
                 url: '../../controllers/ProductController.php',
                 type: "Post",

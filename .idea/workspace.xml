@@ -23,6 +23,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/mtdowling/jmespath.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/mtdowling/jmespath.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resouces/js/dropzoneFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/resouces/js/dropzoneFile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +58,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -100,7 +102,9 @@
       <workItem from="1606923222868" duration="11517000" />
       <workItem from="1607003514248" duration="9402000" />
       <workItem from="1607028879074" duration="1842000" />
-      <workItem from="1607080522533" duration="1516000" />
+      <workItem from="1607080522533" duration="2971000" />
+      <workItem from="1607090582336" duration="1365000" />
+      <workItem from="1607095367016" duration="4449000" />
     </task>
     <servers />
   </component>
@@ -145,10 +149,11 @@
     </state>
     <state width="498" height="446" key="SwitcherDM/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326/0.0.1920.1040@0.0.1920.1040" timestamp="1606926270980" />
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1606682499212" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1606911573290">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1607104616318">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326/0.0.1920.1040@0.0.1920.1040" timestamp="1606911573290" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/-1366.218.1366.728/1920.0.1920.1040/-768.-1148.768.1326@0.0.1920.1040" timestamp="1607104616318" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1607030025858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -20,6 +20,10 @@ class Database
         $this->createTables();
     }
 
+    public function getLastId(){
+        return $this->connection->LastInsertId();
+    }
+
     public function openConnection()
     {
         try {
