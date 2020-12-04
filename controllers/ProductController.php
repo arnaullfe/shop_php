@@ -22,7 +22,6 @@ if(isset($_POST["image_newProduct"])){
 
 
 if(isset($_POST["name_newProduct"])){
-   // unset($_SESSION["images_newProduct"]);
     unset($_SESSION["errors_newProduct"]);
     unset($_SESSION["name_newProduct"]);
     unset($_SESSION["description_newProduct"]);
@@ -88,8 +87,6 @@ function uploadImages($id){
         $database = new Database();
         foreach ($_SESSION["images_newProduct"] as $image){
             try {
-                $date = new DateTime();
-                $database->executeQuery("INSERT INTO images_product (id_product,url,name,created_at) VALUES(?,?,?,?)",array($id,$image["file_name"],$image["file_name"],$date->format("Y-m-d H:i:s")));
                 $image_parts = explode(";base64,",$image["file"]->dataURL);
                 $image_type_aux = explode("image/", $image_parts[0]);
                 $image_type = $image_type_aux[1];
@@ -103,13 +100,15 @@ function uploadImages($id){
                     'StorageClass'   => 'REDUCED_REDUNDANCY',
                 ]);
 
-                echo $result['ObjectURL'].PHP_EOL;
+                $date = new DateTime();
+                $database->executeQuery("INSERT INTO images_product (id_product,url,name,created_at) VALUES(?,?,?,?)",array($id,$result['ObjectURL'],$image["file_name"],$date->format("Y-m-d H:i:s")));
             }catch (S3Exception $e) {
                 echo $e->getMessage() . PHP_EOL;
                 die();
             }
         }
         $database->closeConnection();
+        unset($_SESSION["images_newProduct"]);
     }
 }
 

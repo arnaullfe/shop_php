@@ -23,7 +23,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/mtdowling/jmespath.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/mtdowling/jmespath.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resouces/js/dropzoneFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/resouces/js/dropzoneFile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +103,7 @@
       <workItem from="1607080522533" duration="2971000" />
       <workItem from="1607090582336" duration="1365000" />
       <workItem from="1607095367016" duration="4449000" />
-      <workItem from="1607118554570" duration="2703000" />
+      <workItem from="1607118554570" duration="2853000" />
     </task>
     <servers />
   </component>
