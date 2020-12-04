@@ -41,7 +41,9 @@ if(isset($_POST["name_newProduct"])){
         $product = new Product($activated,$_POST["name_newProduct"],$_POST["description_newProduct"],abs(intval($_POST["units_newProduct"])),$_POST["priceIva_type_newProduct"],abs($_POST["price_newProduct"]),$_POST["iva_newProduct"],$_POST["category_newProduct"]);
         $database = new Database();
         $database->executeQuery("INSERT INTO products (activated,name,description,units,category_id,iva,price_iva,price_no_iva,created_at,last_modified) VALUES(?,?,?,?,?,?,?,?,?,?)",$product->getDatabaseValues());
-        $productInfo = $database->executeQuery("SELECT MAX(id) FROM products",array());
+        $database->closeConnection();
+        $database = new Database();
+        $productInfo = $database->executeQuery("SELECT MAX(id) as id FROM products",array());
         $database->closeConnection();
         uploadImages($productInfo[0]["id"]);
         $_SESSION["message"] = "El producte<strong> ".$_POST["name_newProduct"]." </strong> s'ha creat correctament";
@@ -78,22 +80,25 @@ function uploadImages($id){
             'version'=> 'latest',
             'region'=> 'us-east-1',
             'credentials'=>[
-                'key'=> 'ASIAVUHCLKEG6JNNAUVL',
-                'secret' => 'T+AdC6y0nHnZp0sBjN/pHpJ9SuJ6RvdM+thV3usB',
-                'token' => 'FwoGZXIvYXdzEGMaDIEa2NV/1VXQ2EngCyLKAbMDLfkT4ibeAw0eLvdmnySBDgN8N5MLsyfGVSW0RIuM28YZlGoxnEQ7vSqiURiVRqp+UOvLV0idn6YsA1UzpekLPm/HrIXtrr1khBLDee46F3aqX/27i7NWkMqycu/kM0ztr6E78UEciAReDCeQQ9yjZ5Rkar7BuvS9I8DHfsiac9317sm6ydRh/qGUSrBDYTYtDTxQCebxUgc7aEF7aHBb+HvrDxoeHRPz0x6Q4ecYBl0MiZcIfH+lxzuzccNSIBXvKOc+Shvr+o4oj+Sp/gUyLbSoGTyPqVzJwnyI1L2rl5CjU6ukRVRRz1LEq0rjQbHNd3fYE9TDKeSFm9t1QQ=='
+                'key'=> 'ASIAVUHCLKEGSMXD5ZOH',
+                'secret' => 'H9flYhDQDsF7WMJMqRNX64uOpk204p/D6jYKrrZW',
+                'token' => 'FwoGZXIvYXdzEGgaDOY/a6IgObj9+SwEpSLKAYmBATyZjUNWqljMpsLhZeLTeq6TR1P/hI8HNyoIFx82hBiEbstn5v46xLGvc7y1/3z5cu9qrgwQwqsYJjHPNpZqvWr4BVuv/gaONcTNoFEUTq4dMsqvHM8bhnlpqt38b5I3DI8v/K1JOav1yT6knACJMxfDByY4baDFZy9dAFaIOWB5XxjRyBXL+VZV6Mk84T8TI7CwBfe0rfw7PEANDDdsexDYUvwxzEo6/9T+tlXIsKHsEp3TwoGqC0clEq4PZw5jwaOk9J9yJUwoy/Kq/gUyLU3qwXCMQa+oht9dcuk1ZaEKqD/Djt32lwhqD2fnREZvbtYzvdFo5Jh9El1ZuQ=='
             ]
         ]);
+        $database = new Database();
         foreach ($_SESSION["images_newProduct"] as $image){
-            var_dump($image);
-            die();
             try {
-                $image_parts = explode(";base64,",$image->dataURL);
+                $date = new DateTime();
+                $database->executeQuery("INSERT INTO images_product (id_product,url,name,created_at) VALUES(?,?,?,?)",array($id,$image["file_name"],$image["file_name"],$date->format("Y-m-d H:i:s")));
+                $image_parts = explode(";base64,",$image["file"]->dataURL);
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
                 $image_base64 = base64_decode($image_parts[1]);
                 $result = $s3->putObject([
                     'Bucket' => $bucket,
-                    'Key'    => $image->file_name,
+                    'Key'    => $image["file_name"],
                     'Body'   => $image_base64,
-                    'ContentType'   => $image->type,
+                    'ContentType'   => 'image/' . $image_type,
                     'ACL'    => 'public-read',
                     'StorageClass'   => 'REDUCED_REDUNDANCY',
                 ]);
@@ -104,6 +109,7 @@ function uploadImages($id){
                 die();
             }
         }
+        $database->closeConnection();
     }
 }
 
