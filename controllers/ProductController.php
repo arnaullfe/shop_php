@@ -3,12 +3,14 @@ include_once('../modals/Database.php');
 include_once ('../controllers/AdminTokenController.php');
 include_once ("../modals/Product.php");
 include_once ("./MainController.php");
+include_once ("../dependencies/Aws/vendor/autoload.php");
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
 date_default_timezone_set('Europe/Madrid');
 session_start();
 
 if(isset($_POST["image_newProduct"])){
-    session_start();
-    unset($_SESSION["images_newProduct"]);
+
     $_POST["image_newProduct"] = json_decode($_POST["image_newProduct"]);
 
     if(!isset($_SESSION["images_newProduct"])){
@@ -21,7 +23,7 @@ if(isset($_POST["image_newProduct"])){
 
 
 if(isset($_POST["name_newProduct"])){
-    unset($_SESSION["images_newProduct"]);
+   // unset($_SESSION["images_newProduct"]);
     unset($_SESSION["errors_newProduct"]);
     unset($_SESSION["name_newProduct"]);
     unset($_SESSION["description_newProduct"]);
@@ -56,7 +58,20 @@ if(isset($_POST["name_newProduct"])){
     }
 }
 
+if(isset($_POST["delete_image_newProduct"])){
+    for($i=0;$i<count($_SESSION["images_newProduct"]);$i++){
+        if($_SESSION["images_newProduct"][$i]["id_temp"]==$_POST["delete_image_newProduct"]){
+            array_splice($_SESSION["images_newProduct"],$i,1);
+        }
+    }
+    echo json_encode($_POST["delete_image_newProduct"]);
+}
+
+
+
+
 function uploadImages(){
 
 }
+
 

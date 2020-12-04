@@ -51,10 +51,22 @@ function setup(id) {
                 data:{"image_newProduct":data},
                 contentType: 'application/x-www-form-urlencoded',
                 success: function (response) {
-                    console.log("END",JSON.parse(response))
+                    console.log("END",response)
                     id_temp = JSON.parse(response);
                     document.getElementById("button").addEventListener('click',function (event){
-
+                        console.log(event.target.id);
+                        $.ajax({
+                            url: '../../controllers/ProductController.php',
+                            type: "Post",
+                            data:{"delete_image_newProduct":event.target.id},
+                            contentType: 'application/x-www-form-urlencoded',
+                            success: function (response){
+                                console.log("Image deleted",response);
+                            },
+                            error: function (response){
+                                console.log("Error deleting image",response);
+                            }
+                        })
                     });
                     document.getElementById("button").id = id_temp.id_temp;
                     console.log( document.getElementById("button"))
