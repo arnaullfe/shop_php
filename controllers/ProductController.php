@@ -69,6 +69,23 @@ if(isset($_POST["delete_image_newProduct"])){
     echo json_encode($_POST["delete_image_newProduct"]);
 }
 
+if(isset($_POST["id_edit_units"]) && isset($_POST["units_edit_units"])){
+    if(filter_var($_POST["units_edit_units"], FILTER_VALIDATE_INT)==true && $_POST["units_edit_units"]!=''){
+       $database = new Database();
+       $product = $database->executeQuery("SELECT * FROM products WHERE id=?",array($_POST["id_edit_units"]));
+       $total_units = intval($product[0]["units"])+intval($_POST["units_edit_units"]);
+       if($total_units>=0){
+           $database->executeQuery("UPDATE products set units=? WHERE id=?",array($total_units,$_POST["id_edit_units"]));
+           $_SESSION["message"] = "<strong>Èxit!</strong> Unitats canviades correctament!";
+       }else{
+           $_SESSION["error_message"] = "<strong>Error!</strong> No hi ha prous unitats, no pots restar més de ".$product[0]["units"]." unitats";
+       }
+       $database->closeConnection();
+    }else{
+        $_SESSION["error_message"] = "<strong>Error!</strong> Introdueix un número enter per editar les unitats!";
+    }
+    header("location: ../pages/admin_view/list-products.php");
+}
 
 
 

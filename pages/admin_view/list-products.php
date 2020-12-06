@@ -315,6 +315,14 @@ if(!isset($_SESSION["user_info"])){
                         </button>
                     </div>
                 <?endif;?>
+                <?php if(isset($_SESSION["error_message"])):?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?php echo $_SESSION["error_message"]?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?endif;?>
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Productes i estoc</h1>
                 <p class="mb-4">Administració dels productes i l'estoc de la botiga</p>
@@ -362,6 +370,7 @@ if(!isset($_SESSION["user_info"])){
                                             </select>
                                         </td>
                                         <td>
+                                            <a class="btn btn-secondary btn-sm" href="#" data-toggle="modal" data-target="#unitsModal" title="Editar unitats" onclick="editUnits(<?php echo $product["id"]?>)"><i class="fas fa-plus"></i></a>
                                             <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
                                             <button class="btn btn-danger btn-sm" title="Eliminar usuari">
                                                 <i class="fas fa-trash-alt"></i></button>
@@ -421,6 +430,31 @@ if(!isset($_SESSION["user_info"])){
     </div>
 </div>
 
+<!-- edit units Modal-->
+<div class="modal fade" id="unitsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Editar les unitats</h6>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="../../controllers/ProductController.php" method="post">
+                <div class="modal-body">
+                    Introdueix la suma de les noves unitats. En cas de voler restar, posa el número en negatiu.
+                    <input type="number" class="form-control mt-3" name="units_edit_units" placeholder="Suma o resta unitats" aria-label="Unitats" aria-describedby="basic-addon1">
+                    <input name="id_edit_units" id="id_edit_units" style="display: none">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning btn-md" type="submit" style="background-color: #F7941D">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
@@ -440,6 +474,10 @@ if(!isset($_SESSION["user_info"])){
 <script src="js/demo/datatables-demo.js"></script>
 
 <script>
+
+    function editUnits(id){
+        document.getElementById("id_edit_units").value = id;
+    }
 
     function changeState(id){
         var action = document.getElementById("status-"+id).value;
@@ -477,5 +515,6 @@ function formatDate($date){
     return date_format($date,"d/m/Y H:i:s");
 }
 unset($_SESSION["message"]);
+unset($_SESSION["error_message"]);
 ?>
 
