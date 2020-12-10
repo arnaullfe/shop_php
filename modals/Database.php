@@ -3,6 +3,7 @@
 class Database
 {
     private $host;
+    private $charset;
     private $db;
     private $dsn;
     private $user;
@@ -11,8 +12,8 @@ class Database
 
     public function __construct()
     {
-        $this->host = "esshop.cqnbcumf2too.us-east-1.rds.amazonaws.com";
-        $this->db = "shop";
+        $this->host = 'esshop.cqnbcumf2too.us-east-1.rds.amazonaws.com';
+        $this->db = 'shop';
         $this->dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db . ';';
         $this->user = 'admin';
         $this->pass = "adminroot";

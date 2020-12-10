@@ -20,6 +20,17 @@ if(isset($_POST["image_newProduct"])){
     echo json_encode($var);
 }
 
+if(isset($_POST["image_editProduct"])){
+    $_POST["image_editProduct"] = json_decode($_POST["image_editProduct"]);
+    $name = round(microtime(true) * 1000)."_".$_POST["image_editProduct"]->name_file;
+    if(!isset($_SESSION["images_editProduct"])){
+        $_SESSION["images_editProduct"] = array();
+    }
+    $var = array("id_temp"=> $_POST["image_editProduct"]->upload->uuid ,"file"=>$_POST["image_editProduct"],"file_name"=>$name);
+    array_push($_SESSION["images_editProduct"],$var);
+    echo json_encode($var);
+}
+
 
 if(isset($_POST["name_newProduct"])){
     unset($_SESSION["errors_newProduct"]);
@@ -46,6 +57,44 @@ if(isset($_POST["name_newProduct"])){
         $database->closeConnection();
         uploadImages($productInfo[0]["id"]);
         $_SESSION["message"] = "El producte<strong> ".$_POST["name_newProduct"]." </strong> s'ha creat correctament";
+        header("location: ../pages/admin_view/list-products.php");
+    } else{
+        $_SESSION["errors_newProduct"] = $errors;
+        $_SESSION["name_newProduct"] = $_POST["name_newProduct"];
+        $_SESSION["description_newProduct"] = $_POST["description_newProduct"];
+        $_SESSION["units_newProduct"] = $_POST["units_newProduct"];
+        $_SESSION["price_newProduct"] = $_POST["price_newProduct"];
+        $_SESSION["category_newProduct"] = $_POST["category_newProduct"];
+        $_SESSION["priceIva_type_newProduct"] = $_POST["priceIva_type_newProduct"];
+        $_SESSION["iva_newProduct"] = $_POST["iva_newProduct"];
+        header("location: ../pages/admin_view/new-product.php");
+    }
+}
+
+if(isset($_POST["name_editProduct"])){
+    unset($_SESSION["errors_editProduct"]);
+    unset($_SESSION["name_editProduct"]);
+    unset($_SESSION["description_editProduct"]);
+    unset($_SESSION["units_editProduct"]);
+    unset($_SESSION["price_editProduct"]);
+    $activated = 1;
+    if(!isset($_POST["activated_editProduct"])){
+        $activated = 0;
+    }
+    $vars = array(
+        "data" => array($_POST["name_editProduct"], $_POST["description_editProduct"], $_POST["units_editProduct"], $_POST["price_editProduct"]),
+        "names" => array("name_editProduct", "description_editProduct", "units_editProduct", "price_editProduct")
+    );
+    $errors = checkPostRequest($vars);
+    if(count($errors)==0){
+        $product = new Product($activated,$_POST["name_editProduct"],$_POST["description_editProduct"],abs(intval($_POST["units_editProduct"])),$_POST["priceIva_type_editProduct"],abs($_POST["price_editProduct"]),$_POST["iva_editProduct"],$_POST["category_editProduct"]);
+        $database = new Database();
+        $values = $product->getDatabaseValues();
+        array_push($values,$_POST["id_editProduct"]);
+        $database->executeQuery("UPDATE products set activated=?,name=?,description=?,units=?,category_id=?,iva=?,price_iva=?,price_no_iva=?,created_at=?,last_modified=? WHERE id=?",$values);
+        $database->closeConnection();
+        uploadEditImages($_POST["id_editProduct"]);
+        $_SESSION["message"] = "El producte<strong> ".$_POST["name_newProduct"]." </strong> s'ha editat correctament";
         header("location: ../pages/admin_view/list-products.php");
     } else{
         $_SESSION["errors_newProduct"] = $errors;
@@ -87,6 +136,19 @@ if(isset($_POST["id_edit_units"]) && isset($_POST["units_edit_units"])){
     header("location: ../pages/admin_view/list-products.php");
 }
 
+if(isset($_POST["delete_image_editProduct"]) && isset($_POST["url_image_editProduct"])){
+    $database = new Database();
+    $database->executeQuery("DELETE FROM images_product WHERE id=?",array($_POST["delete_image_editProduct"]));
+    $database->closeConnection();
+    for($i=0;$i<count($_SESSION["images_editProduct"]);$i++){
+        if($_SESSION["images_editProduct"][$i]["id"]==$_POST["delete_image_editProduct"] && $_SESSION["images_editProduct"][$i]["url"]==$_POST["url_image_editProduct"]){
+            array_splice($_SESSION["images_editProduct"],$i,1);
+        }
+    }
+    $_SESSION["message"] = "<strong>Fotografia eliminada correctament!</strong>";
+    echo json_encode($_SESSION["images_editProduct"]);
+    header("location: ../pages/admin_view/list-products.php?product_id=".$_POST["product_edit_id"]);
+}
 
 
 function uploadImages($id){
@@ -96,9 +158,9 @@ function uploadImages($id){
             'version'=> 'latest',
             'region'=> 'us-east-1',
             'credentials'=>[
-                'key'=> 'ASIAVUHCLKEGSMXD5ZOH',
-                'secret' => 'H9flYhDQDsF7WMJMqRNX64uOpk204p/D6jYKrrZW',
-                'token' => 'FwoGZXIvYXdzEGgaDOY/a6IgObj9+SwEpSLKAYmBATyZjUNWqljMpsLhZeLTeq6TR1P/hI8HNyoIFx82hBiEbstn5v46xLGvc7y1/3z5cu9qrgwQwqsYJjHPNpZqvWr4BVuv/gaONcTNoFEUTq4dMsqvHM8bhnlpqt38b5I3DI8v/K1JOav1yT6knACJMxfDByY4baDFZy9dAFaIOWB5XxjRyBXL+VZV6Mk84T8TI7CwBfe0rfw7PEANDDdsexDYUvwxzEo6/9T+tlXIsKHsEp3TwoGqC0clEq4PZw5jwaOk9J9yJUwoy/Kq/gUyLU3qwXCMQa+oht9dcuk1ZaEKqD/Djt32lwhqD2fnREZvbtYzvdFo5Jh9El1ZuQ=='
+                'key'=> 'ASIAVUHCLKEGWUGIZG7E',
+                'secret' => 'STawLGGKUJRCsoj1e/Z/gieRhmnYBqt43HaDqxg2',
+                'token' => 'FwoGZXIvYXdzEPD//////////wEaDAeIE5xsVMEXluZKMyLKAd36q4fq85CJ4hcub2tskjQq0zYuXT+gme7t8CbtCb2cCd6j9ZaNsVzW+JhC5qPgoR8LMuiT61vhSel8c4MlxGtrabH/p/0trgtInUM7uXRxzq7Jigti63pI8gKo9gz7gDAie2sABnycj45a741TqKMK3T8ABDiaE4fI2sD36I/NQWYonux4T6nWH0059c3WlkPjNG5SK1duC4SUGeTsS4DzXiJHQv+Bapk3lTkdrdgvZB9dyxX8Yc+iBdc3C2MxrWdheyRkJ/FEFPco8urI/gUyLQ//kRIifnyPYD09/XegPNalKDKZzing5zKHt3/VSWluGF/fUow+1ZlKNl2lDw=='
             ]
         ]);
         $database = new Database();
@@ -116,7 +178,6 @@ function uploadImages($id){
                     'ACL'    => 'public-read',
                     'StorageClass'   => 'REDUCED_REDUNDANCY',
                 ]);
-
                 $date = new DateTime();
                 $database->executeQuery("INSERT INTO images_product (id_product,url,name,created_at) VALUES(?,?,?,?)",array($id,$result['ObjectURL'],$image["file_name"],$date->format("Y-m-d H:i:s")));
             }catch (S3Exception $e) {
@@ -126,6 +187,47 @@ function uploadImages($id){
         }
         $database->closeConnection();
         unset($_SESSION["images_newProduct"]);
+    }
+}
+
+function uploadEditImages($id){
+    if(isset($_SESSION["images_editProduct"]) && count($_SESSION["images_editProduct"])>0){
+        $bucket = "shop-php";
+        $s3 = new S3Client([
+            'version'=> 'latest',
+            'region'=> 'us-east-1',
+            'credentials'=>[
+                'key'=> 'ASIAVUHCLKEGWUGIZG7E',
+                'secret' => 'STawLGGKUJRCsoj1e/Z/gieRhmnYBqt43HaDqxg2',
+                'token' => 'FwoGZXIvYXdzEPD//////////wEaDAeIE5xsVMEXluZKMyLKAd36q4fq85CJ4hcub2tskjQq0zYuXT+gme7t8CbtCb2cCd6j9ZaNsVzW+JhC5qPgoR8LMuiT61vhSel8c4MlxGtrabH/p/0trgtInUM7uXRxzq7Jigti63pI8gKo9gz7gDAie2sABnycj45a741TqKMK3T8ABDiaE4fI2sD36I/NQWYonux4T6nWH0059c3WlkPjNG5SK1duC4SUGeTsS4DzXiJHQv+Bapk3lTkdrdgvZB9dyxX8Yc+iBdc3C2MxrWdheyRkJ/FEFPco8urI/gUyLQ//kRIifnyPYD09/XegPNalKDKZzing5zKHt3/VSWluGF/fUow+1ZlKNl2lDw=='
+            ]
+        ]);
+        $database = new Database();
+        foreach ($_SESSION["images_editProduct"] as $image){
+            if(!isset($image["id"])){
+                try {
+                    $image_parts = explode(";base64,",$image["file"]->dataURL);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
+                    $image_base64 = base64_decode($image_parts[1]);
+                    $result = $s3->putObject([
+                        'Bucket' => $bucket,
+                        'Key'    => $image["file_name"],
+                        'Body'   => $image_base64,
+                        'ContentType'   => 'image/' . $image_type,
+                        'ACL'    => 'public-read',
+                        'StorageClass'   => 'REDUCED_REDUNDANCY',
+                    ]);
+                    $date = new DateTime();
+                    $database->executeQuery("INSERT INTO images_product (id_product,url,name,created_at) VALUES(?,?,?,?)",array($id,$result['ObjectURL'],$image["file_name"],$date->format("Y-m-d H:i:s")));
+                }catch (S3Exception $e) {
+                    echo $e->getMessage() . PHP_EOL;
+                    die();
+                }
+            }
+        }
+        $database->closeConnection();
+        unset($_SESSION["images_editProduct"]);
     }
 }
 

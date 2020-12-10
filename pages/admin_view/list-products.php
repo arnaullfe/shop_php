@@ -370,9 +370,9 @@ if(!isset($_SESSION["user_info"])){
                                             </select>
                                         </td>
                                         <td>
-                                            <a class="btn btn-secondary btn-sm" href="#" data-toggle="modal" data-target="#unitsModal" title="Editar unitats" onclick="editUnits(<?php echo $product["id"]?>)"><i class="fas fa-plus"></i></a>
-                                            <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
-                                            <button class="btn btn-danger btn-sm" title="Eliminar usuari">
+                                            <a class="btn btn-secondary btn-sm" href="#" data-toggle="modal" data-target="#unitsModal" title="Canviar unitats" onclick="editUnits(<?php echo $product["id"]?>)"><i class="fas fa-plus"></i></a>
+                                            <a class="btn btn-primary btn-sm" title="Editar" href="<?php echo './edit-product.php?product_id='.$product["id"]?>"><i class="fas fa-edit"></i></a>
+                                            <button class="btn btn-danger btn-sm" title="Eliminar">
                                                 <i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>

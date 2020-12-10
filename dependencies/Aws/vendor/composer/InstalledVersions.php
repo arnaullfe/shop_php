@@ -1,5 +1,15 @@
 <?php
 
+
+
+
+
+
+
+
+
+
+
 namespace Composer;
 
 use Composer\Semver\VersionParser;
@@ -19,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '7742d325fb7117684c984668542ddcddba42d55f',
+    'reference' => '899373d0c133b3cff14c21e07013d9dbc7a74c35',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,16 +41,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '7742d325fb7117684c984668542ddcddba42d55f',
+      'reference' => '899373d0c133b3cff14c21e07013d9dbc7a74c35',
     ),
     'aws/aws-sdk-php' => 
     array (
-      'pretty_version' => '3.166.0',
-      'version' => '3.166.0.0',
+      'pretty_version' => '3.168.1',
+      'version' => '3.168.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b0002f081b8819f16429b2351db84c18d0c3e57b',
+      'reference' => 'd648085cce7bfadc8973a8ded401921583c1e3f9',
     ),
     'guzzlehttp/guzzle' => 
     array (
