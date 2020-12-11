@@ -6,7 +6,7 @@ if(!isset($_SESSION["user_info"])){
     header("location: ../botiga_view/index.php");
 } else{
     $database = new Database();
-    $products = $database->executeQuery("SELECT * FROM products", array());
+    $products = $database->executeQuery('SELECT products.*,productCategory.name as "category" FROM shop.products INNER JOIN shop.productCategory ON products.category_id = productCategory.id', array());
     $database->closeConnection();
 }
 ?>
@@ -91,7 +91,8 @@ if(!isset($_SESSION["user_info"])){
                     <h6 class="collapse-header">Administrar productes:</h6>
                     <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
                     <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
-                    <a class="collapse-item" href="cards.php"><b>Productes destacats</b></a>
+                    <a class="collapse-item" href="list-tags.php"><b>Tags</b></a>
+                    <a class="collapse-item" href="list-discount"><b>Descomptes</b></a>
                 </div>
             </div>
         </li>
@@ -339,7 +340,7 @@ if(!isset($_SESSION["user_info"])){
                                 <thead>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Descripció</th>
+                                    <th>Categoria</th>
                                     <th>Unitats</th>
                                     <th>Preu amb IVA</th>
                                     <th>Estat</th>
@@ -349,7 +350,7 @@ if(!isset($_SESSION["user_info"])){
                                 <tfoot>
                                 <tr>
                                     <th>Nom</th>
-                                    <th>Descripció</th>
+                                    <th>Categoria</th>
                                     <th>Unitats</th>
                                     <th>Preu amb IVA</th>
                                     <th>Estat</th>
@@ -360,7 +361,7 @@ if(!isset($_SESSION["user_info"])){
                                 <?php foreach ($products as $product): ?>
                                     <tr>
                                         <td><?php echo $product["name"]?></td>
-                                        <td><?php echo $product["description"]?></td>
+                                        <td><?php echo $product["category"]?></td>
                                         <td><?php echo $product["units"]?></td>
                                         <td><?php echo number_format($product["price_iva"],2,',','.')?> €</td>
                                         <td style="text-align: center;">
