@@ -1,8 +1,10 @@
 <?php
 include_once ("../../modals/Database.php");
 $database = new Database();
-$products = $database->executeQuery("SELECT products.*,images_product.url FROM products INNER JOIN images_product ON images_product.id_product = products.id AND images_product.principal = 1" ,array());
+$products = $database->executeQuery("SELECT products.*,images_product.url FROM products INNER JOIN images_product ON images_product.id_product = products.id AND images_product.principal = 1 ORDER BY products.id DESC" ,array());
 $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN (SELECT category_id FROM products) GROUP BY id ORDER BY id",array());
+$database->closeConnection();
+$num = 0;
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -217,13 +219,9 @@ $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN
 								<div class="single-widget category">
 									<h3 class="title">Categories</h3>
 									<ul class="categor-list">
-										<li><a href="#">T-shirts</a></li>
-										<li><a href="#">jacket</a></li>
-										<li><a href="#">jeans</a></li>
-										<li><a href="#">sweatshirts</a></li>
-										<li><a href="#">trousers</a></li>
-										<li><a href="#">kitwears</a></li>
-										<li><a href="#">accessories</a></li>
+										<?php foreach ($categories as $category):?>
+                                            <li><a href="#"><?php echo $category["name"]?></a></li>
+                                        <?endforeach;?>
 									</ul>
 								</div>
 								<!--/ End Single Widget -->
@@ -255,75 +253,32 @@ $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN
 									<!--/ End Shop By Price -->
 								<!-- Single Widget -->
 								<div class="single-widget recent-post">
-									<h3 class="title">Recent post</h3>
+									<h3 class="title">Posts recents</h3>
 									<!-- Single Post -->
-									<div class="single-post first">
-										<div class="image">
-											<img src="https://via.placeholder.com/75x75" alt="#">
-										</div>
-										<div class="content">
-											<h5><a href="#">Girls Dress</a></h5>
-											<p class="price">$99.50</p>
-											<ul class="reviews">
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li><i class="ti-star"></i></li>
-												<li><i class="ti-star"></i></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Single Post -->
-									<!-- Single Post -->
-									<div class="single-post first">
-										<div class="image">
-											<img src="https://via.placeholder.com/75x75" alt="#">
-										</div>
-										<div class="content">
-											<h5><a href="#">Women Clothings</a></h5>
-											<p class="price">$99.50</p>
-											<ul class="reviews">
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li><i class="ti-star"></i></li>
-											</ul>
-										</div>
-									</div>
-									<!-- End Single Post -->
-									<!-- Single Post -->
-									<div class="single-post first">
-										<div class="image">
-											<img src="https://via.placeholder.com/75x75" alt="#">
-										</div>
-										<div class="content">
-											<h5><a href="#">Man Tshirt</a></h5>
-											<p class="price">$99.50</p>
-											<ul class="reviews">
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-												<li class="yellow"><i class="ti-star"></i></li>
-											</ul>
-										</div>
-									</div>
+                                    <?php foreach ($products as $product):?>
+                                    <?php if($num==3){
+                                        break;
+                                        }
+                                        $num++;?>
+                                        <div class="single-post first">
+                                            <div class="image">
+                                                <img src="<?php echo $product['url']?>" alt="#">
+                                            </div>
+                                            <div class="content">
+                                                <h5><a href="#"><?php echo $product["name"]?></a></h5>
+                                                <p class="price"><?php echo number_format($product["price_iva"],2,",",".")." €"?></p>
+                                                <ul class="reviews">
+                                                    <li class="yellow"><i class="ti-star"></i></li>
+                                                    <li class="yellow"><i class="ti-star"></i></li>
+                                                    <li class="yellow"><i class="ti-star"></i></li>
+                                                    <li><i class="ti-star"></i></li>
+                                                    <li><i class="ti-star"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    <?endforeach;?>
 									<!-- End Single Post -->
 								</div>
-								<!--/ End Single Widget -->
-								<!-- Single Widget -->
-								<div class="single-widget category">
-									<h3 class="title">Manufacturers</h3>
-									<ul class="categor-list">
-										<li><a href="#">Forever</a></li>
-										<li><a href="#">giordano</a></li>
-										<li><a href="#">abercrombie</a></li>
-										<li><a href="#">ecko united</a></li>
-										<li><a href="#">zara</a></li>
-									</ul>
-								</div>
-								<!--/ End Single Widget -->
 						</div>
 					</div>
 					<div class="col-lg-9 col-md-8 col-12">

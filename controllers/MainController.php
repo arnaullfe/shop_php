@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Madrid');
 session_start();
 
 function checkPostRequest($data)
@@ -39,4 +40,9 @@ function comparePasswords($pasword,$confirm){
         return true;
     }
     return false;
+}
+
+function getCurrentDateTime(){
+    $date = new DateTime();
+    return $date->format("Y-m-d H:i:s");
 }

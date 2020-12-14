@@ -104,6 +104,11 @@ class Database
                                             name varchar(255),
                                             principal int default 0,
                                             created_at DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS tags (
+	                                        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                                            color varchar(255),
+                                            name varchar(255),
+                                            created_at DATETIME);");
         } catch (PDOException $err) {
             echo $err;
         }
