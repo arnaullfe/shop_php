@@ -361,7 +361,7 @@ $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN
 						<div class="row">
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-                                    <div class="product-img">
+                                    <div class="product-img" style="height: 365px;">
                                         <a href="product-details.html">
                                             <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                             <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -389,24 +389,24 @@ $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN
                             <?php foreach ($products as $product):?>
 							<div class="col-lg-4 col-md-6 col-12">
 								<div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-									<div class="product-img">
+									<div class="product-img" >
 										<a data-toggle="modal" data-target="#exampleModal"">
                                             <?php if(isset($product["url"]) && $product["url"]!=null):?>
-                                                <img class="default-img" src="<?php echo $product["url"]?>" alt="#">
-                                                <img class="hover-img" src="<?php echo $product["url"]?>" alt="#">
-                                                <span class="new">New</span>
+                                                <img class="default-img" src="<?php echo $product["url"]?>" alt="#" style="height: 365px;">
+                                                <img class="hover-img" src="<?php echo $product["url"]?>" alt="#" style="height: 365px;">
+                                                <span class="new" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 70%">Newasssssxsccdcdcdcdeijgfjhjrtugtughuthguhtguhtughtuhgtuhuthgudccc</span>
                                             <?php else:?>
                                                 <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                                 <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                             <?php endif;?>
 										</a>
 										<div class="button-head">
-											<div class="product-action" style="padding: 3%">
+											<div class="product-action" style="padding-right: 3%">
 												<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Més detalls</span></a>
 												<a title="Desitjats" href="#"><i class=" ti-heart "></i><span>Afegir a desitjats</span></a>
 												<!--<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
 											</div>
-											<div class="product-action-2" style="padding: 3%">
+											<div class="product-action-2" style="padding-left: 3%">
 												<a title="Afegir" href="#">Cistella</a>
 											</div>
 										</div>
