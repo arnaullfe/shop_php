@@ -20,12 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/TagController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modals/Tag.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/admin_view/list-tags.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/edit-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/edit-product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-products.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-products.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/new-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/new-product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +119,7 @@
       <workItem from="1607602924420" duration="6474000" />
       <workItem from="1607610900837" duration="2940000" />
       <workItem from="1607713192920" duration="1820000" />
-      <workItem from="1607962464880" duration="8942000" />
+      <workItem from="1607962464880" duration="11099000" />
     </task>
     <servers />
   </component>

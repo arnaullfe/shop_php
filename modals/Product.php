@@ -3,9 +3,9 @@
 
 class Product
 {
-    private $id,$name,$description,$price_iva,$price_no_iva,$category_id,$units,$activated,$created_at,$last_modified,$iva;
+    private $id,$name,$description,$price_iva,$price_no_iva,$category_id,$units,$activated,$created_at,$last_modified,$iva,$tag_id;
 
-    public function __construct($activated,$name, $description, $units,$type_price,$price,$iva, $category_id)
+    public function __construct($activated,$name, $description, $units,$type_price,$price,$iva, $category_id,$tag_id)
     {
         $this->activated = $activated;
         $this->name = $name;
@@ -22,6 +22,7 @@ class Product
             $this->price_no_iva = $price;
             $this->price_iva = $this->getPriceNoIva() + (($this->getPriceNoIva()*$iva)/100);
         }
+        $this->tag_id = $tag_id;
     }
 
     public function getId()
@@ -155,7 +156,7 @@ class Product
     }
 
     public function getDatabaseValues(){
-        return array($this->activated,$this->name,$this->description,$this->units,$this->category_id,$this->iva,$this->price_iva,$this->price_no_iva,$this->created_at->format("Y-m-d H:i:s"), $this->last_modified->format("Y-m-d H:i:s"));
+        return array($this->activated,$this->name,$this->description,$this->units,$this->category_id,$this->iva,$this->price_iva,$this->price_no_iva,$this->tag_id,$this->created_at->format("Y-m-d H:i:s"), $this->last_modified->format("Y-m-d H:i:s"));
     }
 
 

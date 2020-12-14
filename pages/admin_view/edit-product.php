@@ -9,6 +9,7 @@ if (!isset($_SESSION["user_info"]) || !isset($_GET["product_id"])) {
     $categories = $database->executeQuery("SELECT * FROM productCategory", array());
     $images = $database->executeQuery("SELECT * FROM images_product WHERE id_product=?",array($_GET["product_id"]));
     $product = $database->executeQuery("SELECT * FROM products WHERE id=?",array($_GET["product_id"]));
+    $tags = $database->executeQuery("SELECT * FROM tags",array());
     $database->closeConnection();
     if(!isset($_SESSION["images_editProduct"])){
         $_SESSION["images_editProduct"] = $images;
@@ -19,6 +20,7 @@ if (!isset($_SESSION["user_info"]) || !isset($_GET["product_id"])) {
         $_SESSION["priceIva_type_editProduct"] = 1;
         $_SESSION["category_editProduct"] = $product[0]["category_id"];
         $_SESSION["iva_editProduct"] = $product[0]["iva"];
+        $_SESSION["tag_editProduct"] = $product[0]["tag_id"];
         }
 }
 ?>
@@ -408,6 +410,19 @@ if (!isset($_SESSION["user_info"]) || !isset($_GET["product_id"])) {
                                         <?php endif; ?>
                                     </div>
                                 </div>
+                                <div class="form-group d-flex row">
+                                    <div class="col-4 text-right pr-5">
+                                        <label class="mr-5"><b>TAG:</b> </label>
+                                    </div>
+                                    <div class="col-8">
+                                        <select class="form-control w-75" name="tag_editProduct">
+                                            <option value="0">Sense tag</option>
+                                            <?php foreach ($tags as $tag):?>
+                                                <option value="<?php echo $tag["id"]?>" <?php if($tag["id"]==$_SESSION["tag_editProduct"]):?> selected <?endif;?>><?php echo $tag["name"]?></option>
+                                            <?endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group d-flex">
                                     <div class="col-4 text-right pr-5">
                                         <label class="mr-5"><b>Descripció:</b> </label>
@@ -657,5 +672,6 @@ unset($_SESSION["priceIva_type_editProduct"]);
 unset($_SESSION["category_editProduct"]);
 unset($_SESSION["iva_editProduct"]);
 unset($_SESSION["image_id_temp"]);
+unset($_SESSION["tag_editProduct"]);
 ?>
 

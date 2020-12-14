@@ -7,6 +7,7 @@ if (!isset($_SESSION["user_info"])) {
 } else {
     $database = new Database();
     $categories = $database->executeQuery("SELECT * FROM productCategory", array());
+    $tags = $database->executeQuery("SELECT * FROM tags",array());
     $database->closeConnection();
 }
 ?>
@@ -389,6 +390,19 @@ if (!isset($_SESSION["user_info"])) {
                                         <?php endif; ?>
                                     </div>
                                 </div>
+                                    <div class="form-group d-flex row">
+                                        <div class="col-4 text-right pr-5">
+                                            <label class="mr-5"><b>TAG:</b> </label>
+                                        </div>
+                                        <div class="col-8">
+                                            <select class="form-control w-75" name="tag_newProduct">
+                                                <option value="0">Sense tag</option>
+                                                <?php foreach ($tags as $tag):?>
+                                                    <option value="<?php echo $tag["id"]?>" <?php if($tag["id"]==$_SESSION["tag_newProduct"]):?> selected <?endif;?>><?php echo $tag["name"]?></option>
+                                                <?endforeach;?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 <div class="form-group d-flex">
                                     <div class="col-4 text-right pr-5">
                                         <label class="mr-5"><b>Descripció:</b> </label>
@@ -620,5 +634,6 @@ unset($_SESSION["priceIva_type_newProduct"]);
 unset($_SESSION["category_newProduct"]);
 unset($_SESSION["iva_newProduct"]);
 unset($_SESSION["image_id_temp"]);
+unset($_SESSION["tag_newProduct"])
 ?>
 

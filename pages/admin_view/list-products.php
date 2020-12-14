@@ -6,7 +6,7 @@ if(!isset($_SESSION["user_info"])){
     header("location: ../botiga_view/index.php");
 } else{
     $database = new Database();
-    $products = $database->executeQuery('SELECT products.*,productCategory.name as "category" FROM shop.products INNER JOIN shop.productCategory ON products.category_id = productCategory.id', array());
+    $products = $database->executeQuery('SELECT shop.products.*,shop.productCategory.name as "category",shop.tags.name as "tag_name",shop.tags.color as "tag_color" FROM shop.products INNER JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id INNER JOIN shop.tags ON shop.products.tag_id = shop.tags.id', array());
     $database->closeConnection();
 }
 ?>
@@ -344,6 +344,7 @@ if(!isset($_SESSION["user_info"])){
                                     <th>Unitats</th>
                                     <th>Preu amb IVA</th>
                                     <th>Estat</th>
+                                    <th>Tag</th>
                                     <th>Accions</th>
                                 </tr>
                                 </thead>
@@ -354,6 +355,7 @@ if(!isset($_SESSION["user_info"])){
                                     <th>Unitats</th>
                                     <th>Preu amb IVA</th>
                                     <th>Estat</th>
+                                    <th>Tag</th>
                                     <th>Accions</th>
                                 </tr>
                                 </tfoot>
@@ -369,6 +371,8 @@ if(!isset($_SESSION["user_info"])){
                                                 <option value="1">Actiu</option>
                                                 <option  value="0" <?php  if($product["activated"]==0){echo "selected";}?>>Desactivat</option>
                                             </select>
+                                        </td>
+                                        <td><?php echo $product["tag_name"] ?></td>
                                         </td>
                                         <td>
                                             <a class="btn btn-secondary btn-sm" href="#" data-toggle="modal" data-target="#unitsModal" title="Canviar unitats" onclick="editUnits(<?php echo $product["id"]?>)"><i class="fas fa-plus"></i></a>

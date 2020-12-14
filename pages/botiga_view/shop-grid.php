@@ -1,7 +1,7 @@
 <?php
 include_once ("../../modals/Database.php");
 $database = new Database();
-$products = $database->executeQuery("SELECT products.*,images_product.url FROM products INNER JOIN images_product ON images_product.id_product = products.id AND images_product.principal = 1 ORDER BY products.id DESC" ,array());
+$products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color' FROM shop.products INNER JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id INNER JOIN shop.tags ON shop.products.tag_id = shop.tags.id INNER JOIN shop.images_product ON shop.images_product.id_product = shop.products.id AND shop.images_product.principal = 1 ORDER BY products.id DESC",array());
 $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN (SELECT category_id FROM products) GROUP BY id ORDER BY id",array());
 $database->closeConnection();
 $num = 0;
@@ -349,7 +349,9 @@ $num = 0;
                                             <?php if(isset($product["url"]) && $product["url"]!=null):?>
                                                 <img class="default-img" src="<?php echo $product["url"]?>" alt="#" style="height: 365px;">
                                                 <img class="hover-img" src="<?php echo $product["url"]?>" alt="#" style="height: 365px;">
-                                                <span class="new" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 70%">Newasssssxsccdcdcdcdeijgfjhjrtugtughuthguhtguhtughtuhgtuhuthgudccc</span>
+                                                <?php if(isset($product["tag_name"]) && $product["tag_name"]!=null):?>
+                                                    <span class="new" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 70%;background-color: <?php echo $product['tag_color']?>"><?php echo $product["tag_name"]?></span>
+                                                <?endif;?>
                                             <?php else:?>
                                                 <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                                 <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">

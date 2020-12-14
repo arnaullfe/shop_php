@@ -35,6 +35,7 @@ if(isset($_POST["image_editProduct"])){
 if(isset($_POST["name_newProduct"])){
     unset($_SESSION["errors_newProduct"]);
     unset($_SESSION["name_newProduct"]);
+    unset($_SESSION["tag_newProduct"]);
     unset($_SESSION["description_newProduct"]);
     unset($_SESSION["units_newProduct"]);
     unset($_SESSION["price_newProduct"]);
@@ -48,9 +49,9 @@ if(isset($_POST["name_newProduct"])){
     );
     $errors = checkPostRequest($vars);
     if(count($errors)==0){
-        $product = new Product($activated,$_POST["name_newProduct"],$_POST["description_newProduct"],abs(intval($_POST["units_newProduct"])),$_POST["priceIva_type_newProduct"],abs($_POST["price_newProduct"]),$_POST["iva_newProduct"],$_POST["category_newProduct"]);
+        $product = new Product($activated,$_POST["name_newProduct"],$_POST["description_newProduct"],abs(intval($_POST["units_newProduct"])),$_POST["priceIva_type_newProduct"],abs($_POST["price_newProduct"]),$_POST["iva_newProduct"],$_POST["category_newProduct"],$_POST["tag_newProduct"]);
         $database = new Database();
-        $database->executeQuery("INSERT INTO products (activated,name,description,units,category_id,iva,price_iva,price_no_iva,created_at,last_modified) VALUES(?,?,?,?,?,?,?,?,?,?)",$product->getDatabaseValues());
+        $database->executeQuery("INSERT INTO products (activated,name,description,units,category_id,iva,price_iva,price_no_iva,tag_id,created_at,last_modified) VALUES(?,?,?,?,?,?,?,?,?,?,?)",$product->getDatabaseValues());
         $database->closeConnection();
         $database = new Database();
         $productInfo = $database->executeQuery("SELECT MAX(id) as id FROM products",array());
@@ -67,6 +68,7 @@ if(isset($_POST["name_newProduct"])){
         $_SESSION["category_newProduct"] = $_POST["category_newProduct"];
         $_SESSION["priceIva_type_newProduct"] = $_POST["priceIva_type_newProduct"];
         $_SESSION["iva_newProduct"] = $_POST["iva_newProduct"];
+        $_SESSION["tag_newProduct"] = $_POST["tag_newProduct"];
         header("location: ../pages/admin_view/new-product.php");
     }
 }
@@ -74,6 +76,7 @@ if(isset($_POST["name_newProduct"])){
 if(isset($_POST["name_editProduct"])){
     unset($_SESSION["errors_editProduct"]);
     unset($_SESSION["name_editProduct"]);
+    unset($_SESSION["tag_editProduct"]);
     unset($_SESSION["description_editProduct"]);
     unset($_SESSION["units_editProduct"]);
     unset($_SESSION["price_editProduct"]);
@@ -87,25 +90,26 @@ if(isset($_POST["name_editProduct"])){
     );
     $errors = checkPostRequest($vars);
     if(count($errors)==0){
-        $product = new Product($activated,$_POST["name_editProduct"],$_POST["description_editProduct"],abs(intval($_POST["units_editProduct"])),$_POST["priceIva_type_editProduct"],abs($_POST["price_editProduct"]),$_POST["iva_editProduct"],$_POST["category_editProduct"]);
+        $product = new Product($activated,$_POST["name_editProduct"],$_POST["description_editProduct"],abs(intval($_POST["units_editProduct"])),$_POST["priceIva_type_editProduct"],abs($_POST["price_editProduct"]),$_POST["iva_editProduct"],$_POST["category_editProduct"],$_POST["tag_editProduct"]);
         $database = new Database();
         $values = $product->getDatabaseValues();
         array_push($values,$_POST["id_editProduct"]);
-        $database->executeQuery("UPDATE products set activated=?,name=?,description=?,units=?,category_id=?,iva=?,price_iva=?,price_no_iva=?,created_at=?,last_modified=? WHERE id=?",$values);
+        $database->executeQuery("UPDATE products set activated=?,name=?,description=?,units=?,category_id=?,iva=?,price_iva=?,price_no_iva=?,tag_id=?,created_at=?,last_modified=? WHERE id=?",$values);
         $database->closeConnection();
         uploadEditImages($_POST["id_editProduct"]);
         $_SESSION["message"] = "El producte<strong> ".$_POST["name_newProduct"]." </strong> s'ha editat correctament";
         header("location: ../pages/admin_view/list-products.php");
     } else{
-        $_SESSION["errors_newProduct"] = $errors;
-        $_SESSION["name_newProduct"] = $_POST["name_newProduct"];
-        $_SESSION["description_newProduct"] = $_POST["description_newProduct"];
-        $_SESSION["units_newProduct"] = $_POST["units_newProduct"];
-        $_SESSION["price_newProduct"] = $_POST["price_newProduct"];
-        $_SESSION["category_newProduct"] = $_POST["category_newProduct"];
-        $_SESSION["priceIva_type_newProduct"] = $_POST["priceIva_type_newProduct"];
-        $_SESSION["iva_newProduct"] = $_POST["iva_newProduct"];
-        header("location: ../pages/admin_view/new-product.php");
+        $_SESSION["errors_editProduct"] = $errors;
+        $_SESSION["name_editProduct"] = $_POST["name_editProduct"];
+        $_SESSION["description_editProduct"] = $_POST["description_editProduct"];
+        $_SESSION["units_editProduct"] = $_POST["units_editProduct"];
+        $_SESSION["price_editProduct"] = $_POST["price_editProduct"];
+        $_SESSION["category_editProduct"] = $_POST["category_editProduct"];
+        $_SESSION["priceIva_type_editProduct"] = $_POST["priceIva_type_editProduct"];
+        $_SESSION["iva_editProduct"] = $_POST["iva_editProduct"];
+        $_SESSION["tag_editProduct"] = $_POST["tag_editProduct"];
+        header("location: ../pages/admin_view/edit-product.php");
     }
 }
 

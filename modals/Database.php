@@ -95,6 +95,7 @@ class Database
                                             price_no_iva float,
                                             category_id int,
                                             activated int DEFAULT 1,
+                                            tag_id int DEFAULT 0,
                                             created_at DATETIME ,
                                             last_modified DATETIME);");
             $this->connection->query("CREATE TABLE IF NOT EXISTS images_product (
