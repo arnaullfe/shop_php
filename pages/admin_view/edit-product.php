@@ -502,7 +502,7 @@ if (!isset($_SESSION["user_info"]) || !isset($_GET["product_id"])) {
                                     </div>
                                     <div class="col-12 col-md-6 text-center m-0 p-0">
                                         <button class="btn btn-warning btn-block" type="submit"
-                                                style="background-color: #F7941D;width: 100%;">Crear
+                                                style="background-color: #F7941D;width: 100%;">Guardar
                                         </button>
                                     </div>
                                     <div class="col-0 col-md-3">
