@@ -1,7 +1,7 @@
 <?php
 include_once ("../../modals/Database.php");
 $database = new Database();
-$products = $database->executeQuery("SELECT * FROM products INNER JOIN images_product ON images_product.id_product = products.id AND images_product.principal = 1" ,array());
+$products = $database->executeQuery("SELECT products.*,images_product.url FROM products INNER JOIN images_product ON images_product.id_product = products.id AND images_product.principal = 1" ,array());
 $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN (SELECT category_id FROM products) GROUP BY id ORDER BY id",array());
 ?>
 <!DOCTYPE html>
@@ -359,32 +359,60 @@ $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN
 							</div>
 						</div>
 						<div class="row">
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                                    <div class="product-img">
+                                        <a href="product-details.html">
+                                            <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+                                            <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                                            <span class="new">New</span>
+                                        </a>
+                                        <div class="button-head">
+                                            <div class="product-action">
+                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                            </div>
+                                            <div class="product-action-2">
+                                                <a title="Add to cart" href="#">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-content"style="padding-left: 2%;padding-right: 2%;">
+                                        <h3><a href="product-details.html" style="word-break: break-all">Women Pant Collectonsdededededededeedededed</a></h3>
+                                        <div class="product-price">
+                                            <span>$29.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <?php foreach ($products as $product):?>
 							<div class="col-lg-4 col-md-6 col-12">
-								<div class="single-product">
+								<div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
 									<div class="product-img">
 										<a data-toggle="modal" data-target="#exampleModal"">
                                             <?php if(isset($product["url"]) && $product["url"]!=null):?>
                                                 <img class="default-img" src="<?php echo $product["url"]?>" alt="#">
                                                 <img class="hover-img" src="<?php echo $product["url"]?>" alt="#">
+                                                <span class="new">New</span>
                                             <?php else:?>
                                                 <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                                 <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                             <?php endif;?>
 										</a>
 										<div class="button-head">
-											<div class="product-action">
+											<div class="product-action" style="padding: 3%">
 												<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Més detalls</span></a>
 												<a title="Desitjats" href="#"><i class=" ti-heart "></i><span>Afegir a desitjats</span></a>
 												<!--<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
 											</div>
-											<div class="product-action-2">
+											<div class="product-action-2" style="padding: 3%">
 												<a title="Afegir" href="#">Cistella</a>
 											</div>
 										</div>
 									</div>
-									<div class="product-content">
-										<h3><a href="product-details.html"><?php echo $product["name"]?></a></h3>
+									<div class="product-content" style="padding:4%">
+										<h3><a href="product-details.html" style="word-break: break-all"><?php echo $product["name"]?></a></h3>
 										<div class="product-price">
 											<span><?php echo number_format($product["price_iva"],2,",",".")." €"?></span>
 										</div>
