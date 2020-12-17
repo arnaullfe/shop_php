@@ -79,7 +79,7 @@ if(!isset($_SESSION["user_info"])){
                         <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
                         <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
                         <a class="collapse-item" href="list-tags.php"><b>Tags</b></a>
-                        <a class="collapse-item" href="list-discount"><b>Descomptes</b></a>
+                        <a class="collapse-item" href="list-discounts.php"><b>Descomptes</b></a>
                     </div>
                 </div>
             </li>

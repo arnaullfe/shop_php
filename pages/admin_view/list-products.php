@@ -6,7 +6,7 @@ if(!isset($_SESSION["user_info"])){
     header("location: ../botiga_view/index.php");
 } else{
     $database = new Database();
-    $products = $database->executeQuery('SELECT shop.products.*,shop.productCategory.name as "category",shop.tags.name as "tag_name",shop.tags.color as "tag_color" FROM shop.products INNER JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id INNER JOIN shop.tags ON shop.products.tag_id = shop.tags.id', array());
+    $products = $database->executeQuery('SELECT shop.products.*,shop.productCategory.name as "category",shop.tags.name as "tag_name",shop.tags.color as "tag_color" FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id', array());
     $database->closeConnection();
 }
 ?>
@@ -92,7 +92,7 @@ if(!isset($_SESSION["user_info"])){
                     <a class="collapse-item" href="list-categories.php"><b>Categories</b></a>
                     <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="list-tags.php"><b>Tags</b></a>
-                    <a class="collapse-item" href="list-discount"><b>Descomptes</b></a>
+                    <a class="collapse-item" href="list-discounts.php"><b>Descomptes</b></a>
                 </div>
             </div>
         </li>

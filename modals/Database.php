@@ -110,6 +110,16 @@ class Database
                                             color varchar(255),
                                             name varchar(255),
                                             created_at DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS discounts (
+	                                        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                                            id_product int NOT NULL,
+                                            name varchar(255),
+                                            discount_type int default 1,
+                                            new_price_iva float,
+                                            start_date DATETIME,
+                                            end_date DATETIME,
+                                            last_updated DATETIME,
+                                            created_at DATETIME);");
         } catch (PDOException $err) {
             echo $err;
         }

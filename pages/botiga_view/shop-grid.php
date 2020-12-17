@@ -1,7 +1,7 @@
 <?php
 include_once ("../../modals/Database.php");
 $database = new Database();
-$products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color' FROM shop.products INNER JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id INNER JOIN shop.tags ON shop.products.tag_id = shop.tags.id INNER JOIN shop.images_product ON shop.images_product.id_product = shop.products.id AND shop.images_product.principal = 1 ORDER BY products.id DESC",array());
+$products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.new_price_iva FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id AND shop.images_product.principal = 1 LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() ORDER BY products.id DESC;",array());
 $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN (SELECT category_id FROM products) GROUP BY id ORDER BY id",array());
 $database->closeConnection();
 $num = 0;
@@ -227,26 +227,26 @@ $num = 0;
 								<!--/ End Single Widget -->
 								<!-- Shop By Price -->
 									<div class="single-widget range">
-										<h3 class="title">Shop by Price</h3>
+										<h3 class="title">Filtrar preu</h3>
 										<div class="price-filter">
 											<div class="price-filter-inner">
 												<div id="slider-range"></div>
 													<div class="price_slider_amount">
 													<div class="label-input">
-														<span>Range:</span><input type="text" id="amount" name="price" placeholder="Add Your Price"/>
+														<span>Rang:</span><input type="text" id="amount" name="price" placeholder="Afageix el preu"/>
 													</div>
 												</div>
 											</div>
 										</div>
 										<ul class="check-box-list">
 											<li>
-												<label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox">$20 - $50<span class="count">(3)</span></label>
+												<label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox">20€ - 50€<span class="count">(3)</span></label>
 											</li>
 											<li>
-												<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">$50 - $100<span class="count">(5)</span></label>
+												<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">50€ - 100€<span class="count">(5)</span></label>
 											</li>
 											<li>
-												<label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">$100 - $250<span class="count">(8)</span></label>
+												<label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">100€ - 250€<span class="count">(8)</span></label>
 											</li>
 										</ul>
 									</div>
@@ -314,33 +314,6 @@ $num = 0;
 							</div>
 						</div>
 						<div class="row">
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-                                    <div class="product-img" style="height: 365px;">
-                                        <a href="product-details.html">
-                                            <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                            <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                                            <span class="new">New</span>
-                                        </a>
-                                        <div class="button-head">
-                                            <div class="product-action">
-                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                            </div>
-                                            <div class="product-action-2">
-                                                <a title="Add to cart" href="#">Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-content"style="padding-left: 2%;padding-right: 2%;">
-                                        <h3><a href="product-details.html" style="word-break: break-all">Women Pant Collectonsdededededededeedededed</a></h3>
-                                        <div class="product-price">
-                                            <span>$29.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <?php foreach ($products as $product):?>
 							<div class="col-lg-4 col-md-6 col-12">
 								<div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
@@ -371,7 +344,8 @@ $num = 0;
 									<div class="product-content" style="padding:4%">
 										<h3><a href="product-details.html" style="word-break: break-all"><?php echo $product["name"]?></a></h3>
 										<div class="product-price">
-											<span><?php echo number_format($product["price_iva"],2,",",".")." €"?></span>
+                                            <!--<span class="old">60,00</span>-->
+                                            <span><?php echo number_format($product["price_iva"],2,",",".")." €"?></span>
 										</div>
 									</div>
 								</div>
