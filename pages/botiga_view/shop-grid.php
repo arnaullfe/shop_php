@@ -266,7 +266,12 @@ $num = 0;
                                             </div>
                                             <div class="content">
                                                 <h5><a href="#"><?php echo $product["name"]?></a></h5>
-                                                <p class="price"><?php echo number_format($product["price_iva"],2,",",".")." €"?></p>
+                                                <?php if($product["new_price_iva"]!=null):?>
+                                                    <span style="color: gray;text-decoration: line-through"><?php echo number_format($product["price_iva"],2,",",".")." €"?></span>
+                                                    <span><?php echo number_format($product["new_price_iva"],2,",",".")." €"?></span>
+                                                <?else:?>
+                                                    <p class="price"><?php echo number_format($product["price_iva"],2,",",".")." €"?></p>
+                                                <?endif;?>
                                                 <ul class="reviews">
                                                     <li class="yellow"><i class="ti-star"></i></li>
                                                     <li class="yellow"><i class="ti-star"></i></li>
@@ -344,8 +349,13 @@ $num = 0;
 									<div class="product-content" style="padding:4%">
 										<h3><a href="product-details.html" style="word-break: break-all"><?php echo $product["name"]?></a></h3>
 										<div class="product-price">
-                                            <!--<span class="old">60,00</span>-->
+                                            <?php if($product["new_price_iva"]!=null):?>
+                                                <span class="old"><?php echo number_format($product["price_iva"],2,",",".")." €"?></span>
+                                                <span><?php echo number_format($product["new_price_iva"],2,",",".")." €"?></span>
+
+                                            <?else:?>
                                             <span><?php echo number_format($product["price_iva"],2,",",".")." €"?></span>
+                                            <?endif;?>
 										</div>
 									</div>
 								</div>
