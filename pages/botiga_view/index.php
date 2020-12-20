@@ -150,7 +150,7 @@ session_start();
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
 										<span>2 Items</span>
-										<a href="#">View Cart</a>
+										<a href="./cart.php">Veure cistella</a>
 									</div>
 									<ul class="shopping-list">
 										<li>
@@ -171,8 +171,8 @@ session_start();
 											<span>Total</span>
 											<span class="total-amount">$134.00</span>
 										</div>
-										<a href="checkout.php" class="btn animate">Checkout</a>
-									</div>
+                                        <a href="checkout.php" class="btn animate">Anar a pagar</a>
+                                    </div>
 								</div>
 								<!--/ End Shopping Item -->
 							</div>

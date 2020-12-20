@@ -1,5 +1,7 @@
 <?php
 include_once ("../../modals/Database.php");
+include_once ('../../controllers/UserTokenController.php');
+session_start();
 $database = new Database();
 $products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.new_price_iva FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id AND shop.images_product.principal = 1 LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() ORDER BY products.id DESC;",array());
 $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN (SELECT category_id FROM products) GROUP BY id ORDER BY id",array());
@@ -9,189 +11,210 @@ $num = 0;
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<!-- Meta Tag -->
+    <!-- Meta Tag -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name='copyright' content=''>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='copyright' content=''>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Title Tag  -->
+    <!-- Title Tag  -->
     <title>Eshop</title>
-	<!-- Favicon -->
-	<link rel="icon" type="image/png" href="images/favicon.png">
-	<!-- Web Font -->
-	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-	
-	<!-- StyleSheet -->
-	
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Magnific Popup -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+          rel="stylesheet">
+
+    <!-- StyleSheet -->
+    <script src="https://kit.fontawesome.com/e7269a261c.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Magnific Popup -->
     <link rel="stylesheet" href="css/magnific-popup.min.css">
-	<!-- Font Awesome -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="css/font-awesome.css">
-	<!-- Fancybox -->
-	<link rel="stylesheet" href="css/jquery.fancybox.min.css">
-	<!-- Themify Icons -->
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+    <!-- Themify Icons -->
     <link rel="stylesheet" href="css/themify-icons.css">
-	<!-- Jquery Ui -->
-    <link rel="stylesheet" href="css/jquery-ui.css">
-	<!-- Nice Select CSS -->
+    <!-- Nice Select CSS -->
     <link rel="stylesheet" href="css/niceselect.css">
-	<!-- Animate CSS -->
+    <!-- Animate CSS -->
     <link rel="stylesheet" href="css/animate.css">
-	<!-- Flex Slider CSS -->
+    <!-- Flex Slider CSS -->
     <link rel="stylesheet" href="css/flex-slider.min.css">
-	<!-- Owl Carousel -->
+    <!-- Owl Carousel -->
     <link rel="stylesheet" href="css/owl-carousel.css">
-	<!-- Slicknav -->
+    <!-- Slicknav -->
     <link rel="stylesheet" href="css/slicknav.min.css">
-	
-	<!-- Eshop StyleSheet -->
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="style.css">
+
+    <!-- Eshop StyleSheet -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
-	
-	
+
 </head>
 <body class="js">
-	
-	<!-- Preloader -->
-	<div class="preloader">
-		<div class="preloader-inner">
-			<div class="preloader-icon">
-				<span></span>
-				<span></span>
-			</div>
-		</div>
-	</div>
-	<!-- End Preloader -->
-		
-		<!-- Header -->
-		<header class="header shop">
-			<div class="middle-inner">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-12">
-							<!-- Logo -->
-							<div class="logo">
-								<a href="index.php"><img src="images/logo.png" alt="logo"></a>
-							</div>
-							<!--/ End Logo -->
-							<!-- Search Form -->
-							<div class="search-top">
-								<div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
-								<!-- Search Form -->
-								<div class="search-top">
-									<form class="search-form">
-										<input type="text" placeholder="Search here..." name="search">
-										<button value="search" type="submit"><i class="ti-search"></i></button>
-									</form>
-								</div>
-								<!--/ End Search Form -->
-							</div>
-							<!--/ End Search Form -->
-							<div class="mobile-nav"></div>
-						</div>
-						<div class="col-lg-8 col-md-7 col-12">
-							<div class="search-bar-top">
-								<div class="search-bar">
-									<select>
-										<option selected="selected">All Category</option>
-										<option>watch</option>
-										<option>mobile</option>
-										<option>kid’s item</option>
-									</select>
-									<form>
-										<input name="search" placeholder="Search Products Here....." type="search">
-										<button class="btnn"><i class="ti-search"></i></button>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-12">
-							<div class="right-bar">
-								<!-- Search Form -->
-								<div class="sinlge-bar">
-									<a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-								</div>
-								<div class="sinlge-bar">
-									<a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-								</div>
-								<div class="sinlge-bar shopping">
-									<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
-									<!-- Shopping Item -->
-									<div class="shopping-item">
-										<div class="dropdown-cart-header">
-											<span>2 Items</span>
-											<a href="#">View Cart</a>
-										</div>
-										<ul class="shopping-list">
-											<li>
-												<a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-												<a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-												<h4><a href="#">Woman Ring</a></h4>
-												<p class="quantity">1x - <span class="amount">$99.00</span></p>
-											</li>
-											<li>
-												<a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-												<a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-												<h4><a href="#">Woman Necklace</a></h4>
-												<p class="quantity">1x - <span class="amount">$35.00</span></p>
-											</li>
-										</ul>
-										<div class="bottom">
-											<div class="total">
-												<span>Total</span>
-												<span class="total-amount">$134.00</span>
-											</div>
-											<a href="checkout.php" class="btn animate">Checkout</a>
-										</div>
-									</div>
-									<!--/ End Shopping Item -->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Header Inner -->
-			<div class="header-inner">
-				<div class="container">
-					<div class="cat-nav-head">
-						<div class="row">
-							<div class="col-12">
-								<div class="menu-area">
-									<!-- Main Menu -->
-									<nav class="navbar navbar-expand-lg">
-										<div class="navbar-collapse">	
-											<div class="nav-inner">	
-												<ul class="nav main-menu menu navbar-nav">
-													<li><a href="./index.php">Home</a></li>
-													<li class="active"><a href="#">Productes</a></li>												
-													<li><a href="#">Informació<i class="ti-angle-down"></i></a>
-														<ul class="dropdown">
-														<li><a href="blog-single-sidebar.php">Blog</a></li>
-														<li><a href="blog-single-sidebar.php">Reviews</a></li>
-														</ul>
-													</li>
-													<li><a href="./contact.php">Contacte</a></li>
-												</ul>
-											</div>
-										</div>
-									</nav>
-									<!--/ End Main Menu -->	
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Header Inner -->
-		</header>
-		<!--/ End Header -->
-		
+
+<!-- Preloader -->
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<!-- End Preloader -->
+
+<!-- Header -->
+<header class="header shop">
+    <div class="middle-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="index.php"><img src="images/logo.png" alt="logo"></a>
+                    </div>
+                    <!--/ End Logo -->
+                    <!-- Search Form -->
+                    <div class="search-top">
+                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                        <!-- Search Form -->
+                        <div class="search-top">
+                            <form class="search-form">
+                                <input type="text" placeholder="Search here..." name="search">
+                                <button value="search" type="submit"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                        <!--/ End Search Form -->
+                    </div>
+                    <!--/ End Search Form -->
+                    <div class="mobile-nav"></div>
+                </div>
+                <div class="col-lg-7 col-md-4 col-12">
+                    <div class="search-bar-top">
+                        <div class="search-bar">
+                            <select>
+                                <option selected="selected">All Category</option>
+                                <option>watch</option>
+                                <option>mobile</option>
+                                <option>kid’s item</option>
+                            </select>
+                            <form>
+                                <input name="search" placeholder="Search Products Here....." type="search">
+                                <button class="btnn"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-5 col-12">
+                    <div class="right-bar">
+                        <!-- Search Form -->
+                        <?php if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])):?>
+                            <div class="sinlge-bar ">
+                                <div class="dropdown">
+                                    <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">
+                                        <img class="" src='<?php echo $_SESSION["user_info"][0]["image"]?>' style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                        <?php echo $_SESSION["user_info"][0]["name"];?>
+                                    </a>
+
+                                    <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="./profile.php"><i class="fas fa-user mr-3"></i>El meu perfil</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les meves comandes</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar sessió</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?else:?>
+                            <div class="sinlge-bar ">
+                                <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                            </div>
+                        <?endif;?>
+                        <div class="sinlge-bar">
+                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="sinlge-bar shopping">
+                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span
+                                        class="total-count">2</span></a>
+                            <!-- Shopping Item -->
+                            <div class="shopping-item">
+                                <div class="dropdown-cart-header">
+                                    <span>2 Items</span>
+                                    <a href="./cart.php">Veure cistella</a>
+                                </div>
+                                <ul class="shopping-list">
+                                    <li>
+                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70"
+                                                                          alt="#"></a>
+                                        <h4><a href="#">Woman Ring</a></h4>
+                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70"
+                                                                          alt="#"></a>
+                                        <h4><a href="#">Woman Necklace</a></h4>
+                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                                    </li>
+                                </ul>
+                                <div class="bottom">
+                                    <div class="total">
+                                        <span>Total</span>
+                                        <span class="total-amount">$134.00</span>
+                                    </div>
+                                    <a href="checkout.php" class="btn animate">Anar a pagar</a>
+                                </div>
+                            </div>
+                            <!--/ End Shopping Item -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Inner -->
+    <div class="header-inner">
+        <div class="container">
+            <div class="cat-nav-head">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="menu-area">
+                            <!-- Main Menu -->
+                            <nav class="navbar navbar-expand-lg">
+                                <div class="navbar-collapse">
+                                    <div class="nav-inner">
+                                        <ul class="nav main-menu menu navbar-nav">
+                                            <li><a href="./index.php">Home</a></li>
+                                            <li class="active"><a href="./shop-grid.php">Productes</a></li>
+                                            <li><a href="#">Informació<i class="ti-angle-down"></i></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="blog-single-sidebar.php">Blog</a></li>
+                                                    <li><a href="blog-single-sidebar.php">Reviews</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="contact.php">Contacte</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!--/ End Main Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Header Inner -->
+</header>
+<!--/ End Header -->
+
 		<!-- Breadcrumbs -->
 		<div class="breadcrumbs">
 			<div class="container">
@@ -233,7 +256,7 @@ $num = 0;
 												<div id="slider-range"></div>
 													<div class="price_slider_amount">
 													<div class="label-input">
-														<span>Rang:</span><input type="text" id="amount" name="price" placeholder="Afageix el preu"/>
+														<span>Rang:</span><input type="text" id="amount" name="price" placeholder="Afageix el preu" readonly/>
 													</div>
 												</div>
 											</div>
@@ -248,6 +271,9 @@ $num = 0;
 											<li>
 												<label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">100€ - 250€<span class="count">(8)</span></label>
 											</li>
+                                            <li>
+                                                <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">>250€<span class="count">(8)</span></label>
+                                            </li>
 										</ul>
 									</div>
 									<!--/ End Shop By Price -->
@@ -338,8 +364,9 @@ $num = 0;
 										<div class="button-head">
 											<div class="product-action" style="padding-right: 3%">
 												<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Més detalls</span></a>
-												<a title="Desitjats" href="#"><i class=" ti-heart "></i><span>Afegir a desitjats</span></a>
-												<!--<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
+                                                <!--<a title="Desitjats" href="#"><i class=" ti-heart "></i><span>Afegir a desitjats</span></a>
+                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
+                                                <a title="Cistella" href="#"><i class="fas fa-shopping-bag"></i><span>Afegir a la cistella</span></a>
 											</div>
 											<div class="product-action-2" style="padding-left: 3%">
 												<a title="Afegir" href="#">Cistella</a>
@@ -636,5 +663,6 @@ $num = 0;
 	<script src="js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="js/active.js"></script>
+
 </body>
 </html>

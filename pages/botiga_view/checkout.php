@@ -115,7 +115,7 @@
 									<div class="shopping-item">
 										<div class="dropdown-cart-header">
 											<span>2 Items</span>
-											<a href="#">View Cart</a>
+											<a href="./cart.php">Veure la cistella</a>
 										</div>
 										<ul class="shopping-list">
 											<li>
@@ -136,7 +136,7 @@
 												<span>Total</span>
 												<span class="total-amount">$134.00</span>
 											</div>
-											<a href="checkout.php" class="btn animate">Checkout</a>
+											<a href="./checkout.php" class="btn animate">Anar a pagar</a>
 										</div>
 									</div>
 									<!--/ End Shopping Item -->
@@ -197,8 +197,8 @@
 					<div class="col-12">
 						<div class="bread-inner">
 							<ul class="bread-list">
-								<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-								<li class="active"><a href="blog-single.html">Checkout</a></li>
+								<li><a href="./index.php">Home<i class="ti-arrow-right"></i></a></li>
+								<li class="active"><a href="./checkout.php">Pàgina de pagament</a></li>
 							</ul>
 						</div>
 					</div>
@@ -213,8 +213,8 @@
 				<div class="row"> 
 					<div class="col-lg-8 col-12">
 						<div class="checkout-form">
-							<h2>Make Your Checkout Here</h2>
-							<p>Please register in order to checkout more quickly</p>
+							<h2>Fer el pagement</h2>
+							<p>Selecciona una adreça o crea una de nova</p>
 							<!-- Form -->
 							<form class="form" method="post" action="#">
 								<div class="row">
@@ -555,11 +555,11 @@
 						<div class="order-details">
 							<!-- Order Widget -->
 							<div class="single-widget">
-								<h2>CART  TOTALS</h2>
+								<h2>Total</h2>
 								<div class="content">
 									<ul>
 										<li>Sub Total<span>$330.00</span></li>
-										<li>(+) Shipping<span>$10.00</span></li>
+										<li>(+) Enviament<span>$10.00</span></li>
 										<li class="last">Total<span>$340.00</span></li>
 									</ul>
 								</div>
@@ -567,12 +567,11 @@
 							<!--/ End Order Widget -->
 							<!-- Order Widget -->
 							<div class="single-widget">
-								<h2>Payments</h2>
+								<h2>Mètodes de pagament</h2>
 								<div class="content">
 									<div class="checkbox">
-										<label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
-										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Cash On Delivery</label>
-										<label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox"> PayPal</label>
+										<label class="checkbox-inline"><input name="payment" id="1" type="checkbox"> Pagar amb targeta</label>
+										<label class="checkbox-inline"><input name="payment" id="3" type="checkbox"> PayPal</label>
 									</div>
 								</div>
 							</div>
@@ -588,7 +587,7 @@
 							<div class="single-widget get-button">
 								<div class="content">
 									<div class="button">
-										<a href="#" class="btn">proceed to checkout</a>
+										<a href="#" class="btn">Realitzar pagament</a>
 									</div>
 								</div>
 							</div>

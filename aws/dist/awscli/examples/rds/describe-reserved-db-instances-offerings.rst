@@ -10,7 +10,7 @@ Output::
     {
         "ReservedDBInstancesOfferings": [
             {
-                "CurrencyCode": "USD",
+                "CurrencyCode": "EUR",
                 "UsagePrice": 0.0,
                 "ProductDescription": "oracle-se2(li)",
                 "ReservedDBInstancesOfferingId": "005bdee3-9ef4-4182-aa0c-58ef7cb6c2f8",

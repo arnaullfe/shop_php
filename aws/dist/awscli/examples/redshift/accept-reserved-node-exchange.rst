@@ -17,7 +17,7 @@ Output::
             "Duration": 31536000,
             "FixedPrice": 0.0,
             "UsagePrice": 0.0,
-            "CurrencyCode": "USD",
+            "CurrencyCode": "EUR",
             "NodeCount": 1,
             "State": "exchanging",
             "OfferingType": "All Upfront",

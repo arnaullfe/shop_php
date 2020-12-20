@@ -11,7 +11,7 @@ new-budget.json::
   {
       "BudgetLimit": {
          "Amount": "100",
-         "Unit": "USD"
+         "Unit": "EUR"
       },
       "BudgetName": "Example Budget",
       "BudgetType": "COST",

@@ -12,7 +12,7 @@ Contents of ``budget.json``::
     {
         "BudgetLimit": {
             "Amount": "100",
-            "Unit": "USD"
+            "Unit": "EUR"
         },
         "BudgetName": "Example Tag Budget",
         "BudgetType": "COST",

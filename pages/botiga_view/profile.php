@@ -7,221 +7,212 @@ if(!isset($_SESSION["user_info"])){
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="zxx">
-<head>
-    <!-- Meta Tag -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name='copyright' content=''>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Title Tag  -->
-    <title>Eshop</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <!-- Web Font -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-          rel="stylesheet">
+    <!DOCTYPE html>
+    <html lang="zxx">
+    <head>
+        <!-- Meta Tag -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name='copyright' content=''>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Title Tag  -->
+        <title>Eshop</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="images/favicon.png">
+        <!-- Web Font -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+              rel="stylesheet">
 
-    <!-- StyleSheet -->
-    <script src="https://kit.fontawesome.com/e7269a261c.js" crossorigin="anonymous"></script>
+        <!-- StyleSheet -->
+        <script src="https://kit.fontawesome.com/e7269a261c.js" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="css/magnific-popup.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <!-- Fancybox -->
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <!-- Themify Icons -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <!-- Nice Select CSS -->
-    <link rel="stylesheet" href="css/niceselect.css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- Flex Slider CSS -->
-    <link rel="stylesheet" href="css/flex-slider.min.css">
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" href="css/owl-carousel.css">
-    <!-- Slicknav -->
-    <link rel="stylesheet" href="css/slicknav.min.css">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="css/magnific-popup.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <!-- Fancybox -->
+        <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+        <!-- Themify Icons -->
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="css/niceselect.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="css/animate.css">
+        <!-- Flex Slider CSS -->
+        <link rel="stylesheet" href="css/flex-slider.min.css">
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="css/owl-carousel.css">
+        <!-- Slicknav -->
+        <link rel="stylesheet" href="css/slicknav.min.css">
 
-    <!-- Eshop StyleSheet -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+        <!-- Eshop StyleSheet -->
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/responsive.css">
 
 
-</head>
-<body class="js">
+    </head>
+    <body class="js">
 
-<!-- Preloader -->
-<div class="preloader">
-    <div class="preloader-inner">
-        <div class="preloader-icon">
-            <span></span>
-            <span></span>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
-</div>
-<!-- End Preloader -->
+    <!-- End Preloader -->
 
-<!-- Header -->
-<header class="header shop">
-    <div class="middle-inner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-12">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <a href="index.php"><img src="images/logo.png" alt="logo"></a>
-                    </div>
-                    <!--/ End Logo -->
-                    <!-- Search Form -->
-                    <div class="search-top">
-                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+    <!-- Header -->
+    <header class="header shop">
+        <div class="middle-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-12">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.php"><img src="images/logo.png" alt="logo"></a>
+                        </div>
+                        <!--/ End Logo -->
                         <!-- Search Form -->
                         <div class="search-top">
-                            <form class="search-form">
-                                <input type="text" placeholder="Search here..." name="search">
-                                <button value="search" type="submit"><i class="ti-search"></i></button>
-                            </form>
+                            <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                            <!-- Search Form -->
+                            <div class="search-top">
+                                <form class="search-form">
+                                    <input type="text" placeholder="Search here..." name="search">
+                                    <button value="search" type="submit"><i class="ti-search"></i></button>
+                                </form>
+                            </div>
+                            <!--/ End Search Form -->
                         </div>
                         <!--/ End Search Form -->
+                        <div class="mobile-nav"></div>
                     </div>
-                    <!--/ End Search Form -->
-                    <div class="mobile-nav"></div>
-                </div>
-                <div class="col-lg-7 col-md-4 col-12">
-                    <div class="search-bar-top">
-                        <div class="search-bar">
-                            <select>
-                                <option selected="selected">All Category</option>
-                                <option>watch</option>
-                                <option>mobile</option>
-                                <option>kid’s item</option>
-                            </select>
-                            <form>
-                                <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn"><i class="ti-search"></i></button>
-                            </form>
+                    <div class="col-lg-7 col-md-4 col-12">
+                        <div class="search-bar-top">
+                            <div class="search-bar">
+                                <select>
+                                    <option selected="selected">All Category</option>
+                                    <option>watch</option>
+                                    <option>mobile</option>
+                                    <option>kid’s item</option>
+                                </select>
+                                <form>
+                                    <input name="search" placeholder="Search Products Here....." type="search">
+                                    <button class="btnn"><i class="ti-search"></i></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-5 col-12">
-                    <div class="right-bar">
-                        <!-- Search Form -->
-                        <?php if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])):?>
-                            <div class="sinlge-bar ">
-                                <div class="dropdown">
-                                    <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">
-                                        <img class="" src='<?php echo $_SESSION["user_info"][0]["image"]?>' style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
-                                        <?php echo $_SESSION["user_info"][0]["name"];?>
-                                    </a>
+                    <div class="col-lg-3 col-md-5 col-12">
+                        <div class="right-bar">
+                            <!-- Search Form -->
+                            <?php if(isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])):?>
+                                <div class="sinlge-bar ">
+                                    <div class="dropdown">
+                                        <a class="single-icon dropdown-toggle"  id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;background-color: transparent;cursor: pointer">
+                                            <img class="" src='<?php echo $_SESSION["user_info"][0]["image"]?>' style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                            <?php echo $_SESSION["user_info"][0]["name"];?>
+                                        </a>
 
-                                    <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="./profile.php"><i class="fas fa-user mr-3"></i>El meu perfil</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les meves comandes</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar sessió</a>
+                                        <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="./profile.php"><i class="fas fa-user mr-3"></i>El meu perfil</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les meves comandes</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar sessió</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?else:?>
-                            <div class="sinlge-bar ">
-                                <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-                            </div>
-                        <?endif;?>
-                        <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span
-                                        class="total-count">2</span></a>
-                            <!-- Shopping Item -->
-                            <div class="shopping-item">
-                                <div class="dropdown-cart-header">
-                                    <span>2 Items</span>
-                                    <a href="#">View Cart</a>
+                            <?else:?>
+                                <div class="sinlge-bar ">
+                                    <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                                 </div>
-                                <ul class="shopping-list">
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70"
-                                                                          alt="#"></a>
-                                        <h4><a href="#">Woman Ring</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70"
-                                                                          alt="#"></a>
-                                        <h4><a href="#">Woman Necklace</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                    </li>
-                                </ul>
-                                <div class="bottom">
-                                    <div class="total">
-                                        <span>Total</span>
-                                        <span class="total-amount">$134.00</span>
+                            <?endif;?>
+                            <div class="sinlge-bar">
+                                <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="sinlge-bar shopping">
+                                <a href="#" class="single-icon"><i class="ti-bag"></i> <span
+                                            class="total-count">2</span></a>
+                                <!-- Shopping Item -->
+                                <div class="shopping-item">
+                                    <div class="dropdown-cart-header">
+                                        <span>2 Items</span>
+                                        <a href="./cart.php">Veure cistella</a>
                                     </div>
-                                    <a href="checkout.php" class="btn animate">Checkout</a>
-                                </div>
-                            </div>
-                            <!--/ End Shopping Item -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Header Inner -->
-    <div class="header-inner">
-        <div class="container">
-            <div class="cat-nav-head">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="menu-area">
-                            <!-- Main Menu -->
-                            <nav class="navbar navbar-expand-lg">
-                                <div class="navbar-collapse">
-                                    <div class="nav-inner">
-                                        <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="#">Home</a></li>
-                                            <li><a href="#">Product</a></li>
-                                            <li><a href="#">Service</a></li>
-                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span
-                                                            class="new">New</span></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="shop-grid.php">Shop Grid</a></li>
-                                                    <li><a href="cart.php">Cart</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Pages</a></li>
-                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.php">Blog Single Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.php">Contact Us</a></li>
-                                        </ul>
+                                    <ul class="shopping-list">
+                                        <li>
+                                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                            <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70"
+                                                                              alt="#"></a>
+                                            <h4><a href="#">Woman Ring</a></h4>
+                                            <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                            <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70"
+                                                                              alt="#"></a>
+                                            <h4><a href="#">Woman Necklace</a></h4>
+                                            <p class="quantity">1x - <span class="amount">$35.00</span></p>
+                                        </li>
+                                    </ul>
+                                    <div class="bottom">
+                                        <div class="total">
+                                            <span>Total</span>
+                                            <span class="total-amount">$134.00</span>
+                                        </div>
+                                        <a href="checkout.php" class="btn animate">Anar a pagar</a>
                                     </div>
                                 </div>
-                            </nav>
-                            <!--/ End Main Menu -->
+                                <!--/ End Shopping Item -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--/ End Header Inner -->
-</header>
-<!--/ End Header -->
+        <!-- Header Inner -->
+        <div class="header-inner">
+            <div class="container">
+                <div class="cat-nav-head">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="menu-area">
+                                <!-- Main Menu -->
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="navbar-collapse">
+                                        <div class="nav-inner">
+                                            <ul class="nav main-menu menu navbar-nav">
+                                                <li><a href="./index.php">Home</a></li>
+                                                <li><a href="./shop-grid.php">Productes</a></li>
+                                                <li class="active"><a href="#">Informació<i class="ti-angle-down"></i></a>
+                                                    <ul class="dropdown">
+                                                        <li><a href="blog-single-sidebar.php">Blog</a></li>
+                                                        <li><a href="blog-single-sidebar.php">Reviews</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="contact.php">Contacte</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <!--/ End Main Menu -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Header Inner -->
+    </header>
+    <!--/ End Header -->
 
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">

@@ -120,6 +120,19 @@ class Database
                                             end_date DATETIME,
                                             last_updated DATETIME,
                                             created_at DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS wishlist (
+                id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                id_product int NOT NULL,
+                units int NOT NULL,
+                id_user int NOT NULL,
+                added_at DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS cart (
+                id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                id_product int NOT NULL,
+                units int NOT NULL,
+                id_user int NOT NULL,
+                added_at DATETIME);");          
+                
         } catch (PDOException $err) {
             echo $err;
         }

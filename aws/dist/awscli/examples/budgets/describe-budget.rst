@@ -13,17 +13,17 @@ Output::
         "CalculatedSpend": {
             "ForecastedSpend": {
                 "Amount": "2641.54800000000022919266484677791595458984375",
-                "Unit": "USD"
+                "Unit": "EUR"
             },
             "ActualSpend": {
                 "Amount": "604.4560000000000172803993336856365203857421875",
-                "Unit": "USD"
+                "Unit": "EUR"
             }
         },
         "BudgetType": "COST",
         "BudgetLimit": {
             "Amount": "100",
-            "Unit": "USD"
+            "Unit": "EUR"
         },
         "BudgetName": "Example Budget",
         "CostTypes": {
