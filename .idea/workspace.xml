@@ -21,50 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/awscliv2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/awscliv2.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ProductCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ProductCategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/AppRegistry/AppRegistryClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/AppRegistry/AppRegistryClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ComputeOptimizer/ComputeOptimizerClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ComputeOptimizer/ComputeOptimizerClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ConfigService/ConfigServiceClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ConfigService/ConfigServiceClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Connect/ConnectClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Connect/ConnectClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ConnectParticipant/ConnectParticipantClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ConnectParticipant/ConnectParticipantClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Credentials/AssumeRoleWithWebIdentityCredentialProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Credentials/AssumeRoleWithWebIdentityCredentialProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Outposts/OutpostsClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Outposts/OutpostsClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ResourceGroups/ResourceGroupsClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ResourceGroups/ResourceGroupsClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ServiceQuotas/ServiceQuotasClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ServiceQuotas/ServiceQuotasClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/acm-pca/2017-08-22/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/acm-pca/2017-08-22/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/apigatewayv2/2018-11-29/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/apigatewayv2/2018-11-29/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ce/2017-10-25/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ce/2017-10-25/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/compute-optimizer/2019-11-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/compute-optimizer/2019-11-01/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/config/2014-11-12/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/config/2014-11-12/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/config/2014-11-12/paginators-1.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/config/2014-11-12/paginators-1.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/connect/2017-08-08/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/connect/2017-08-08/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/connect/2017-08-08/paginators-1.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/connect/2017-08-08/paginators-1.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/connectparticipant/2018-09-07/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/connectparticipant/2018-09-07/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/dms/2016-01-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/dms/2016-01-01/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ec2/2016-11-15/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ec2/2016-11-15/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/glue/2017-03-31/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/glue/2017-03-31/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/iotwireless/2020-11-22/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/iotwireless/2020-11-22/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/managedblockchain/2018-09-24/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/managedblockchain/2018-09-24/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/outposts/2019-12-03/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/outposts/2019-12-03/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/qldb-session/2019-07-11/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/qldb-session/2019-07-11/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/rds/2014-10-31/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/rds/2014-10-31/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/resource-groups/2017-11-27/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/resource-groups/2017-11-27/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/resource-groups/2017-11-27/paginators-1.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/resource-groups/2017-11-27/paginators-1.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/s3/2006-03-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/s3/2006-03-01/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/service-quotas/2019-06-24/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/service-quotas/2019-06-24/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/servicecatalog-appregistry/2020-06-24/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/servicecatalog-appregistry/2020-06-24/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/servicecatalog/2015-12-10/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/servicecatalog/2015-12-10/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ssm/2014-11-06/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ssm/2014-11-06/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-categories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/TagController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-tags.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +123,7 @@
       <workItem from="1608481735186" duration="14000" />
       <workItem from="1608482800232" duration="981000" />
       <workItem from="1609700741026" duration="1099000" />
-      <workItem from="1609701875495" duration="514000" />
+      <workItem from="1609701875495" duration="1157000" />
     </task>
     <servers />
   </component>

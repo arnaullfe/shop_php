@@ -351,7 +351,7 @@ if(!isset($_SESSION["user_info"])){
                                         </td>
                                         <td><?php echo formatDate($tag["created_at"]); ?></td>
                                         <td>
-                                            <a href='#' class="btn btn-primary btn-sm" title="Editar tag"><i class="fas fa-edit"></i></a>
+                                            <button class="btn btn-primary btn-sm" title="Editar tag" data-toggle="modal" data-target="#editTag" onclick="edit('<?php echo $tag["id"]?>','<?php echo $tag["name"]?>','<?php echo $tag["color"]?>')"><i class="fas fa-edit"></i></button>
                                             <a href='#' class="btn btn-danger btn-sm" title="Eliminar tag"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
@@ -410,7 +410,6 @@ if(!isset($_SESSION["user_info"])){
 </div>
 
 <!--create tag modal-->
-
 <div class="modal fade" id="createTag" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -431,6 +430,35 @@ if(!isset($_SESSION["user_info"])){
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
                     <button type="submit" class="btn btn-sm btn-primary">Crear Tag</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!--edit tag modal-->
+<div class="modal fade" id="editTag" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Editar Tag</h6>
+            </div>
+            <form action="../../controllers/TagController.php" method="post">
+                <div class="modal-body">
+                    <input type="text" class="form-control" name="id_editTag" id="id_editTag" style="display: none">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nom del tag:</label>
+                        <input type="text" class="form-control" name="name_editTag" id="name_editTag">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Color:</label>
+                        <input type="color" class="form-control p-0" id="color_editTag" name="color_editTag" value="#ff0000"><br><br>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
                 </div>
             </form>
 
@@ -467,6 +495,12 @@ if(!isset($_SESSION["user_info"])){
                 location.reload();
             }
         })
+    }
+
+    function edit(id,name,color){
+        document.getElementById("id_editTag").value = id;
+        document.getElementById("name_editTag").value = name;
+        document.getElementById("color_editTag").value = color;
     }
 
 

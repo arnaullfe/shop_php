@@ -10,3 +10,9 @@ if(isset($_POST["name_newTag"]) && isset($_POST["color_newTag"])){
     header("location: ../pages/admin_view/list-tags.php");
 }
 
+if(isset($_POST["id_editTag"])){
+    $database = new Database();
+    $database->executeQuery("UPDATE tags  set name=?,color=? WHERE id =?",array($_POST["name_editTag"],$_POST["color_editTag"],$_POST["id_editTag"]));
+    $database->closeConnection();
+    header("location: ../pages/admin_view/list-tags.php");
+}
