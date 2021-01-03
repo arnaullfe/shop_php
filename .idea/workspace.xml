@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/TagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/TagController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-tags.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-tags.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +123,7 @@
       <workItem from="1608481735186" duration="14000" />
       <workItem from="1608482800232" duration="981000" />
       <workItem from="1609700741026" duration="1099000" />
-      <workItem from="1609701875495" duration="1519000" />
+      <workItem from="1609701875495" duration="2809000" />
     </task>
     <servers />
   </component>

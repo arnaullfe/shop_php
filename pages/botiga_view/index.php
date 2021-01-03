@@ -193,7 +193,7 @@ $database->closeConnection();
 								<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
 								<ul class="main-category">
 									<?php foreach ($categories as $category):?>
-                                    <li><a href="#"><?php echo $category["name"]?></a></li>
+                                    <li><a href="./shop-grid.php?category_id=<?php echo $category['id']?>"><?php echo $category["name"]?></a></li>
 									<?php endforeach;?>
 								</ul>
 							</div>

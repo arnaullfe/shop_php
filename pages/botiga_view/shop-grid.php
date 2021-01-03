@@ -3,7 +3,12 @@ include_once ("../../modals/Database.php");
 include_once ('../../controllers/UserTokenController.php');
 session_start();
 $database = new Database();
-$products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.new_price_iva FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id AND shop.images_product.principal = 1 LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() ORDER BY products.id DESC;",array());
+$products = [];
+if(!isset($_GET["category_id"])){
+    $products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.new_price_iva FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() ORDER BY products.id DESC;",array());
+} else{
+    $products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.new_price_iva FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() WHERE shop.products.category_id = ? ORDER BY products.id DESC;",array($_GET["category_id"]));
+}
 $categories = $database->executeQuery("SELECT * FROM productCategory WHERE id IN (SELECT category_id FROM products) GROUP BY id ORDER BY id",array());
 $database->closeConnection();
 $num = 0;
@@ -243,7 +248,7 @@ $num = 0;
 									<h3 class="title">Categories</h3>
 									<ul class="categor-list">
 										<?php foreach ($categories as $category):?>
-                                            <li><a href="#"><?php echo $category["name"]?></a></li>
+                                            <li><a href="?category_id=<?php echo $category['id']?>"><?php echo $category["name"]?></a></li>
                                         <?endforeach;?>
 									</ul>
 								</div>
@@ -314,37 +319,6 @@ $num = 0;
 					</div>
 					<div class="col-lg-9 col-md-8 col-12">
 						<div class="row">
-							<div class="col-12">
-								<!-- Shop Top -->
-								<div class="shop-top">
-									<div class="shop-shorter">
-										<div class="single-shorter">
-											<label>Show :</label>
-											<select>
-												<option selected="selected">09</option>
-												<option>15</option>
-												<option>25</option>
-												<option>30</option>
-											</select>
-										</div>
-										<div class="single-shorter">
-											<label>Sort By :</label>
-											<select>
-												<option selected="selected">Name</option>
-												<option>Price</option>
-												<option>Size</option>
-											</select>
-										</div>
-									</div>
-									<ul class="view-mode">
-										<li class="active"><a href="shop-grid.php"><i class="fa fa-th-large"></i></a></li>
-										<li><a href="shop-list.html"><i class="fa fa-th-list"></i></a></li>
-									</ul>
-								</div>
-								<!--/ End Shop Top -->
-							</div>
-						</div>
-						<div class="row">
                             <?php foreach ($products as $product):?>
 							<div class="col-lg-4 col-md-6 col-12">
 								<div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
@@ -357,8 +331,8 @@ $num = 0;
                                                     <span class="new" style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;max-width: 70%;background-color: <?php echo $product['tag_color']?>"><?php echo $product["tag_name"]?></span>
                                                 <?endif;?>
                                             <?php else:?>
-                                                <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                                <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                                                <img class="default-img" src="https://via.placeholder.com/550x750" alt="#" style="height: 365px;">
+                                                <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#" style="height: 365px;">
                                             <?php endif;?>
 										</a>
 										<div class="button-head">
