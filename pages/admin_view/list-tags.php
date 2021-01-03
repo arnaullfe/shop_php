@@ -310,7 +310,14 @@ if(!isset($_SESSION["user_info"])){
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
+                <?php if(isset($_SESSION["message"])):?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?php echo $_SESSION["message"]?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?endif;?>
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Tags dels productes creats</h1>
                 <p class="mb-4">Administració de tot el llistat de tags de producte.</p>
@@ -352,7 +359,7 @@ if(!isset($_SESSION["user_info"])){
                                         <td><?php echo formatDate($tag["created_at"]); ?></td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" title="Editar tag" data-toggle="modal" data-target="#editTag" onclick="edit('<?php echo $tag["id"]?>','<?php echo $tag["name"]?>','<?php echo $tag["color"]?>')"><i class="fas fa-edit"></i></button>
-                                            <a href='#' class="btn btn-danger btn-sm" title="Eliminar tag"><i class="fas fa-trash-alt"></i></a>
+                                            <a href='../../controllers/TagController.php?id_deleteTag=<?php echo $tag["id"]?>' class="btn btn-danger btn-sm" title="Eliminar tag"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <? endforeach; ?>
@@ -522,4 +529,6 @@ function formatDate($date){
     $date = new DateTime($date);
     return date_format($date,"d/m/Y H:i:s");
 }
+
+unset($_SESSION["message"]);
 ?>
