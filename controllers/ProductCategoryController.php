@@ -21,4 +21,11 @@ if(isset($_POST["id_changeState"]) && isset($_POST["status_category"])){
     $database->closeConnection();
 }
 
+if(isset($_POST["id_edit_productCategory"])){
+    $database = new Database();
+    $database->executeQuery("UPDATE productCategory set name=?, description=? WHERE id=?",array($_POST["name_edit_productCategory"],$_POST["description_edit_productCategory"],$_POST["id_edit_productCategory"]));
+    $database->closeConnection();
+    $_SESSION["message"] = "<strong>Èxit!</strong> La categoria modificada correctament!";
+    header("location: ../pages/admin_view/list-categories.php");
+}
 

@@ -362,8 +362,8 @@ if(!isset($_SESSION["user_info"])){
                                             <?php echo formatDate($category["last_modified"]);?>
                                         </td>
                                         <td>
-                                                <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
-                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari">
+                                                <button class="btn btn-primary btn-sm" title="Editar" data-toggle="modal" data-target="#editCategory"onclick="edit('<?php echo $category["id"]?>','<?php echo $category["name"]?>','<?php echo $category["description"]?>')"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-danger btn-sm" title="Eliminar">
                                                     <i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
@@ -422,7 +422,6 @@ if(!isset($_SESSION["user_info"])){
 </div>
 
 <!--create category modal-->
-
 <div class="modal fade" id="createCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -450,6 +449,35 @@ if(!isset($_SESSION["user_info"])){
     </div>
 </div>
 
+<!--edit category modal-->
+<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Editar la categoria</h6>
+            </div>
+            <form action="../../controllers/ProductCategoryController.php" method="post">
+                <div class="modal-body">
+                    <input type="text" class="form-control" name="id_edit_productCategory" id="id_edit_productCategory" style="display:none;">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nom de la categoria:</label>
+                        <input type="text" class="form-control" name="name_edit_productCategory" id="name_edit_productCategory">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Descripció:</label>
+                        <textarea class="form-control" name="description_edit_productCategory" id="description_edit_productCategory"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Bootstrap core JavaScript-->
@@ -472,18 +500,21 @@ if(!isset($_SESSION["user_info"])){
 <script>
     function changeState(id){
             var action = document.getElementById("status-"+id).value;
-            console.log(id);
-            console.log(action)
         $.ajax({
             type: "POST",
             url: '../../controllers/ProductCategoryController.php',
             data: {"id_changeState": id,"status_category":action},
             dataType: 'JSON',
             success: function (response) {
-                console.log("END")
                 location.reload();
             }
         })
+    }
+
+    function edit(id,name,description){
+        document.getElementById("id_edit_productCategory").value = id;
+        document.getElementById("name_edit_productCategory").value = name;
+        document.getElementById("description_edit_productCategory").value = description;
     }
 
 </script>
