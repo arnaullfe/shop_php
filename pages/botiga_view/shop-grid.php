@@ -254,7 +254,7 @@ $num = 0;
 								</div>
 								<!--/ End Single Widget -->
 								<!-- Shop By Price -->
-									<div class="single-widget range">
+								<!--	<div class="single-widget range">
 										<h3 class="title">Filtrar preu</h3>
 										<div class="price-filter">
 											<div class="price-filter-inner">
@@ -280,7 +280,7 @@ $num = 0;
                                                 <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">>250€<span class="count">(8)</span></label>
                                             </li>
 										</ul>
-									</div>
+									</div>-->
 									<!--/ End Shop By Price -->
 								<!-- Single Widget -->
 								<div class="single-widget recent-post">
@@ -293,7 +293,11 @@ $num = 0;
                                         $num++;?>
                                         <div class="single-post first">
                                             <div class="image">
+                                                <?php if($product["url"]!=null):?>
                                                 <img src="<?php echo $product['url']?>" alt="#">
+                                                <?else:?>
+                                                <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
+                                                <?endif;?>
                                             </div>
                                             <div class="content">
                                                 <h5><a href="#"><?php echo $product["name"]?></a></h5>
