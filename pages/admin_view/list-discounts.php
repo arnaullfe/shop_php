@@ -332,7 +332,7 @@ if(!isset($_SESSION["user_info"])){
                                 <tr>
                                     <th>Nom del descompte</th>
                                     <th>Producte</th>
-                                    <th>Percentatge Descompte</th>
+                                    <th>Descompte</th>
                                     <th>Data Inici</th>
                                     <th>Data Final</th>
                                     <th>Accions</th>
@@ -353,7 +353,7 @@ if(!isset($_SESSION["user_info"])){
                                     <tr>
                                         <td><?php echo $discount["name"]?></td>
                                         <td><?php echo $discount["product_name"]?></td>
-                                        <td><?php echo $discount["discount"]?></td>
+                                        <td><?php echo $discount["discount"]?> %</td>
                                         <td>
                                             <?php echo formatDate($discount["start_date"]);?>
                                         </td>
