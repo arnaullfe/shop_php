@@ -7,6 +7,7 @@ if(!isset($_SESSION["user_info"])){
 } else{
     $database = new Database();
     $discounts = $database->executeQuery("SELECT shop.discounts.*,shop.products.name as 'product_name',shop.products.price_no_iva,shop.products.price_iva FROM shop.discounts LEFT JOIN shop.products ON shop.discounts.id_product = shop.products.id;", array());
+    $products = $database->executeQuery("SELECT * FROM products",array());
     $database->closeConnection();
 }
 ?>
@@ -38,9 +39,7 @@ if(!isset($_SESSION["user_info"])){
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 </head>
 
@@ -333,9 +332,9 @@ if(!isset($_SESSION["user_info"])){
                                 <tr>
                                     <th>Nom del descompte</th>
                                     <th>Producte</th>
-                                    <th>Tipus de descompte</th>
-                                    <th>Inici</th>
-                                    <th>Final</th>
+                                    <th>Percentatge Descompte</th>
+                                    <th>Data Inici</th>
+                                    <th>Data Final</th>
                                     <th>Accions</th>
                                 </tr>
                                 </thead>
@@ -343,9 +342,9 @@ if(!isset($_SESSION["user_info"])){
                                 <tr>
                                     <th>Nom del descompte</th>
                                     <th>Producte</th>
-                                    <th>Tipus de descompte</th>
-                                    <th>Inici</th>
-                                    <th>Final</th>
+                                    <th>Percentatge Descompte</th>
+                                    <th>Data Inici</th>
+                                    <th>Data Final</th>
                                     <th>Accions</th>
                                 </tr>
                                 </tfoot>
@@ -354,15 +353,7 @@ if(!isset($_SESSION["user_info"])){
                                     <tr>
                                         <td><?php echo $discount["name"]?></td>
                                         <td><?php echo $discount["product_name"]?></td>
-                                        <td style="text-align: center;">
-                                            <?php if($discount["discount_type"]==1):?>
-                                             Descompte del 70%
-                                             <?elseif($discount["discount_type"]==2):?>
-                                             Descompte sense IVA
-                                             <?else:?>
-                                             Descompte 3 x 1
-                                             <?endif;?>
-                                        </td>
+                                        <td><?php echo $discount["discount"]?></td>
                                         <td>
                                             <?php echo formatDate($discount["start_date"]);?>
                                         </td>
@@ -440,12 +431,30 @@ if(!isset($_SESSION["user_info"])){
             <form action="../../controllers/ProductCategoryController.php" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nom de la categoria:</label>
-                        <input type="text" class="form-control" name="name_productCategory" id="recipient-name">
+                        <label for="product">Producte amb descompte</label>
+                        <select  class="form-control" id="product">
+                           <?php foreach ($products as $product):?>
+                           <option value="<?php echo $product['id']?>"><?php echo $product['name']?></option>
+                            <?php endforeach;?>
+                        </select>
+
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Descripció:</label>
-                        <textarea class="form-control" name="description_productCategory" id="message-text"></textarea>
+                        <label class="col-form-label">Nom del descompte:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Disponibilitat del descompte:</label>
+                        <input type="number" name="datetimes" id="datetime" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Percentatge de descompte:</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control">
+                            <div class="input-group-append">
+                                <span class="input-group-text" >%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -476,8 +485,50 @@ if(!isset($_SESSION["user_info"])){
 
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
+    $(function() {
+        $('#datetime').daterangepicker({
+            timePicker: true,
+            timePicker24Hour: true,
+            startDate: moment().startOf('hour'),
+            endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
+                "format": "DD/MM/YYYY HH:mm",
+                "separator": " - ",
+                "applyLabel": "Aplicar",
+                "cancelLabel": "Cancel·lar",
+                "fromLabel": "Des de",
+                "toLabel": "A",
+                "weekLabel": "W",
+                "daysOfWeek": [
+                    "DI",
+                    "DL",
+                    "DM",
+                    "DC",
+                    "DJ",
+                    "DV",
+                    "DS"
+                ],
+                "monthNames": [
+                    "Gener",
+                    "Febrer",
+                    "Març",
+                    "Abril",
+                    "Maig",
+                    "Juny",
+                    "Juliol",
+                    "Augost",
+                    "Setembre",
+                    "Octubre",
+                    "Novembre",
+                    "Desembre"
+                ],
+                "firstDay": 1
+            },
+        });
+    });
     function changeState(id){
         var action = document.getElementById("status-"+id).value;
         console.log(id);

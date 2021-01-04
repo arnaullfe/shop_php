@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'cf97eda819c452d284488623eacff50d5f45edef',
+    'reference' => 'cad6ee6694eca8e51b5982561ba1b6b77f4312f4',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'cf97eda819c452d284488623eacff50d5f45edef',
+      'reference' => 'cad6ee6694eca8e51b5982561ba1b6b77f4312f4',
     ),
     'aws/aws-sdk-php' => 
     array (
