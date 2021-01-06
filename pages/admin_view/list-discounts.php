@@ -315,6 +315,14 @@ if(!isset($_SESSION["user_info"])){
                         </button>
                     </div>
                 <?endif;?>
+                <?php if(isset($_SESSION["error_message"])):?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?php echo $_SESSION["error_message"]?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?endif;?>
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Llista de descomptes</h1>
                 <p class="mb-4">Administració de tots els descoptes dels poductes</p>
@@ -426,13 +434,13 @@ if(!isset($_SESSION["user_info"])){
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">Nova categoria</h6>
+                <h6 class="modal-title" id="exampleModalLabel">Nou descompte</h6>
             </div>
-            <form action="../../controllers/ProductCategoryController.php" method="post">
+            <form action="../../controllers/DiscountController.php" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="product">Producte amb descompte</label>
-                        <select  class="form-control" id="product">
+                        <select name="product_createDiscount" class="form-control" id="product">
                            <?php foreach ($products as $product):?>
                            <option value="<?php echo $product['id']?>"><?php echo $product['name']?></option>
                             <?php endforeach;?>
@@ -441,16 +449,16 @@ if(!isset($_SESSION["user_info"])){
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Nom del descompte:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="name_createDiscount" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Disponibilitat del descompte:</label>
-                        <input type="number" name="datetimes" id="datetime" class="form-control"/>
+                        <input type="text" name="datetime_createDiscount" id="datetime" class="form-control" readonly/>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Percentatge de descompte:</label>
                         <div class="input-group">
-                            <input type="number" class="form-control">
+                            <input type="number" name="discount_createDiscount" class="form-control">
                             <div class="input-group-append">
                                 <span class="input-group-text" >%</span>
                             </div>
@@ -459,7 +467,7 @@ if(!isset($_SESSION["user_info"])){
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
-                    <button type="submit" class="btn btn-sm btn-primary">Crear categoria</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Crear descompte</button>
                 </div>
             </form>
 
@@ -570,4 +578,5 @@ function calculateDiscount($new_price,$old_price){
 
 }
 unset($_SESSION["message"]);
+unset($_SESSION["error_message"]);
 ?>

@@ -46,3 +46,15 @@ function getCurrentDateTime(){
     $date = new DateTime();
     return $date->format("Y-m-d H:i:s");
 }
+
+function rangeDateTimeToArray($string){
+    $array = [];
+    $explode = explode("-",trim($string));
+    foreach ($explode as $expl){
+        $split = explode("/",$expl);
+        $hour_split = explode(" ",$split[2]);
+        $date = new DateTime(trim($hour_split[0])."-".trim($split[1])."-".trim($split[0])." ".trim($hour_split[1]));
+        array_push($array,$date);
+    }
+    return $array;
+}
