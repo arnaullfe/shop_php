@@ -20,22 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/DiscountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/awscliv2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/awscliv2.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ClientResolver.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/ClientResolver.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/CostExplorer/CostExplorerClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/CostExplorer/CostExplorerClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/HealthLake/HealthLakeClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/HealthLake/HealthLakeClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ce/2017-10-25/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ce/2017-10-25/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/cloudsearch/2013-01-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/cloudsearch/2013-01-01/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/healthlake/2017-07-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/healthlake/2017-07-01/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/Discount.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Discount.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/admin_view/list-discounts.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-discounts.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +125,7 @@
       <workItem from="1609701875495" duration="3595000" />
       <workItem from="1609786704823" duration="6194000" />
       <workItem from="1609930916742" duration="1407000" />
-      <workItem from="1609944884184" duration="4094000" />
+      <workItem from="1609944884184" duration="4577000" />
     </task>
     <servers />
   </component>

@@ -350,7 +350,7 @@ if(!isset($_SESSION["user_info"])){
                                 <tr>
                                     <th>Nom del descompte</th>
                                     <th>Producte</th>
-                                    <th>Percentatge Descompte</th>
+                                    <th>Descompte</th>
                                     <th>Data Inici</th>
                                     <th>Data Final</th>
                                     <th>Accions</th>
@@ -366,7 +366,7 @@ if(!isset($_SESSION["user_info"])){
                                             <?php echo formatDate($discount["start_date"]);?>
                                         </td>
                                         <td>
-                                            <?php echo formatDate($discount["send_date"]);?>
+                                            <?php echo formatDate($discount["end_date"]);?>
                                         </td>
                                         <td>
                                             <button class="btn btn-primary btn-sm" title="Banejar"><i class="fas fa-edit"></i></button>
