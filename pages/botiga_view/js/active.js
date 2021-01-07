@@ -154,16 +154,15 @@ Version:1.0
 		  Quick View Slider JS
 		=============================*/ 
 		$('.quickview-slider-active').owlCarousel({
+			singleItem: true,
 			items:1,
 			autoplay:true,
 			autoplayTimeout:5000,
 			smartSpeed: 400,
 			autoplayHoverPause:true,
-			nav:true,
-			loop:true,
+			dots:true,
+			nav:false,
 			merge:true,
-			dots:false,
-			navText: ['<i class=" ti-arrow-left"></i>', '<i class=" ti-arrow-right"></i>'],
 		});
 		
 		/*===========================

@@ -358,7 +358,7 @@ $num = 0;
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
                                     <div class="product-img">
-                                        <a data-toggle="modal" data-target="#exampleModal"">
+                                        <a href="./product.php?product_id=<?php echo $product['id']?>">
                                         <?php if (isset($product["url"]) && $product["url"] != null): ?>
                                             <img class="default-img" src="<?php echo $product["url"] ?>" alt="#"
                                                  style="height: 365px;">
@@ -377,8 +377,7 @@ $num = 0;
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action" style="padding-right: 3%">
-                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View"
-                                                   href="#"><i class=" ti-eye"></i><span>Més detalls</span></a>
+                                                <a title="Detall del producte" href="./product.php?product_id=<?php echo $product['id']?>"><i class=" ti-eye"></i><span>Més detalls</span></a>
                                                 <!--<a title="Desitjats" href="#"><i class=" ti-heart "></i><span>Afegir a desitjats</span></a>
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
                                                 <a title="Cistella" href="#"><i class="fas fa-shopping-bag"></i><span>Afegir a la cistella</span></a>
