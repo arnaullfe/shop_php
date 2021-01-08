@@ -114,6 +114,7 @@ class Database
                                             id_product int NOT NULL,
                                             name varchar(255),
                                             discount float NOT NULL,
+                                            highlight int DEFAULT 0,
                                             start_date DATETIME,
                                             end_date DATETIME,
                                             last_updated DATETIME,

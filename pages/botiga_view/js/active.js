@@ -161,8 +161,9 @@ Version:1.0
 			smartSpeed: 400,
 			autoplayHoverPause:true,
 			dots:true,
-			nav:false,
+			nav:true,
 			merge:true,
+			navText: ['<i class=" ti-arrow-left"></i>', '<i class=" ti-arrow-right"></i>'],
 		});
 		
 		/*===========================

@@ -22,6 +22,7 @@ if(!isset($_SESSION["user_info"])){
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Eshop</title>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../botiga_view/images/favicon.png">
 
@@ -39,6 +40,10 @@ if(!isset($_SESSION["user_info"])){
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 </head>
@@ -341,6 +346,7 @@ if(!isset($_SESSION["user_info"])){
                                     <th>Nom del descompte</th>
                                     <th>Producte</th>
                                     <th>Descompte</th>
+                                    <th>Destacat</th>
                                     <th>Data Inici</th>
                                     <th>Data Final</th>
                                     <th>Accions</th>
@@ -351,6 +357,7 @@ if(!isset($_SESSION["user_info"])){
                                     <th>Nom del descompte</th>
                                     <th>Producte</th>
                                     <th>Descompte</th>
+                                    <th>Destacat</th>
                                     <th>Data Inici</th>
                                     <th>Data Final</th>
                                     <th>Accions</th>
@@ -362,6 +369,11 @@ if(!isset($_SESSION["user_info"])){
                                         <td><?php echo $discount["name"]?></td>
                                         <td><?php echo $discount["product_name"]?></td>
                                         <td><?php echo $discount["discount"]?> %</td>
+                                        <td><?php if($discount["highlight"]==1):
+                                                echo "Sí";
+                                            else:
+                                                echo "No";
+                                            endif; ?> </td>
                                         <td>
                                             <?php echo formatDate($discount["start_date"]);?>
                                         </td>
@@ -464,6 +476,10 @@ if(!isset($_SESSION["user_info"])){
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-form-label mr-3">Disponibilitat del descompte: </label>
+                        <input type="checkbox" data-toggle="toggle" name="highlight_createDiscount" data-onstyle="success">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
@@ -474,7 +490,6 @@ if(!isset($_SESSION["user_info"])){
         </div>
     </div>
 </div>
-
 
 
 <!-- Bootstrap core JavaScript-->

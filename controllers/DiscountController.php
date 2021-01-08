@@ -16,9 +16,13 @@ if(isset($_POST["product_createDiscount"])){
         header("location: ../pages/admin_view/list-discounts.php");
     }else if($_POST["discount_createDiscount"]<=100){
         $dates = rangeDateTimeToArray($_POST["datetime_createDiscount"]);
-        $discount = new Discount($_POST["product_createDiscount"],$_POST["name_createDiscount"],$_POST["discount_createDiscount"],$dates[0],$dates[1],null);
+        $highlight_discount = 0;
+        if(isset($_POST["highlight_createDiscount"]) && $_POST["highlight_createDiscount"]=="on"){
+            $highlight_discount = 1;
+        }
+        $discount = new Discount($_POST["product_createDiscount"],$_POST["name_createDiscount"],$_POST["discount_createDiscount"],$dates[0],$dates[1],null,$highlight_discount);
         $database = new Database();
-        $database->executeQuery("INSERT INTO discounts (id_product,name,discount,start_date,end_date,last_updated,created_at) values (?,?,?,?,?,?,?)",$discount->getInsertValues());
+        $database->executeQuery("INSERT INTO discounts (id_product,name,discount,start_date,end_date,highlight,last_updated,created_at) values (?,?,?,?,?,?,?,?)",$discount->getInsertValues());
         $database->closeConnection();
         $_SESSION["message"] = "<strong>Enhorabona!</strong> Descompte creat correctament";
         header("location: ../pages/admin_view/list-discounts.php");
