@@ -349,7 +349,7 @@ $database->closeConnection();
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <?php $inside = false;?>
                                 <?php foreach ($categories as $category):?>
-                                    <li class="nav-item"><a class="nav-link <?php if($inside==false)echo 'active';?> "data-toggle="tab" href="<?php echo $category['id']?>" role="tab"><?php echo $category['name']?></a></li>
+                                    <li class="nav-item"><a class="nav-link <?php if($inside==false)echo 'active';?> "data-toggle="tab" href="<?php echo '#'.$category['id']?>" role="tab"><?php echo $category['name']?></a></li>
                                     <?php $inside = true;?>
                                 <?php endforeach;?>
                             </ul>
@@ -423,7 +423,7 @@ $database->closeConnection();
         </div>
     </div>
     <!-- End Product Area -->
-
+    
     <!-- Start Cowndown Area -->
     <section class="cown-down mb-5" style="height: auto!important;">
         <div class="section-inner">
