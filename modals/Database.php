@@ -119,6 +119,15 @@ class Database
                                             end_date DATETIME,
                                             last_updated DATETIME,
                                             created_at DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS highlights (
+	                                        id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                                            product_id int NOT NULL,
+                                            category_id int NOT NULL,
+                                            highlight_type int NOT NULL,
+                                            title varchar(255),
+                                            url varchar(255),
+                                            last_updated DATETIME,
+                                            created_at DATETIME);");
             $this->connection->query("CREATE TABLE IF NOT EXISTS wishlist (
                 id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
                 id_product int NOT NULL,

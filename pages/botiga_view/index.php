@@ -8,14 +8,25 @@ $discounts = $database->executeQuery('SELECT shop.discounts.*,shop.products.name
 $products = $database->executeQuery('SELECT shop.products.*,shop.images_product.url,shop.tags.name "tag_name",shop.tags.color as "tag_color",shop.discounts.discount,shop.productCategory.name as "category_name" FROM shop.products 
 	LEFT JOIN shop.images_product ON shop.products.id = shop.images_product.id_product 
     LEFT JOIN shop.discounts ON shop.products.id  = shop.discounts.id_product
+		AND shop.discounts.start_date<=now() 
+        AND shop.discounts.end_date>=now()
+        AND shop.discounts.discount = (SELECT max(shop.discounts.discount) FROM shop.discounts WHERE shop.discounts.id_product = shop.products.id)
     LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id
     LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id 
 		WHERE shop.products.activated = 1 
 		AND shop.productCategory.activated = 1 
-        AND shop.discounts.start_date<=now() 
-        AND shop.discounts.end_date>=now()
-        AND shop.discounts.discount = (SELECT max(shop.discounts.discount) FROM shop.discounts WHERE shop.discounts.id_product = shop.products.id)
     GROUP BY shop.products.id;',array());
+$highlights = $database->executeQuery('SELECT shop.highlights.highlight_type,shop.highlights.url,shop.highlights.title,shop.productCategory.name as "category_name",shop.productCategory.id as "category_id",
+		shop.products.name as "product_name",shop.products.id as "product_id",shop.products.description as "product_desc",
+        shop.discounts.discount 
+        FROM shop.highlights
+        LEFT JOIN shop.productCategory ON shop.highlights.category_id = shop.productCategory.id
+		LEFT JOIN shop.products ON shop.highlights.product_id = shop.products.id
+        LEFT JOIN shop.discounts ON shop.highlights.product_id = shop.discounts.id_product
+        AND shop.discounts.discount = (SELECT max(shop.discounts.discount) FROM shop.discounts WHERE shop.discounts.id_product= shop.highlights.product_id
+                                    AND shop.discounts.start_date<=now() AND shop.discounts.end_date>=now())
+        WHERE shop.products.activated = 1 OR shop.productCategory.activated = 1
+        ORDER BY highlight_type ASC',array());
 $database->closeConnection();
 ?>
     <!DOCTYPE html>
@@ -256,11 +267,12 @@ $database->closeConnection();
         <!--/ End Header Inner -->
     </header>
     <!--/ End Header -->
-
+    <? $principal = searchValueHighlightType(1,$highlights);?>
+    <?if(isset($principal) && count($principal)>0):?>
     <!-- Slider Area -->
     <section class="hero-slider">
         <!-- Single Slider -->
-        <div class="single-slider">
+        <div class="single-slider" style="background-image: url(<?echo $principal[0]['url']?>) !important;" >
             <div class="container">
                 <div class="row no-gutters">
                     <div class="col-lg-9 offset-lg-3 col-12">
@@ -268,11 +280,10 @@ $database->closeConnection();
                             <div class="row">
                                 <div class="col-lg-7 col-12">
                                     <div class="hero-text">
-                                        <h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
-                                        <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find
-                                            it pereri <br> odiy maboriosm.</p>
+                                        <h1><span><?echo $principal[0]["title"]?> </span><?echo $principal[0]["product_name"]?></h1>
+                                        <p><?echo $principal[0]["product_desc"]?></p>
                                         <div class="button">
-                                            <a href="#" class="btn">Shop Now!</a>
+                                            <a href="./product.php?product_id=<?echo $principal[0]["product_id"]?>" class="btn">Detalls</a>
                                         </div>
                                     </div>
                                 </div>
@@ -284,53 +295,34 @@ $database->closeConnection();
         </div>
         <!--/ End Single Slider -->
     </section>
-    <!--/ End Slider Area -->
+    <?endif;?>
+    <? $secondaries = searchValueHighlightType(2,$highlights);?>
 
+    <?if(isset($secondaries) && count($secondaries)>0):?>
+    <!--/ End Slider Area -->
     <!-- Start Small Banner  -->
     <section class="small-banner section">
         <div class="container-fluid">
             <div class="row">
-                <!-- Single Banner  -->
+        <?foreach ($secondaries as $secondary):?>
+            <!-- Single Banner  -->
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="single-banner">
-                        <img src="https://via.placeholder.com/600x370" alt="#">
+                        <img src="<?echo $secondary['url']?>" alt="#">
                         <div class="content">
-                            <p>Man's Collectons</p>
-                            <h3>Summer travel <br> collection</h3>
-                            <a href="#">Discover Now</a>
+                            <p><?echo $secondary["category_name"]?></p>
+                            <h3><?echo $secondary["title"]?></h3>
+                            <a href="./shop-grid.php?category_id=<?echo $secondary['category_id']?>">DESCOBRIR</a>
                         </div>
                     </div>
                 </div>
                 <!-- /End Single Banner  -->
-                <!-- Single Banner  -->
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="single-banner">
-                        <img src="https://via.placeholder.com/600x370" alt="#">
-                        <div class="content">
-                            <p>Bag Collectons</p>
-                            <h3>Awesome Bag <br> 2020</h3>
-                            <a href="#">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /End Single Banner  -->
-                <!-- Single Banner  -->
-                <div class="col-lg-4 col-12">
-                    <div class="single-banner tab-height">
-                        <img src="https://via.placeholder.com/600x370" alt="#">
-                        <div class="content">
-                            <p>Flash Sale</p>
-                            <h3>Mid Season <br> Up to <span>40%</span> Off</h3>
-                            <a href="#">Discover Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /End Single Banner  -->
+        <?endforeach;?>
             </div>
         </div>
     </section>
     <!-- End Small Banner -->
-
+    <?endif;?>
     <!-- Start Product Area -->
     <div class="product-area section">
         <div class="container">
@@ -471,8 +463,8 @@ $database->closeConnection();
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-rocket"></i>
-                        <h4>Free shiping</h4>
-                        <p>Orders over $100</p>
+                        <h4>Enviament gratuït</h4>
+                        <p>EN Comandes superiors a 100€</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -480,8 +472,8 @@ $database->closeConnection();
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-reload"></i>
-                        <h4>Free Return</h4>
-                        <p>Within 30 days returns</p>
+                        <h4>Devolució gratuïta</h4>
+                        <p>30 dies de devolució</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -489,8 +481,8 @@ $database->closeConnection();
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-lock"></i>
-                        <h4>Sucure Payment</h4>
-                        <p>100% secure payment</p>
+                        <h4>Pagament segur</h4>
+                        <p>Pagament 100% segur</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -498,8 +490,8 @@ $database->closeConnection();
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-tag"></i>
-                        <h4>Best Peice</h4>
-                        <p>Guaranteed price</p>
+                        <h4>Els millors preus</h4>
+                        <p>Garantim els millors preus</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -507,150 +499,7 @@ $database->closeConnection();
         </div>
     </section>
     <!-- End Shop Services Area -->
-
-    <!-- Start Shop Newsletter  -->
-    <section class="shop-newsletter section">
-        <div class="container">
-            <div class="inner-top">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2 col-12">
-                        <!-- Start Newsletter Inner -->
-                        <div class="inner">
-                            <h4>Newsletter</h4>
-                            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
-                            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-                                <input name="EMAIL" placeholder="Your email address" required="" type="email">
-                                <button class="btn">Subscribe</button>
-                            </form>
-                        </div>
-                        <!-- End Newsletter Inner -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Shop Newsletter -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close"
-                                                                                                      aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row no-gutters">
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                            <!-- Product Slider -->
-                            <div class="product-gallery">
-                                <div class="quickview-slider-active">
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Product slider -->
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                            <div class="quickview-content">
-                                <h2>Flared Shift Dress</h2>
-                                <div class="quickview-ratting-review">
-                                    <div class="quickview-ratting-wrap">
-                                        <div class="quickview-ratting">
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a href="#"> (1 customer review)</a>
-                                    </div>
-                                    <div class="quickview-stock">
-                                        <span><i class="fa fa-check-circle-o"></i> in stock</span>
-                                    </div>
-                                </div>
-                                <h3>$29.00</h3>
-                                <div class="quickview-peragraph">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum
-                                        ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui
-                                        nemo ipsum numquam.</p>
-                                </div>
-                                <div class="size">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <h5 class="title">Size</h5>
-                                            <select>
-                                                <option selected="selected">s</option>
-                                                <option>m</option>
-                                                <option>l</option>
-                                                <option>xl</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <h5 class="title">Color</h5>
-                                            <select>
-                                                <option selected="selected">orange</option>
-                                                <option>purple</option>
-                                                <option>black</option>
-                                                <option>pink</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="quantity">
-                                    <!-- Input Order -->
-                                    <div class="input-group">
-                                        <div class="button minus">
-                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled"
-                                                    data-type="minus" data-field="quant[1]">
-                                                <i class="ti-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" name="quant[1]" class="input-number" data-min="1"
-                                               data-max="1000" value="1">
-                                        <div class="button plus">
-                                            <button type="button" class="btn btn-primary btn-number" data-type="plus"
-                                                    data-field="quant[1]">
-                                                <i class="ti-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!--/ End Input Order -->
-                                </div>
-                                <div class="add-to-cart">
-                                    <a href="#" class="btn">Add to cart</a>
-                                    <a href="#" class="btn min"><i class="ti-heart"></i></a>
-                                    <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
-                                </div>
-                                <div class="default-social">
-                                    <h4 class="share-now">Share:</h4>
-                                    <ul>
-                                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                        <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal end -->
-
+S
     <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Footer Top -->
@@ -782,9 +631,19 @@ $database->closeConnection();
     </body>
     </html>
 <?php
-unset($_SESSION["email_message"]);
 function calculateNewPrice($price, $discount)
 {
     return $price - ($price * ($discount / 100));
 }
+
+function searchValueHighlightType($value,$array) {
+    $high = [];
+    foreach ($array as $highlight){
+        if($highlight["highlight_type"]==$value){
+            array_push($high,$highlight);
+        }
+    }
+    return $high;
+}
+unset($_SESSION["email_message"]);
 ?>
