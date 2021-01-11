@@ -3,6 +3,7 @@ include_once("../../modals/Database.php");
 include_once('../../controllers/UserTokenController.php');
 session_start();
 $database = new Database();
+//pagina
 $categories = $database->executeQuery("SELECT * FROM shop.productCategory WHERE id IN(SELECT shop.products.category_id FROM shop.products WHERE activated=1) AND activated=1", array(1));
 $discounts = $database->executeQuery('SELECT shop.discounts.*,shop.products.id as "product_id",shop.products.name as "product_name",shop.products.description as "product_desc",shop.products.price_iva,shop.images_product.url  FROM shop.discounts inner join shop.products ON shop.products.id = shop.discounts.id_product LEFT JOIN shop.images_product ON shop.discounts.id_product=shop.images_product.id_product  where start_date<=now() AND end_date>=now() AND highlight=?', array(1));
 $products = $database->executeQuery('SELECT shop.products.*,shop.images_product.url,shop.tags.name "tag_name",shop.tags.color as "tag_color",shop.discounts.discount,shop.productCategory.name as "category_name" FROM shop.products 
@@ -27,6 +28,8 @@ $highlights = $database->executeQuery('SELECT shop.highlights.highlight_type,sho
                                     AND shop.discounts.start_date<=now() AND shop.discounts.end_date>=now())
         WHERE shop.products.activated = 1 OR shop.productCategory.activated = 1
         ORDER BY highlight_type ASC',array());
+//cart
+
 $database->closeConnection();
 ?>
     <!DOCTYPE html>

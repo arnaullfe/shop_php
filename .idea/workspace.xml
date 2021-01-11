@@ -20,22 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/CartItemController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modals/Cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/CartItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/CartItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-discounts.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-discounts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +139,7 @@
       <workItem from="1610131564821" duration="8911000" />
       <workItem from="1610209079299" duration="4165000" />
       <workItem from="1610277294705" duration="2291000" />
-      <workItem from="1610378554986" duration="11480000" />
+      <workItem from="1610378554986" duration="12457000" />
     </task>
     <servers />
   </component>
