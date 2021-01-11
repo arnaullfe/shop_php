@@ -157,14 +157,14 @@ if(isset($_POST["delete_image_editProduct"]) && isset($_POST["url_image_editProd
 
 function uploadImages($id){
     if(isset($_SESSION["images_newProduct"]) && count($_SESSION["images_newProduct"])>0){
-        $bucket = "shop-php";
+        $bucket = "shop-php1";
         $s3 = new S3Client([
             'version'=> 'latest',
             'region'=> 'us-east-1',
             'credentials'=>[
-                'key'=> 'ASIAVUHCLKEGWUGIZG7E',
-                'secret' => 'STawLGGKUJRCsoj1e/Z/gieRhmnYBqt43HaDqxg2',
-                'token' => 'FwoGZXIvYXdzEPD//////////wEaDAeIE5xsVMEXluZKMyLKAd36q4fq85CJ4hcub2tskjQq0zYuXT+gme7t8CbtCb2cCd6j9ZaNsVzW+JhC5qPgoR8LMuiT61vhSel8c4MlxGtrabH/p/0trgtInUM7uXRxzq7Jigti63pI8gKo9gz7gDAie2sABnycj45a741TqKMK3T8ABDiaE4fI2sD36I/NQWYonux4T6nWH0059c3WlkPjNG5SK1duC4SUGeTsS4DzXiJHQv+Bapk3lTkdrdgvZB9dyxX8Yc+iBdc3C2MxrWdheyRkJ/FEFPco8urI/gUyLQ//kRIifnyPYD09/XegPNalKDKZzing5zKHt3/VSWluGF/fUow+1ZlKNl2lDw=='
+                'key'=> 'ASIA2CQKGXJ5GGBEUCID',
+                'secret' => 'JZNxVOeurq8QQCbr3zw+J3+QUWYP+lerHFC9XHcR',
+                'token' => 'FwoGZXIvYXdzEPH//////////wEaDI6SXtot2r+R1iXVjiLKAfX6YuVIqO/e9uowEBrMTJvgFlIMR6kTzXCjNCnqn4DVO1VWPQrNRhlCIy8qxPWUcSER5jPhnwRp35VF5+AYeP0F22FotSzZk7N2vU2z8QEN3nLMDg30havz4UK741tU2xfdNARZ1lB0X8hD5TNtoW3PTs4GdULCIWvRUQ2mL10dUaEPAK9fpcLZee0txWH/T/9ns/S3yNMpT/lU3K9GT/eYNX/mGQSTwOfrfKTQgOuCL7koSc+hPsQHBvdlyxW+LNKT8JrHqoJZ+Vwoxezx/wUyLTSGGcAj+i7rAChYLu54+kHwkidu90qKMb2EGb0tbz/Lt//tWP565atabQDhTQ=='
             ]
         ]);
         $database = new Database();

@@ -3,6 +3,7 @@ require_once("./MainController.php");
 require_once("../modals/Database.php");
 require_once("../modals/User.php");
 require_once("./MailController.php");
+require_once ('./MainController.php');
 date_default_timezone_set('Europe/Madrid');
 session_start();
 
@@ -45,6 +46,7 @@ if (isset($_POST["name_register"])) {
         $database = new Database();
         $database->executeQuery("INSERT INTO users (email,name,lastnames,password,role,banned,activated,last_session,token_login,token_pass,image) values (?,?,?,?,?,?,?,?,?,?,?)", $user->getDataInsertSql());
         $user->setId($database->executeQuery("SELECT id FROM users WHERE email = ?", array($_POST["email_register"]))[0]["id"]);
+        $database->executeQuery("INSERT INTO carts (user_id,created_at) VALUES (?,?)",array($user->getId(),getCurrentDateTime()));
         sendMailActivatedUser($user);
         $database->closeConnection();
         $_SESSION["token_login"] = $user->getTokenLogin();

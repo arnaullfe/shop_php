@@ -477,7 +477,7 @@ if(!isset($_SESSION["user_info"])){
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label mr-3">Disponibilitat del descompte: </label>
+                        <label class="col-form-label mr-3">Descompte destacat: </label>
                         <input type="checkbox" data-toggle="toggle" name="highlight_createDiscount" data-onstyle="success">
                     </div>
                 </div>

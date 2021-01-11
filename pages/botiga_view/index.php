@@ -4,7 +4,7 @@ include_once('../../controllers/UserTokenController.php');
 session_start();
 $database = new Database();
 $categories = $database->executeQuery("SELECT * FROM shop.productCategory WHERE id IN(SELECT shop.products.category_id FROM shop.products WHERE activated=1) AND activated=1", array(1));
-$discounts = $database->executeQuery('SELECT shop.discounts.*,shop.products.name as "product_name",shop.products.description as "product_desc",shop.products.price_iva,shop.images_product.url  FROM shop.discounts inner join shop.products ON shop.products.id = shop.discounts.id_product LEFT JOIN shop.images_product ON shop.discounts.id_product=shop.images_product.id_product  where start_date<=now() AND end_date>=now() AND highlight=?', array(1));
+$discounts = $database->executeQuery('SELECT shop.discounts.*,shop.products.id as "product_id",shop.products.name as "product_name",shop.products.description as "product_desc",shop.products.price_iva,shop.images_product.url  FROM shop.discounts inner join shop.products ON shop.products.id = shop.discounts.id_product LEFT JOIN shop.images_product ON shop.discounts.id_product=shop.images_product.id_product  where start_date<=now() AND end_date>=now() AND highlight=?', array(1));
 $products = $database->executeQuery('SELECT shop.products.*,shop.images_product.url,shop.tags.name "tag_name",shop.tags.color as "tag_color",shop.discounts.discount,shop.productCategory.name as "category_name" FROM shop.products 
 	LEFT JOIN shop.images_product ON shop.products.id = shop.images_product.id_product 
     LEFT JOIN shop.discounts ON shop.products.id  = shop.discounts.id_product
@@ -183,7 +183,7 @@ $database->closeConnection();
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
                                         <span>2 Items</span>
-                                        <a href="./cart.php">Veure cistella</a>
+                                        <a href="./cart.php?cart_id=<?echo $_SESSION['user_id']?>">Veure cistella</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <li>
@@ -355,10 +355,10 @@ $database->closeConnection();
                                 <?php $inside = true;?>
                                 <div class="tab-single">
                                     <div class="row">
+                                        <?foreach ($products as $product):?>
+                                            <?if($product["category_id"]==$category['id']):?>
                                         <div class="col-xl-3 col-lg-4 col-md-4 col-12">
-                                            <?foreach ($products as $product):?>
-                                                <?if($product["category_id"]==$category['id']):?>
-                                                    <div class="single-product" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                                                    <div class="single-product " style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
                                                         <div class="product-img">
                                                             <a href="./product.php?product_id=<?echo $product['id']?>">
                                                                 <?if(isset($product['url']) && $product['url']!=null):?>
@@ -400,9 +400,10 @@ $database->closeConnection();
                                                             </div>
                                                         </div>
                                                     </div>
-                                                <?endif;?>
-                                            <?endforeach;?>
+
                                         </div>
+                                        <?endif;?>
+                                        <?endforeach;?>
                                     </div>
                                 </div>
                             </div>
@@ -414,6 +415,7 @@ $database->closeConnection();
             </div>
         </div>
     </div>
+
     <!-- End Product Area -->
     
     <!-- Start Cowndown Area -->
@@ -443,6 +445,7 @@ $database->closeConnection();
                                             <div class="coming-time">
                                                 <div class="clearfix" data-countdown="<?php echo $discount["end_date"]?>"></div>
                                             </div>
+                                            <a class="btn btn-dark btn-lg mt-5" href="./product.php?product_id=<?echo $discount['product_id']?>">Veure Detalls</a>
                                         </div>
                                     </div>
                                 </div>

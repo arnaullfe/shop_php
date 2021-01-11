@@ -145,7 +145,7 @@ if(!isset($_SESSION["user_info"])){
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
                                         <span>2 Items</span>
-                                        <a href="./cart.php">Veure cistella</a>
+                                        <a href="./cart.php?cart_id=<?echo $_SESSION['user_id']?>>Veure cistella</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <li>

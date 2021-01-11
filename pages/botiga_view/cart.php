@@ -1,3 +1,21 @@
+<?php
+include_once('../../modals/Database.php');
+include_once ('../../controllers/MainController.php');
+session_start();
+if(!isset($_GET["cart_id"]) || !isset($_SESSION["user_info"])){
+    header('location: ./index.php');
+}
+$database = new Database();
+$cartItems = $database->executeQuery('SELECT shop.cartItems.*,
+shop.products.name as "product_name",shop.products.description as "product_desc",shop.products.price_iva as "product_price",shop.products.id as "product_id",
+shop.discounts.discount
+FROM shop.cartItems 
+LEFT JOIN shop.products ON shop.cartItems.product_id = shop.products.id
+LEFT JOIN shop.discounts ON shop.cartItems.product_id = shop.discounts.id_product AND
+shop.discounts.discount = (SELECT max(discount) FROM shop.discounts WHERE shop.discounts.id_product = shop.cartItems.product_id)
+WHERE shop.products.activated = 1',array($_SESSION["user_info"]));
+$database->closeConnection();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -225,84 +243,47 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
-								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href="#">Women Dress</a></p>
-									<p class="product-des">Maboriosam in a tonto nesciung eget  distingy magndapibus.</p>
-								</td>
-								<td class="price" data-title="Price"><span>$110.00 </span></td>
-								<td class="qty" data-title="Qty"><!-- Input Order -->
-									<div class="input-group">
-										<div class="button minus">
-											<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-												<i class="ti-minus"></i>
-											</button>
-										</div>
-										<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="100" value="1">
-										<div class="button plus">
-											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-												<i class="ti-plus"></i>
-											</button>
-										</div>
-									</div>
-									<!--/ End Input Order -->
-								</td>
-								<td class="total-amount" data-title="Total"><span>$220.88</span></td>
-								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-							</tr>
-							<tr>
-								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
-								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href="#">Women Dress</a></p>
-									<p class="product-des">Maboriosam in a tonto nesciung eget  distingy magndapibus.</p>
-								</td>
-								<td class="price" data-title="Price"><span>$110.00 </span></td>
-								<td class="qty" data-title="Qty"><!-- Input Order -->
-									<div class="input-group">
-										<div class="button minus">
-											<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
-												<i class="ti-minus"></i>
-											</button>
-										</div>
-										<input type="text" name="quant[2]" class="input-number"  data-min="1" data-max="100" value="2">
-										<div class="button plus">
-											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[2]">
-												<i class="ti-plus"></i>
-											</button>
-										</div>
-									</div>
-									<!--/ End Input Order -->
-								</td>
-								<td class="total-amount" data-title="Total"><span>$220.88</span></td>
-								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-							</tr>
-							<tr>
-								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
-								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href="#">Women Dress</a></p>
-									<p class="product-des">Maboriosam in a tonto nesciung eget  distingy magndapibus.</p>
-								</td>
-								<td class="price" data-title="Price"><span>$110.00 </span></td>
-								<td class="qty" data-title="Qty"><!-- Input Order -->
-									<div class="input-group">
-										<div class="button minus">
-											<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
-												<i class="ti-minus"></i>
-											</button>
-										</div>
-										<input type="text" name="quant[3]" class="input-number"  data-min="1" data-max="100" value="3">
-										<div class="button plus">
-											<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[3]">
-												<i class="ti-plus"></i>
-											</button>
-										</div>
-									</div>
-									<!--/ End Input Order -->
-								</td>
-								<td class="total-amount" data-title="Total"><span>$220.88</span></td>
-								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-							</tr>
+							<?foreach ($cartItems as $item):?>
+                                <tr>
+                                    <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
+                                    <td class="product-des" data-title="Description">
+                                        <p class="product-name"><a href="./product.php?product_id=<?echo $item['product_id']?>"><?echo $item["product_name"]?></a></p>
+                                        <p class="product-des"><?echo $item["product_desc"]?></p>
+                                    </td>
+                                    <td class="price" data-title="Price">
+                                        <?if(isset($item["discount"]) && $item["discount"]!=null):?>
+                                        <span><?echo formatPrice(calculateNewPrice($item["product_price"],$item["discount"]))?> €</span></td>
+                                    <?else:?>
+                                        <span><?echo formatPrice($item["product_price"])?> €</span></td>
+                                    <?endif;?>
+                                    <td class="qty" data-title="Qty"><!-- Input Order -->
+                                        <div class="input-group">
+                                            <div class="button minus">
+                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
+                                                    <i class="ti-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" name="quant[3]" class="input-number"  data-min="1" data-max="100" value="<?echo $item["units"]?>">
+                                            <div class="button plus">
+                                                <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[3]">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--/ End Input Order -->
+                                    </td>
+                                    <td class="total-amount" data-title="Total">
+                                        <?if(isset($item["discount"]) && $item["discount"]!=null):?>
+                                        <span><?echo formatPrice((calculateNewPrice($item["product_price"],$item["discount"]) * $item["units"]))?> €</span></td>
+                                <?else:?>
+                                    <span><?echo formatPrice(($item["product_price"] * $item["units"]))?> €</span></td>
+                                <?endif;?>
+
+
+                                    </td>
+                                    <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                                </tr>
+                            <?endforeach;?>
 						</tbody>
 					</table>
 					<!--/ End Shopping Summery -->

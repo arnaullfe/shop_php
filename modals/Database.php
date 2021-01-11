@@ -12,7 +12,7 @@ class Database
 
     public function __construct()
     {
-        $this->host = 'esshop.cqnbcumf2too.us-east-1.rds.amazonaws.com';
+        $this->host = 'shop-php.cae6jdjevcjm.us-east-1.rds.amazonaws.com';
         $this->db = 'shop';
         $this->dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db . ';';
         $this->user = 'admin';
@@ -134,13 +134,17 @@ class Database
                 units int NOT NULL,
                 id_user int NOT NULL,
                 added_at DATETIME);");
-            $this->connection->query("CREATE TABLE IF NOT EXISTS cart (
+            $this->connection->query("CREATE TABLE IF NOT EXISTS carts (
                 id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                id_product int NOT NULL,
+                user_id int NOT NULL,
+                created_at DATETIME);");
+            $this->connection->query("CREATE TABLE IF NOT EXISTS cartItems (
+                id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                cart_id int NOT NULL,
+                product_id int NOT NULL,
                 units int NOT NULL,
-                id_user int NOT NULL,
-                added_at DATETIME);");          
-                
+                created_at DATETIME);");
+
         } catch (PDOException $err) {
             echo $err;
         }

@@ -58,3 +58,13 @@ function rangeDateTimeToArray($string){
     }
     return $array;
 }
+
+function calculateNewPrice($price, $discount)
+{
+    return $price - ($price * ($discount / 100));
+}
+
+function formatPrice($price){
+    return number_format($price, 2, ",", ".");
+}
+

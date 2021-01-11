@@ -161,7 +161,7 @@ $database->closeConnection();
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
                                         <span>2 Items</span>
-                                        <a href="./cart.php">Veure cistella</a>
+                                        <a href="./cart.php?cart_id=<?echo $_SESSION['user_id']?>">Veure cistella</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <li>
@@ -250,6 +250,22 @@ $database->closeConnection();
     <!-- End Breadcrumbs -->
     <section class="product-area shop-sidebar shop section" style="margin-top: 2% !important;padding-top: 0!important;">
         <div class="container">
+            <?php if (isset($_SESSION["message"])): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION["message"] ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <? endif; ?>
+            <?php if (isset($_SESSION["error_message"])): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo $_SESSION["error_message"] ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <? endif; ?>
             <!-- Modal -->
             <div class="row no-gutters card-html">
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -314,42 +330,22 @@ $database->closeConnection();
                         <div class="quickview-peragraph">
                             <p><?php echo $product["description"]?></p>
                         </div>
-                       <!-- <div class="size">
-                            <div class="row">
-                                <div class="col-lg-6 col-12">
-                                    <h5 class="title">Size</h5>
-                                    <select class="px-5">
-                                        <option selected="selected">s</option>
-                                        <option>m</option>
-                                        <option>l</option>
-                                        <option>xl</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 col-12">
-                                    <h5 class="title">Color</h5>
-                                    <select class="px-5">
-                                        <option selected="selected">orange</option>
-                                        <option>purple</option>
-                                        <option>black</option>
-                                        <option>pink</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>-->
+                        <form action="../../controllers/CartItemController.php" method="post">
                         <div class="quantity mt-5">
                             <!-- Input Order -->
                             <div class="input-group">
                                 <div class="button minus">
                                     <button type="button" class="btn btn-primary btn-number" disabled="disabled"
-                                            data-type="minus" data-field="quant[1]">
+                                            data-type="minus" data-field="units_editCart">
                                         <i class="ti-minus"></i>
                                     </button>
                                 </div>
-                                <input type="text" name="quant[1]" class="input-number" data-min="1"
+                                <input name="product_id_editCart" value="<?echo $_GET['product_id']?>" style="display: none">
+                                <input type="text" name="units_editCart" class="input-number" data-min="1"
                                        data-max="1000" value="1">
                                 <div class="button plus">
                                     <button type="button" class="btn btn-primary btn-number" data-type="plus"
-                                            data-field="quant[1]">
+                                            data-field="units_editCart">
                                         <i class="ti-plus"></i>
                                     </button>
                                 </div>
@@ -357,9 +353,10 @@ $database->closeConnection();
                             <!--/ End Input Order -->
                         </div>
                         <div class="add-to-cart">
-                            <a href="#" class="btn">Afegir al carro</a>
+                            <button type="submit" href="#" class="btn">Afegir al carro</button>
                             <a href="#" class="btn min" title="Afegir a la llista de desitjos"><i class="ti-heart"></i></a>
                         </div>
+                        </form>
                         <div class="default-social">
                             <h4 class="share-now">Comparteix</h4>
                             <ul>
@@ -554,5 +551,6 @@ function calculateNewPrice($price, $discount)
 {
     return $price - ($price * ($discount / 100));
 }
-
+unset($_SESSION["message"]);
+unset($_SESSION["error_message"]);
 ?>
