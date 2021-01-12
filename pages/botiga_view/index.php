@@ -176,9 +176,6 @@ $database->closeConnection();
                                                                                              aria-hidden="true"></i></a>
                                 </div>
                             <? endif; ?>
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
                             <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i class="ti-bag"></i> <span
                                             class="total-count">2</span></a>
@@ -381,10 +378,10 @@ $database->closeConnection();
                                                             </a>
                                                             <div class="button-head">
                                                                 <div class="product-action" style="padding-right: 3%">
-                                                                    <a title="Detall del producte" href="./product.php?product_id=19"><i class=" ti-eye"></i><span>Més detalls</span></a>
+                                                                    <a title="Detall del producte" href="./product.php?product_id=<?echo $product['id']?>"><i class=" ti-eye"></i><span>Més detalls</span></a>
                                                                     <!--<a title="Desitjats" href="#"><i class=" ti-heart "></i><span>Afegir a desitjats</span></a>
                                                                     <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
-                                                                    <a title="Cistella" href="#"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span>Afegir a la cistella</span></a>
+                                                                    <a title="Cistella" href="./product.php?product_id=?<?echo $product['id']?>"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span>Afegir a la cistella</span></a>
                                                                 </div>
                                                                 <div class="product-action-2" style="padding-left: 3%">
                                                                     <a title="Afegir" href="#">Cistella</a>

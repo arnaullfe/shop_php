@@ -21,8 +21,22 @@
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/CartItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/CartItemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Credentials/EcsCredentialProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Credentials/EcsCredentialProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/kms/2014-11-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/kms/2014-11-01/api-2.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/rds/2014-10-31/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/rds/2014-10-31/api-2.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +154,7 @@
       <workItem from="1610209079299" duration="4165000" />
       <workItem from="1610277294705" duration="2291000" />
       <workItem from="1610378554986" duration="12457000" />
+      <workItem from="1610456530168" duration="4379000" />
     </task>
     <servers />
   </component>

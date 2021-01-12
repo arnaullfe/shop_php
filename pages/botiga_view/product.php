@@ -151,9 +151,6 @@ $database->closeConnection();
                                                                                              aria-hidden="true"></i></a>
                                 </div>
                             <? endif; ?>
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
                             <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i class="ti-bag"></i> <span
                                         class="total-count">2</span></a>

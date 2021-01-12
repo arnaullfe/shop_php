@@ -53,6 +53,16 @@ if(isset($_POST["product_id_editCart"])){
     }
 }
 
+if(isset($_POST["product_id_deleteCart"])){
+    $database = new Database();
+    $database->executeQuery("DELETE FROM cartItems WHERE product_id=? AND cart_id=(SELECT id FROM carts WHERE user_id=?)",array($_POST["product_id_deleteCart"],$_SESSION["user_id"]));
+    $cart_id = $database->executeQuery('SELECT id FROM carts WHERE user_id=?',array($_SESSION["user_id"]));
+    $database->closeConnection();
+    header("location: ../pages/botiga_view/cart.php?cart_id=$cart_id");
+}
+
+
+
 function checkUnits($product_id,$units){
     $database = new Database();
     $units_product = $database->executeQuery("SELECT units FROM products WHERE id=?",array($product_id));
@@ -62,3 +72,4 @@ function checkUnits($product_id,$units){
     }
     return false;
 }
+

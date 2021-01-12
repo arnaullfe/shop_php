@@ -2,10 +2,13 @@
 include_once('../../modals/Database.php');
 include_once('../../controllers/MainController.php');
 session_start();
-if (!isset($_GET["cart_id"]) || !isset($_SESSION["user_info"])) {
+$database = new Database();
+$cart_user = $database->executeQuery("SELECT id FROM carts WHERE user_id = ?",array($_SESSION["user_id"]));
+if (!isset($_GET["cart_id"]) || !isset($_SESSION["user_info"]) || count($cart_user)==0) {
+    $database->closeConnection();
     header('location: ./index.php');
 }
-$database = new Database();
+
 $cartItems = $database->executeQuery('SELECT shop.cartItems.*,
 shop.products.name as "product_name",shop.products.description as "product_desc",shop.products.price_iva as "product_price",shop.products.id as "product_id",
 shop.discounts.discount,shop.images_product.url
@@ -16,8 +19,9 @@ shop.discounts.discount = (SELECT max(discount) FROM shop.discounts WHERE shop.d
 LEFT JOIN shop.images_product ON shop.cartItems.product_id = shop.images_product.id_product
 WHERE shop.products.activated = 1', array($_SESSION["user_id"]));
 $items_number = $database->executeQuery('SELECT count(*) as "items" FROM shop.cartItems WHERE cart_id = (SELECT id FROM shop.carts WHERE user_id=?)', array($_SESSION["user_id"]))[0]["items"];
-$cart_id = $database->executeQuery("SELECT id FROM carts WHERE user_id = ?",array($_SESSION["user_id"]))[0]["id"];
 $database->closeConnection();
+$final_price = calculateItemsPrices($cartItems);
+$money_saved = calculatSave($cartItems);
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -125,9 +129,6 @@ $database->closeConnection();
                     <div class="right-bar">
                         <!-- Search Form -->
                         <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="sinlge-bar">
                             <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar shopping">
@@ -139,14 +140,14 @@ $database->closeConnection();
                                     <span><? echo $items_number ?> Producte<?php if ($items_number > 1 || $items_number == 0) {
                                             echo "s";
                                         } ?></span>
-                                    <a href="./cart.php?cart_id=?<?echo $cart_id?>">Veure cistella</a>
+                                    <a href="./cart.php?cart_id=<?echo $cart_user[0]['id']?>">Veure cistella</a>
                                 </div>
                                 <ul class="shopping-list">
                                     <? foreach ($cartItems as $item): ?>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i
                                                         class="fa fa-remove"></i></a>
-                                            <a class="cart-img" href="./cart.php?cart_id=?<?echo $cart_id?>">
+                                            <a class="cart-img" href="./product.php.php?product_id=?<?echo $item['id']?>">
                                                 <?if(isset($item['url']) && $item['url']!=null):?>
                                                     <img src="<?echo $item['url']?>"
                                                          alt="#">
@@ -200,24 +201,15 @@ $database->closeConnection();
                                 <div class="navbar-collapse">
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="#">Home</a></li>
-                                            <li><a href="#">Product</a></li>
-                                            <li><a href="#">Service</a></li>
-                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span
-                                                            class="new">New</span></a>
+                                            <li><a href="./index.php">Home</a></li>
+                                            <li><a href="./shop-grid.php">Productes</a></li>
+                                            <li><a href="#">Informació<i class="ti-angle-down"></i></a>
                                                 <ul class="dropdown">
-                                                    <li><a href="shop-grid.php">Shop Grid</a></li>
-                                                    <li><a href="cart.php">Cart</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
+                                                    <li><a href="blog-single-sidebar.php">Blog</a></li>
+                                                    <li><a href="blog-single-sidebar.php">Reviews</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Pages</a></li>
-                                            <li><a href="#">Blog<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.php">Blog Single Sidebar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.php">Contact Us</a></li>
+                                            <li><a href="contact.php">Contacte</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -270,7 +262,10 @@ $database->closeConnection();
                     <tbody>
                     <? foreach ($cartItems as $item): ?>
                         <tr>
-                            <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#">
+                            <td class="image" data-title="No">
+                                <?if($item['url']!=null):?>
+                                    <img src="<?echo $item['url']?>" alt="#">
+                                <?endif;?>
                             </td>
                             <td class="product-des" data-title="Description">
                                 <p class="product-name"><a
@@ -280,11 +275,13 @@ $database->closeConnection();
                             </td>
                             <td class="price" data-title="Price">
                                 <? if (isset($item["discount"]) && $item["discount"] != null): ?>
+                                <span style="color: gray;text-decoration: line-through;"><? echo formatPrice($item["product_price"]) ?> €</span>
                                 <span><? echo formatPrice(calculateNewPrice($item["product_price"], $item["discount"])) ?> €</span>
-                            </td>
                             <? else: ?>
                                 <span><? echo formatPrice($item["product_price"]) ?> €</span></td>
-                            <? endif; ?>
+                                <? endif; ?>
+                            </td>
+
                             <td class="qty" data-title="Qty"><!-- Input Order -->
                                 <div class="input-group">
                                     <div class="button minus">
@@ -314,7 +311,11 @@ $database->closeConnection();
 
 
                             </td>
-                            <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a>
+                            <td class="action" data-title="Remove">
+                                <form action="../../controllers/CartItemController.php" method="post">
+                                    <input name="product_id_deleteCart" style="display: none" value="<?echo $item['product_id']?>">
+                                    <button type="submit" style="background-color: transparent;border: none;"><i class="ti-trash remove-icon"></i></button>
+                                </form>
                             </td>
                         </tr>
                     <? endforeach; ?>
@@ -342,20 +343,30 @@ $database->closeConnection();
                                     </div>-->
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-7 col-12">
-                            <div class="right">
-                                <ul>
-                                    <li>Total cistella<span>$330.00</span></li>
-                                    <li>Shipping<span>Free</span></li>
-                                    <li>Estalvies<span>$20.00</span></li>
-                                    <li class="last">Total a pagar<span>$310.00</span></li>
-                                </ul>
-                                <div class="button5">
-                                    <a href="./checkout.php" class="btn">Pagar</a>
-                                    <a href="./shop-grid.php" class="btn">Continuar comprant</a>
-                                </div>
-                            </div>
-                        </div>
+                       <?if(count($cartItems)>0):?>
+                           <div class="col-lg-4 col-md-7 col-12">
+                               <div class="right">
+                                   <ul>
+                                       <li>Total cistella<span><?echo formatPrice($final_price)?> €</span></li>
+                                       <li>Enviament
+                                           <?if($final_price>=50):?>
+                                               <span>Gratuït</span>
+                                           <?else:?>
+                                               <span><?echo formatPrice(5)?> €</span>
+                                           <?endif;?>
+                                       </li>
+                                       <?if($money_saved>0):?>
+                                           <li>Estalvi<span><?echo formatPrice($money_saved)?> €</span></li>
+                                       <?endif;?>
+                                       <li class="last">Total a pagar<span><?echo formatPrice($final_price)?> €</span></li>
+                                   </ul>
+                                   <div class="button5">
+                                       <a href="./checkout.php" class="btn">Pagar</a>
+                                       <a href="./shop-grid.php" class="btn">Continuar comprant</a>
+                                   </div>
+                               </div>
+                           </div>
+                        <?endif;?>
                     </div>
                 </div>
                 <!--/ End Total Amount -->

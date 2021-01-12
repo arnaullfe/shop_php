@@ -68,3 +68,28 @@ function formatPrice($price){
     return number_format($price, 2, ",", ".");
 }
 
+function calculateItemsPrices($items){
+    $final_price = 0;
+    foreach ($items as $item){
+        $item_price = $item["product_price"]*$item["units"];
+        if(isset($item["discount"]) && $item["discount"]!=null){
+            $item_price = (calculateNewPrice($item["product_price"],$item["discount"]))*$item["units"];
+        }
+        $final_price += $item_price;
+    }
+    return $final_price;
+}
+
+function calculatSave($items){
+    $save = 0;
+    foreach ($items as $item){
+        if(isset($item["discount"]) && $item["discount"]!=null){
+            $item_price_discount = ($item["product_price"]-calculateNewPrice($item["product_price"],$item["discount"]));
+            $save += ($item_price_discount*$item["units"]);
+        }
+    }
+    if(calculateItemsPrices($items)>=50){
+        $save+=5;
+    }
+    return $save;
+}

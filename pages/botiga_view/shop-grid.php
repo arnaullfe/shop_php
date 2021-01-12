@@ -152,9 +152,6 @@ $num = 0;
                                                                                              aria-hidden="true"></i></a>
                                 </div>
                             <? endif; ?>
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
                             <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i class="ti-bag"></i> <span
                                             class="total-count">2</span></a>
@@ -330,7 +327,7 @@ $num = 0;
                                         <? endif; ?>
                                     </div>
                                     <div class="content">
-                                        <h5><a href="#"><?php echo $product["name"] ?></a></h5>
+                                        <h5><a href="./product.php?product_id=<?php echo $product['id']?>"><?php echo $product["name"] ?></a></h5>
                                         <?php if ($product["discount"] != null): ?>
                                             <span style="color: gray;text-decoration: line-through"><?php echo number_format($product["price_iva"], 2, ",", ".") . " €" ?></span>
                                             <span><?php echo number_format(calculateNewPrice($product["price_iva"], $product["discount"]), 2, ",", ".") . " €" ?></span>
