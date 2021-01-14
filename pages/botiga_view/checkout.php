@@ -1,3 +1,21 @@
+<?php
+include_once ('../../modals/Database.php');
+include_once ('../../controllers/UserTokenController.php');
+
+if(!isset($_GET["cart_id"])){
+    header("location: ../admin_view/login.php");
+}
+$database = new Database();
+$user_id = $database->executeQuery("SELECT user_id FROM carts WHERE id = ?",array($_GET["cart_id"]));
+if(count($user_id)==0 || $user_id[0]["user_id"]!=$_SESSION["user_id"]){
+    $database->closeConnection();
+    header("location: ../admin_view/login.php");
+}
+
+$cart_user = $database->executeQuery("SELECT id FROM carts WHERE user_id = ?",array($_SESSION["user_id"]));
+$database->closeConnection();
+
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>

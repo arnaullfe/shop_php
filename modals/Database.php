@@ -144,7 +144,23 @@ class Database
                 product_id int NOT NULL,
                 units int NOT NULL,
                 created_at DATETIME);");
-
+            $this->connection->query('CREATE TABLE IF NOT EXISTS commands(
+                id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                cart_id int NOT NULL,
+                user_id int NOT NULL,
+                status int,
+                created_at DATETIME);');
+            $this->connection->query('CREATE TABLE IF NOT EXISTS commandItems(
+                id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                command_id int NOT NULL,
+                units int NOT NULL,
+                discount int,
+                product_name varchar(255),
+                product_desc varchar(255),
+                product_iva int,
+                price_iva_unit float,
+                total_iva_price float,
+                created_at DATETIME);');
         } catch (PDOException $err) {
             echo $err;
         }

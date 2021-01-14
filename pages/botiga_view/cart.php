@@ -179,7 +179,7 @@ $money_saved = calculatSave($cartItems);
                                             <span class="total-amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
                                         <? endif; ?>
                                     </div>
-                                    <a href="checkout.php" class="btn animate">Anar a pagar</a>
+                                    <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn animate">Anar a pagar</a>
                                 </div>
                             </div>
                             <!--/ End Shopping Item -->
@@ -361,7 +361,7 @@ $money_saved = calculatSave($cartItems);
                                        <li class="last">Total a pagar<span><?echo formatPrice($final_price)?> €</span></li>
                                    </ul>
                                    <div class="button5">
-                                       <a href="./checkout.php" class="btn">Pagar</a>
+                                       <a href="./checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn">Pagar</a>
                                        <a href="./shop-grid.php" class="btn">Continuar comprant</a>
                                    </div>
                                </div>
