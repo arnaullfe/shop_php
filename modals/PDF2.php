@@ -23,7 +23,7 @@ class PDF2 extends FPDF
         // Datos
         foreach($data as $row)
         {
-            $this->Cell(20,6,utf8_decode($row[0]),'LBR');
+            $this->Cell(20,6,utf8_decode(str_pad($row[0],6,'0',STR_PAD_LEFT)),'LBR');
             $this->Cell(100,6,utf8_decode($row[1]),'LRB' , 0 );
             $this->Cell(25,6,formatPrice($row[2]) . EURO,'LRB',0);
             $this->Cell(15,6, $row[3],'LRB',0);
@@ -37,15 +37,15 @@ class PDF2 extends FPDF
 
         $this->SetFont('Arial' , '' , 11);
 
-        $this->Cell(80 , 8 , 'SUBTOTAL' , 1 , 'R','R',true);
-        $this->Cell(30,8,'IVA' , 1 , 'C','R',true);
+        $this->Cell(70 , 8 , 'SUBTOTAL' , 1 , 'R','R',true);
+        $this->Cell(40,8,'IVA' , 1 , 'C','R',true);
         $this->Cell(30,8,'ENVIAMENT' , 1 , 'C','R',true);
         $this->Cell(50,8,'TOTAL' , 1 , 'R','R',true);
 
         $this->Ln();
 
-        $this->Cell(80 , 8 , formatPrice(700) . EURO, 'LBR' , 'R','R');
-        $this->Cell(30,8,'('. 21 .'%) '. formatPrice(20) . EURO , 'LBR' , 'C','R');
+        $this->Cell(70 , 8 , formatPrice(700) . EURO, 'LBR' , 'R','R');
+        $this->Cell(40,8,'('. 21 .'%) '. formatPrice(20) . EURO , 'LBR' , 'C','R');
         $this->Cell(30,8,formatPrice(0) . EURO , 'LBR' , 'C','R');
         $this->Cell(50,8,formatPrice(1000) . EURO , 'LBR' , 'R','R');
     }

@@ -20,9 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/AddressController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/modals/Address.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/PdfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/PdfController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modals/PDF2.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/PDF2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/profile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +149,7 @@
       <workItem from="1610378554986" duration="12457000" />
       <workItem from="1610456530168" duration="5082000" />
       <workItem from="1610633455255" duration="8335000" />
-      <workItem from="1610879396340" duration="11128000" />
+      <workItem from="1610879396340" duration="23267000" />
     </task>
     <servers />
   </component>

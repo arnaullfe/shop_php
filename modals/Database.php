@@ -161,6 +161,21 @@ class Database
                 price_iva_unit float,
                 total_iva_price float,
                 created_at DATETIME);');
+            $this->connection->query('CREATE TABLE IF NOT EXISTS addresses(
+                id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                alias varchar(255),
+                user_id int NOT NULL,
+                name varchar(255),
+                lastnames varchar(255),
+                email varchar(255),
+                phone varchar(255),
+                country varchar(255),
+                address varchar(255),
+                city varchar(255),
+                province varchar(255),
+                postal_code varchar(255),
+                nif varchar(255),
+                created_at DATETIME);');
         } catch (PDOException $err) {
             echo $err;
         }
