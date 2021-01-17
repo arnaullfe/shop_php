@@ -10,14 +10,14 @@ $pdf->SetCreator('Eshop');
 $pdf->Image('../resouces/images/logo.png' , 10 , 10 , -70);
 
 $pdf->SetY(8);
-$pdf->SetFont('Arial', '' ,8);
-$pdf->Cell($pdf->GetPageWidth()-43 , 3 , utf8_decode('Eshop S.L') , 0 , 0, 'R');
+$pdf->SetFont('Arial', '' ,8.5);
+$pdf->Cell($pdf->GetPageWidth()-28 , 3 , utf8_decode('Eshop S.L') , 0 , 'R', 'R');
 $pdf->Ln();
-$pdf->Cell($pdf->GetPageWidth()-30 , 3 , utf8_decode('C/ autista March, s/n') , 0 , 0, 'R');
+$pdf->Cell($pdf->GetPageWidth()-28 , 3 , utf8_decode('C/ autista March, s/n') , 0 , 0, 'R');
 $pdf->Ln();
-$pdf->Cell($pdf->GetPageWidth()-24.5 , 3 , utf8_decode('08570 Torelló, Barcelona' ), 0 , 0, 'R');
+$pdf->Cell($pdf->GetPageWidth()-28 , 3 , utf8_decode('08570 Torelló, Barcelona' ), 0 , 0, 'R');
 $pdf->Ln();
-$pdf->Cell($pdf->GetPageWidth()-35.5 , 3 , utf8_decode('CIF: B11111111') , 0 , 0, 'R');
+$pdf->Cell($pdf->GetPageWidth()-28 , 3 , utf8_decode('CIF: B11111111') , 0 , 0, 'R');
 
 $pdf->SetLineWidth(0.4);
 $pdf->SetDrawColor(119,137,138);
@@ -76,7 +76,17 @@ $header = array('Codi' , 'Article' , 'Preu' , 'Unitats' ,'Total');
 $data = array(
     array('test','dedededededededededededededededed',50000,3000,100000),
     array('test',1,12,6,12,6),
-    array('test',1,50,4,50,4)
+    array('test',1,50,4,50,4),
+    array('test','dedededededededededededededededed',50000,3000,100000),
+    array('test',1,12,6,12,6),
+    array('test','dedededededededededededededededed',50000,3000,100000),
+    array('test',1,12,6,12,6),
+    array('test','dedededededededededededededededed',50000,3000,100000),
+    array('test',1,12,6,12,6),
+    array('test','dedededededededededededededededed',50000,3000,100000),
+    array('test',1,12,6,12,6),
+    array('test','dedededededededededededededededed',50000,3000,100000),
+    array('test',1,12,6,12,6),
 );
 
 

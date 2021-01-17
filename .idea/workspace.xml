@@ -20,140 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/PdfController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/FAQ.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/changelog.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/__construct.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/acceptpagebreak.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/addfont.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/addlink.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/addpage.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/aliasnbpages.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/cell.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/close.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/error.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/footer.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/getpageheight.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/getpagewidth.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/getstringwidth.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/getx.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/gety.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/header.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/image.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/index.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/line.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/link.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/ln.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/multicell.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/output.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/pageno.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/rect.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setauthor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setautopagebreak.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setcompression.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setcreator.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setdisplaymode.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setdrawcolor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setfillcolor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setfont.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setfontsize.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setkeywords.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setleftmargin.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setlinewidth.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setlink.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setmargins.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setrightmargin.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setsubject.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/settextcolor.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/settitle.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/settopmargin.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setx.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/setxy.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/sety.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/text.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/doc/write.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/courier.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/courierb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/courierbi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/courieri.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/helvetica.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/helveticab.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/helveticabi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/helveticai.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/symbol.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/times.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/timesb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/timesbi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/timesi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/font/zapfdingbats.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/fpdf.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/fpdf.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/install.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1250.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1251.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1252.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1253.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1254.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1255.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1257.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp1258.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/cp874.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-1.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-11.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-15.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-16.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-2.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-4.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-5.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-7.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/iso-8859-9.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/koi8-r.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/koi8-u.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/makefont.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/makefont/ttfparser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/20k_c1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/20k_c2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/calligra.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/calligra.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/calligra.z" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/countries.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/index.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/makefont.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto1.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto2.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto3.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto4.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto5.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto5.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto6.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto6.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto7.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dependencies/fpdf/tutorial/tuto7.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modals/PDF2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resouces/images/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/awscliv2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/awscliv2.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/CognitoIdentity/CognitoIdentityClient.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/CognitoIdentity/CognitoIdentityClient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/cognito-identity/2014-06-30/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/cognito-identity/2014-06-30/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/pinpoint/2016-12-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/pinpoint/2016-12-01/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/s3control/2018-08-20/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/s3control/2018-08-20/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/sagemaker/2017-07-24/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/sagemaker/2017-07-24/api-2.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resouces/images/image_cover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/PdfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/PdfController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modals/PDF2.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/PDF2.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,7 +145,7 @@
       <workItem from="1610378554986" duration="12457000" />
       <workItem from="1610456530168" duration="5082000" />
       <workItem from="1610633455255" duration="8335000" />
-      <workItem from="1610879396340" duration="10473000" />
+      <workItem from="1610879396340" duration="11128000" />
     </task>
     <servers />
   </component>

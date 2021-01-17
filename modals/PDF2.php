@@ -20,14 +20,13 @@ class PDF2 extends FPDF
         $this->Cell(30,5,$header[4],1,0,'L',true);
 
         $this->Ln();
-        $this->SetFont('Arial' , '' , 10.5);
         // Datos
         foreach($data as $row)
         {
             $this->Cell(20,6,utf8_decode($row[0]),'LBR');
             $this->Cell(100,6,utf8_decode($row[1]),'LRB' , 0 );
             $this->Cell(25,6,formatPrice($row[2]) . EURO,'LRB',0);
-            $this->Cell(15,6, $row[3],'LRB',0,'C');
+            $this->Cell(15,6, $row[3],'LRB',0);
             $this->Cell(30,6, formatPrice($row[4]) . EURO,'LRB',0);
             $this->Ln();
         }
