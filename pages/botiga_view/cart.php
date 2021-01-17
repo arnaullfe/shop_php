@@ -1,5 +1,6 @@
 <?php
 include_once('../../modals/Database.php');
+include_once('../../controllers/UserTokenController.php');
 include_once('../../controllers/MainController.php');
 session_start();
 $database = new Database();
@@ -41,6 +42,7 @@ $money_saved = calculatSave($cartItems);
           rel="stylesheet">
 
     <!-- StyleSheet -->
+    <script src="https://kit.fontawesome.com/e7269a261c.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -128,62 +130,88 @@ $money_saved = calculatSave($cartItems);
                 <div class="col-lg-2 col-md-3 col-12">
                     <div class="right-bar">
                         <!-- Search Form -->
-                        <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-                        </div>
-                        <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span
-                                        class="total-count"><? echo $items_number ?></span></a>
-                            <!-- Shopping Item -->
-                            <div class="shopping-item">
-                                <div class="dropdown-cart-header">
+                        <?php if (isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])): ?>
+                            <div class="sinlge-bar ">
+                                <div class="dropdown">
+                                    <a class="single-icon dropdown-toggle" id="dropdownMenuLink"
+                                       data-toggle="dropdown" aria-expanded="false"
+                                       style="font-size: 18px;background-color: transparent;cursor: pointer">
+                                        <img class="" src='<?php echo $_SESSION["user_info"][0]["image"] ?>'
+                                             style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                        <?php echo $_SESSION["user_info"][0]["name"] ?>
+                                    </a>
+
+                                    <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="./profile.php"><i
+                                                    class="fas fa-user mr-3"></i>El meu perfil</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les
+                                            meves comandes</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="../admin_view/login.php"><i
+                                                    class="fas fa-sign-out-alt mr-3 text-danger"></i>Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sinlge-bar shopping">
+                                <a href="#" class="single-icon"><i class="ti-bag"></i> <span
+                                            class="total-count"><? echo $items_number ?></span></a>
+                                <!-- Shopping Item -->
+                                <div class="shopping-item">
+                                    <div class="dropdown-cart-header">
                                     <span><? echo $items_number ?> Producte<?php if ($items_number > 1 || $items_number == 0) {
                                             echo "s";
                                         } ?></span>
-                                    <a href="./cart.php?cart_id=<?echo $cart_user[0]['id']?>">Veure cistella</a>
-                                </div>
-                                <ul class="shopping-list">
-                                    <? foreach ($cartItems as $item): ?>
-                                        <li>
-                                            <a href="#" class="remove" title="Remove this item"><i
-                                                        class="fa fa-remove"></i></a>
-                                            <a class="cart-img" href="./product.php.php?product_id=?<?echo $item['id']?>">
-                                                <?if(isset($item['url']) && $item['url']!=null):?>
-                                                    <img src="<?echo $item['url']?>"
-                                                         alt="#">
-                                                <?else:?>
-                                                    <img src="https://via.placeholder.com/70x70"
-                                                         alt="#">
-                                                <?endif;?>
-
-                                            </a>
-                                            <h4>
-                                                <a href="./product.php?product_id=<? echo $item['product_id'] ?>"><? echo $item["product_name"] ?></a>
-                                            </h4>
-                                            <p class="quantity"><? echo $item["units"] ?>x
-                                                - <? if (isset($item["discount"]) && $item["discount"] != null): ?>
-                                                    <span class="amount"><? echo formatPrice((calculateNewPrice($item["product_price"], $item["discount"]) * $item["units"])) ?> €</span></td>
-                                                <? else: ?>
-                                                    <span class="amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
-                                                <? endif; ?></p>
-                                        </li>
-                                    <? endforeach; ?>
-                                </ul>
-                                <div class="bottom">
-                                    <div class="total">
-                                        <span>Total</span>
-                                        <? if (isset($item["discount"]) && $item["discount"] != null): ?>
-                                            <span class="total-amount"><? echo formatPrice((calculateNewPrice($item["product_price"], $item["discount"]) * $item["units"])) ?> €</span>
-                                            </td>
-                                        <? else: ?>
-                                            <span class="total-amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
-                                        <? endif; ?>
+                                        <a href="./cart.php?cart_id=<?echo $cart_user[0]['id']?>">Veure cistella</a>
                                     </div>
-                                    <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn animate">Anar a pagar</a>
+                                    <ul class="shopping-list">
+                                        <? foreach ($cartItems as $item): ?>
+                                            <li>
+                                                <a href="#" class="remove" title="Remove this item"><i
+                                                            class="fa fa-remove"></i></a>
+                                                <a class="cart-img" href="./product.php.php?product_id=?<?echo $item['id']?>">
+                                                    <?if(isset($item['url']) && $item['url']!=null):?>
+                                                        <img src="<?echo $item['url']?>"
+                                                             alt="#">
+                                                    <?else:?>
+                                                        <img src="https://via.placeholder.com/70x70"
+                                                             alt="#">
+                                                    <?endif;?>
+
+                                                </a>
+                                                <h4>
+                                                    <a href="./product.php?product_id=<? echo $item['product_id'] ?>"><? echo $item["product_name"] ?></a>
+                                                </h4>
+                                                <p class="quantity"><? echo $item["units"] ?>x
+                                                    - <? if (isset($item["discount"]) && $item["discount"] != null): ?>
+                                                        <span class="amount"><? echo formatPrice((calculateNewPrice($item["product_price"], $item["discount"]) * $item["units"])) ?> €</span></td>
+                                                    <? else: ?>
+                                                        <span class="amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
+                                                    <? endif; ?></p>
+                                            </li>
+                                        <? endforeach; ?>
+                                    </ul>
+                                    <div class="bottom">
+                                        <div class="total">
+                                            <span>Total</span>
+                                            <? if (isset($item["discount"]) && $item["discount"] != null): ?>
+                                                <span class="total-amount"><? echo formatPrice((calculateNewPrice($item["product_price"], $item["discount"]) * $item["units"])) ?> €</span>
+                                                </td>
+                                            <? else: ?>
+                                                <span class="total-amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
+                                            <? endif; ?>
+                                        </div>
+                                        <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn animate">Anar a pagar</a>
+                                    </div>
                                 </div>
+                                <!--/ End Shopping Item -->
                             </div>
-                            <!--/ End Shopping Item -->
-                        </div>
+                        <? else: ?>
+                            <div class="sinlge-bar ">
+                                <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o"
+                                                                                         aria-hidden="true"></i></a>
+                            </div>
+                        <? endif; ?>
                     </div>
                 </div>
             </div>
@@ -358,7 +386,13 @@ $money_saved = calculatSave($cartItems);
                                        <?if($money_saved>0):?>
                                            <li>Estalvi<span><?echo formatPrice($money_saved)?> €</span></li>
                                        <?endif;?>
-                                       <li class="last">Total a pagar<span><?echo formatPrice($final_price)?> €</span></li>
+                                       <li class="last">Total a pagar
+                                           <?if($final_price>=50):?>
+                                               <span><?echo formatPrice($final_price)?> €</span>
+                                           <?else:?>
+                                               <span><?echo formatPrice($final_price+5)?> €</span>
+                                           <?endif;?>
+                                           </li>
                                    </ul>
                                    <div class="button5">
                                        <a href="./checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn">Pagar</a>

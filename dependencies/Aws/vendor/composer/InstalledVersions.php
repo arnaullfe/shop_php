@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ca33e7fc1c11f14b37fad43e6bc03775be8d7d2d',
+    'reference' => '90aa9e1372cfd41018800c3ad6ddfa9a30dcace4',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,16 +41,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'ca33e7fc1c11f14b37fad43e6bc03775be8d7d2d',
+      'reference' => '90aa9e1372cfd41018800c3ad6ddfa9a30dcace4',
     ),
     'aws/aws-sdk-php' => 
     array (
-      'pretty_version' => '3.171.17',
-      'version' => '3.171.17.0',
+      'pretty_version' => '3.171.19',
+      'version' => '3.171.19.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f23f4871eceec8c92645f054186a83bba86c1f3e',
+      'reference' => 'e786e4a8b2ec85b258833d0570ff6b61348cbdb6',
     ),
     'guzzlehttp/guzzle' => 
     array (
