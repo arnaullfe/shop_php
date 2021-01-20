@@ -93,3 +93,8 @@ function calculatSave($items){
     }
     return $save;
 }
+
+function formatDate($date){
+    $date = new DateTime($date);
+    return date_format($date,"d/m/Y H:i:s");
+}

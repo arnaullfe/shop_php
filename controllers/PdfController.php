@@ -4,11 +4,16 @@ include_once ('../modals/Database.php');
 require('../modals/PDF2.php');
 
 
-//function createBill($command_id){
+function createBill($command_id){
+    $database = new Database();
+    $command = $database->executeQuery("SELECT * FROM commands WHERE id=?",array($command_id));
+    $commandItems = $database->executeQuery("SELECT * FROM commandItems WHERE command_id=?",array($command_id));
+    $user = $database->executeQuery("SELECT * from users WHERE id=?",array($command["user_id"]));
+    $address = $database->executeQuery("SELECT * FROM addressesCommands WHERE id=?",array($command["address_command_id"]));
     $pdf = new PDF2();
     $pdf->AddPage();
 
-    $pdf->SetTitle(utf8_decode('Factura nº '.str_pad(123,6,'0',STR_PAD_LEFT)));
+    $pdf->SetTitle(utf8_decode('Factura nº '.str_pad($command_id,6,'0',STR_PAD_LEFT)));
     $pdf->SetAuthor('Eshop');
     $pdf->SetCreator('Eshop');
 
@@ -44,19 +49,19 @@ require('../modals/PDF2.php');
     $pdf->SetY(50);
     $pdf->SetFont('Arial' , '' , 11);
     $pdf->Cell(12 , 5 , utf8_decode('Nom:') , 0 , 0 , 'L');
-    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5 , utf8_decode('Arnau Llopart') , 0 , 0 , 'L' );
+    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5 , utf8_decode($address["name"]." ".$address["lastnames"]) , 0 , 0 , 'L' );
     $pdf->Ln();
     $pdf->Cell(18 , 5 , utf8_decode('Direcció:') , 0 , 0 , 'L');
-    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode('c/gurri n/13') , 0 , 0 , 'L' );
+    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode($address["postal_code"]) , 0 , 0 , 'L' );
     $pdf->Ln();
     $pdf->Cell(18 , 5 , utf8_decode('Població:') , 0 , 0 , 'L');
-    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode('Barcelona') , 0 , 0 , 'L' );
+    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode($address["city"]) , 0 , 0 , 'L' );
     $pdf->Ln();
     $pdf->Cell(18 , 5 , utf8_decode('NIF/CIF:') , 0 , 0 , 'L');
-    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode('B22222222') , 0 , 0 , 'L' );
+    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode($address["nif"]) , 0 , 0 , 'L' );
     $pdf->Ln();
     $pdf->Cell(17 , 5 , utf8_decode('Telèfon:') , 0 , 0 , 'L');
-    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode('608338587') , 0 , 0 , 'L' );
+    $pdf->Cell($pdf->GetPageWidth()/2.4 , 5, utf8_decode($address["phone"]) , 0 , 0 , 'L' );
 
 
     $pdf->Rect(10,83,($pdf->GetPageWidth()-20),5);
@@ -64,11 +69,11 @@ require('../modals/PDF2.php');
     $pdf->SetY(83);
     $pdf->SetFont('Arial' , '' , 9);
     $pdf->Cell(20 , 5 , utf8_decode('Nº Comanda:') , 0 , 0 , 'L');
-    $pdf->Cell( 44, 5 , utf8_decode(str_pad(12,6,'0',STR_PAD_LEFT)) , 0 , 0 , 'L' );
+    $pdf->Cell( 44, 5 , utf8_decode(str_pad($command_id,6,'0',STR_PAD_LEFT)) , 0 , 0 , 'L' );
 
     $pdf->Rect(75,83,0,5);
     $pdf->Cell(10 , 5 , utf8_decode(' Data:') , 0 , 0 , 'L');
-    $pdf->Cell(40, 5 , utf8_decode('03/10/2021') , 0 , 0 , 'L' );
+    $pdf->Cell(40, 5 , utf8_decode(formatDate($command["created_at"])) , 0 , 0 , 'L' );
 
     $pdf->Rect(125,83,0,5);
     $pdf->Cell(32 , 5 , utf8_decode(' Forma de pagament:') , 0 , 0 , 'L');
@@ -78,21 +83,10 @@ require('../modals/PDF2.php');
 
 
     $header = array('Codi' , 'Article' , 'Preu' , 'Unitats' ,'Total');
-    $data = array(
-        array('test','dedededededededededededededededed',50000,3000,100000),
-        array('test',1,12,6,12,6),
-        array('test',1,50,4,50,4),
-        array('test','dedededededededededededededededed',50000,3000,100000),
-        array('test',1,12,6,12,6),
-        array('test','dedededededededededededededededed',50000,3000,100000),
-        array('test',1,12,6,12,6),
-        array('test','dedededededededededededededededed',50000,3000,100000),
-        array('test',1,12,6,12,6),
-        array('test','dedededededededededededededededed',50000,3000,100000),
-        array('test',1,12,6,12,6),
-        array('test','dedededededededededededededededed',50000,3000,100000),
-        array('test',1,12,6,12,6),
-    );
+    $data = array();
+    foreach ($commandItems as $item){
+        array_push($data,array($item["id"],$item["product_name"],$item["price_iva_unit"],$item["units"],$item["total_iva_price"],$item["product_iva"]));
+    }
 
 
     $pdf->Ln();
@@ -100,4 +94,6 @@ require('../modals/PDF2.php');
     $pdf->ImprovedTable($header,$data);
 
     $pdf->Output('I' , 'pdffiles/factura.pdf');
-//}
+    header("location: ../pages/botiga_view/index.php");
+
+}

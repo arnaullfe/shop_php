@@ -21,6 +21,11 @@ class PDF2 extends FPDF
 
         $this->Ln();
         // Datos
+        $total_price = 0;
+        $price_no_iva = 0;
+        $all_iva = 0;
+        $total_units = 0;
+
         foreach($data as $row)
         {
             $this->Cell(20,6,utf8_decode(str_pad($row[0],6,'0',STR_PAD_LEFT)),'LBR');
@@ -29,9 +34,15 @@ class PDF2 extends FPDF
             $this->Cell(15,6, $row[3],'LRB',0);
             $this->Cell(30,6, formatPrice($row[4]) . EURO,'LRB',0);
             $this->Ln();
+            $total_price +=$row[4];
+            $price_no_iva += $row[4] - (($row[4]*$row[5])/100);
+            $all_iva += $row[5]*$row[3];
+            $total_units +=$row[3];
         }
-        // Línea de cierre
 
+        $all_iva = ($all_iva/$total_units);
+        // Línea de cierre
+        $enviament = ($total_price<50)? 5:0;
         $this->Ln();
         $this->Ln();
 
@@ -44,9 +55,9 @@ class PDF2 extends FPDF
 
         $this->Ln();
 
-        $this->Cell(70 , 8 , formatPrice(700) . EURO, 'LBR' , 'R','R');
-        $this->Cell(40,8,'('. 21 .'%) '. formatPrice(20) . EURO , 'LBR' , 'C','R');
-        $this->Cell(30,8,formatPrice(0) . EURO , 'LBR' , 'C','R');
-        $this->Cell(50,8,formatPrice(1000) . EURO , 'LBR' , 'R','R');
+        $this->Cell(70 , 8 , formatPrice($price_no_iva) . EURO, 'LBR' , 'R','R');
+        $this->Cell(40,8,'('. 21 .'%) '. formatPrice($all_iva) . EURO , 'LBR' , 'C','R');
+        $this->Cell(30,8,formatPrice($enviament) . EURO , 'LBR' , 'C','R');
+        $this->Cell(50,8,formatPrice($total_price) . EURO , 'LBR' , 'R','R');
     }
 }

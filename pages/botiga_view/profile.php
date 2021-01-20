@@ -238,7 +238,7 @@ $database->closeConnection();
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li><a href="./index.php">Home</a></li>
-                                                <li class="active"><a href="./shop-grid.php">Productes</a></li>
+                                                <li><a href="./shop-grid.php">Productes</a></li>
                                                 <li><a href="#">Informació<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="blog-single-sidebar.php">Blog</a></li>
