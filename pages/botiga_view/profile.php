@@ -175,7 +175,7 @@ $database->closeConnection();
                                                     <a href="#" class="remove" title="Remove this item"><i
                                                                 class="fa fa-remove"></i></a>
                                                     <a class="cart-img"
-                                                       href="./product.php.php?product_id=?<? echo $item['id'] ?>">
+                                                       href="./product.php?product_id=<? echo $item['id'] ?>">
                                                         <? if (isset($item['url']) && $item['url'] != null): ?>
                                                             <img src="<? echo $item['url'] ?>"
                                                                  alt="#">
@@ -468,7 +468,7 @@ $database->closeConnection();
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label>Número de Telèfon<span>*</span></label>
-                                            <input type="email" name="phone_editAddress" id="phone_editAddress"
+                                            <input type="name" name="phone_editAddress" id="phone_editAddress"
                                                    required="required"
                                                 <? if (count($addresses) == 0): ?>
                                                     <? echo "readonly"; ?>
@@ -492,7 +492,7 @@ $database->closeConnection();
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label>CIF/NIF<span>*</span></label>
-                                            <input type="text" name="nif_editAddress" nif="nif_editAddress"
+                                            <input type="text" name="nif_editAddress" id="nif_editAddress"
                                                    required="required"
                                                 <? if (count($addresses) == 0): ?>
                                                     <? echo "readonly"; ?>
@@ -504,7 +504,7 @@ $database->closeConnection();
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label>Païs<span>*</span></label>
-                                            <input type="text" name="country_editAddress" country="country_editAddress"
+                                            <input type="text" name="country_editAddress" id="country_editAddress"
                                                    required="required"
                                                 <? if (count($addresses) == 0): ?>
                                                     <? echo "readonly"; ?>
@@ -528,7 +528,7 @@ $database->closeConnection();
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label>Població<span>*</span></label>
-                                            <input type="email" name="city_editAddress" id="city_editAddress"
+                                            <input type="text" name="city_editAddress" id="city_editAddress"
                                                    required="required"
                                                 <? if (count($addresses) == 0): ?>
                                                     <? echo "readonly"; ?>
@@ -541,9 +541,11 @@ $database->closeConnection();
                                         <div class="form-group">
                                             <label>Adreça<span>*</span></label>
                                             <input type="text" name="address_editAddress" id="address_editAddress"
-                                                   required="required" <? if (count($addresses) == 0) {
-                                                echo "readonly";
-                                            } ?>>
+                                                   required="required" <? if (count($addresses) == 0): ?>
+                                                <? echo "readonly"; ?>
+                                            <? else: ?>
+                                                value="<? echo $addresses[0]['address'] ?>"
+                                            <? endif; ?>>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -564,6 +566,11 @@ $database->closeConnection();
                                        style="display: none;"
                                     <? if (count($addresses) > 0): ?>
                                         value="<? echo $addresses[0]['id'] ?>"
+                                    <? endif; ?>>
+                                <input type="text" name="created_at_editAddress" id="created_at_editAddress" required="required"
+                                       style="display: none;"
+                                    <? if (count($addresses) > 0): ?>
+                                        value="<? echo $addresses[0]['created_at'] ?>"
                                     <? endif; ?>>
                                 <div class="col-12 pl-4 pr-4">
                                     <button type="submit" class="btn btn-warning btn-block" id="save_editAddress"
@@ -831,26 +838,29 @@ $database->closeConnection();
             }
         }
        function changeInputValues(data){
+
            document.getElementById("id_editAddress").value = data.id;
-           document.getElementById("alias_editAddress").readonly = false;
-           document.getElementById("id_deleteAddress").value = data.id;
-           document.getElementById("alias_editAddress").value = data.alias;
-           document.getElementById("name_editAddress").value = data.name;
-           document.getElementById("lastnames_editAddress").value = data.lastnames;
-           document.getElementById("email_editAddress").value = data.email;
-           document.getElementById("phone_editAddress").value = data.phone;
-           document.getElementById("nif_editAddress").value = data.nif;
-           document.getElementById("country_editAddress").value = data.country;
-           document.getElementById("city_editAddress").value = data.city;
-           document.getElementById("postal_code_editAddress").value = data.postal_code;
-           document.getElementById("province_editAddress").value = data.province;
+           changeInput("id_editAddress",data.id);
+           changeInput("id_deleteAddress",data.id);
+           changeInput("alias_editAddress",data.alias);
+           changeInput("name_editAddress",data.name);
+           changeInput("lastnames_editAddress",data.lastnames);
+           changeInput("email_editAddress",data.email);
+           changeInput("phone_editAddress",data.phone);
+           changeInput("nif_editAddress",data.nif);
+           changeInput("address_editAddress",data.address);
+           changeInput("country_editAddress",data.country);
+           changeInput("city_editAddress",data.city);
+           changeInput("postal_code_editAddress",data.postal_code);
+           changeInput("province_editAddress",data.province)
+           changeInput("created_at_editAddress",data.created_at)
            document.getElementById("delete_address").removeAttribute("disabled");
            document.getElementById("save_editAddress").removeAttribute("disabled");
        }
 
        function changeInput(id,value){
-            document.getElementById(id).value = value;
-           document.getElementById(id).readonly = false;
+           document.getElementById(id).removeAttribute("readonly");
+           document.getElementById(id).value = value;
        }
     </script>
 

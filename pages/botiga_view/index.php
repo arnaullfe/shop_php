@@ -146,9 +146,9 @@ $database->closeConnection();
                             <div class="search-bar">
                                 <select>
                                     <option selected="selected">Tots</option>
-                                    <option>watch</option>
-                                    <option>mobile</option>
-                                    <option>kid’s item</option>
+                                    <?foreach ($categories as $cat):?>
+                                    <option value="<?echo $cat['id']?>"><?echo $cat["name"]?></option>
+                                    <?endforeach;?>
                                 </select>
                                 <form>
                                     <input name="search" placeholder="Cerca els teus productes....." type="search">
@@ -199,7 +199,7 @@ $database->closeConnection();
                                                 <li>
                                                     <a href="#" class="remove" title="Remove this item"><i
                                                                 class="fa fa-remove"></i></a>
-                                                    <a class="cart-img" href="./product.php.php?product_id=?<?echo $item['id']?>">
+                                                    <a class="cart-img" href="./product.php?product_id=<?echo $item['id']?>">
                                                         <?if(isset($item['url']) && $item['url']!=null):?>
                                                             <img src="<?echo $item['url']?>"
                                                                  alt="#">
@@ -410,7 +410,7 @@ $database->closeConnection();
                                                                     <a title="Detall del producte" href="./product.php?product_id=<?echo $product['id']?>"><i class=" ti-eye"></i><span>Més detalls</span></a>
                                                                     <!--<a title="Desitjats" href="#"><i class=" ti-heart "></i><span>Afegir a desitjats</span></a>
                                                                     <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>-->
-                                                                    <a title="Cistella" href="./product.php?product_id=?<?echo $product['id']?>"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span>Afegir a la cistella</span></a>
+                                                                    <a title="Cistella" href="./product.php?product_id=<?echo $product['id']?>"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span>Afegir a la cistella</span></a>
                                                                 </div>
                                                                 <div class="product-action-2" style="padding-left: 3%">
                                                                     <a title="Afegir" href="#">Cistella</a>

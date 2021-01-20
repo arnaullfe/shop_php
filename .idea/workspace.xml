@@ -20,13 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/AddressController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/modals/Address.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/awscliv2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/awscliv2.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AddressController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AddressController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/PdfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/PdfController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/Database.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/Database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modals/PDF2.php" beforeDir="false" afterPath="$PROJECT_DIR$/modals/PDF2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/Sdk.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/acm-pca/2017-08-22/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/acm-pca/2017-08-22/api-2.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/chime/2018-05-01/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/chime/2018-05-01/api-2.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ecs/2014-11-13/api-2.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/ecs/2014-11-13/api-2.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/aws/aws-sdk-php/src/data/endpoints.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/dependencies/Aws/vendor/composer/installed.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +161,8 @@
       <workItem from="1610456530168" duration="5082000" />
       <workItem from="1610633455255" duration="8335000" />
       <workItem from="1610879396340" duration="23267000" />
+      <workItem from="1610983237701" duration="2838000" />
+      <workItem from="1611163773177" duration="2289000" />
     </task>
     <servers />
   </component>

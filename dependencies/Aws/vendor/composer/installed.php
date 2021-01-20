@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '90aa9e1372cfd41018800c3ad6ddfa9a30dcace4',
+    'reference' => '3d3c6c8a4ea7c19d0278142099f8271ddbe20bee',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,16 +18,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '90aa9e1372cfd41018800c3ad6ddfa9a30dcace4',
+      'reference' => '3d3c6c8a4ea7c19d0278142099f8271ddbe20bee',
     ),
     'aws/aws-sdk-php' => 
     array (
-      'pretty_version' => '3.171.19',
-      'version' => '3.171.19.0',
+      'pretty_version' => '3.171.20',
+      'version' => '3.171.20.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e786e4a8b2ec85b258833d0570ff6b61348cbdb6',
+      'reference' => '02aaf7007c5678a6358ea924cd85531300aa1747',
     ),
     'guzzlehttp/guzzle' => 
     array (

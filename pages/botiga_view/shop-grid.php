@@ -177,7 +177,7 @@ $num = 0;
                                                 <li>
                                                     <a href="#" class="remove" title="Remove this item"><i
                                                                 class="fa fa-remove"></i></a>
-                                                    <a class="cart-img" href="./product.php.php?product_id=?<?echo $item['id']?>">
+                                                    <a class="cart-img" href="./product.php?product_id=<?echo $item['id']?>">
                                                         <?if(isset($item['url']) && $item['url']!=null):?>
                                                             <img src="<?echo $item['url']?>"
                                                                  alt="#">

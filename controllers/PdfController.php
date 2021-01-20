@@ -4,11 +4,11 @@ include_once ('../modals/Database.php');
 require('../modals/PDF2.php');
 
 
-function createBill($command_id){
+//function createBill($command_id){
     $pdf = new PDF2();
     $pdf->AddPage();
 
-    $pdf->SetTitle(utf8_decode('Factura nº '.str_pad($command_id,6,'0',STR_PAD_LEFT)));
+    $pdf->SetTitle(utf8_decode('Factura nº '.str_pad(123,6,'0',STR_PAD_LEFT)));
     $pdf->SetAuthor('Eshop');
     $pdf->SetCreator('Eshop');
 
@@ -100,4 +100,4 @@ function createBill($command_id){
     $pdf->ImprovedTable($header,$data);
 
     $pdf->Output('I' , 'pdffiles/factura.pdf');
-}
+//}
