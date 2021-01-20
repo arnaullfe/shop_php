@@ -48,7 +48,7 @@ class PDF2 extends FPDF
 
         $this->SetFont('Arial' , '' , 11);
 
-        $this->Cell(70 , 8 , 'SUBTOTAL' , 1 , 'R','R',true);
+        $this->Cell(70 , 8 , 'SUBTOTAL SENSE IVA' , 1 , 'R','R',true);
         $this->Cell(40,8,'IVA' , 1 , 'C','R',true);
         $this->Cell(30,8,'ENVIAMENT' , 1 , 'C','R',true);
         $this->Cell(50,8,'TOTAL' , 1 , 'R','R',true);
@@ -58,6 +58,6 @@ class PDF2 extends FPDF
         $this->Cell(70 , 8 , formatPrice($price_no_iva) . EURO, 'LBR' , 'R','R');
         $this->Cell(40,8,'('. 21 .'%) '. formatPrice($all_iva) . EURO , 'LBR' , 'C','R');
         $this->Cell(30,8,formatPrice($enviament) . EURO , 'LBR' , 'C','R');
-        $this->Cell(50,8,formatPrice($total_price) . EURO , 'LBR' , 'R','R');
+        $this->Cell(50,8,formatPrice($total_price+$enviament) . EURO , 'LBR' , 'R','R');
     }
 }

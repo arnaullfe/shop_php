@@ -155,7 +155,7 @@ $database->closeConnection();
                                             <a class="dropdown-item" href="./profile.php"><i
                                                         class="fas fa-user mr-3"></i>El meu perfil</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les
+                                            <a class="dropdown-item" href="./user_commands.php"><i class="fas fa-archive mr-3"></i>Les
                                                 meves comandes</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#"><i
@@ -350,7 +350,7 @@ $database->closeConnection();
 							<!-- Button Widget -->
 							<div class="single-widget get-button">
 								<div class="content">
-                                    <form action="../../controllers/CommandController.php" method="post">
+                                    <form action="../../controllers/CommandController.php" method="post" >
                                         <input value="<?echo $_GET['cart_id']?>" name="cart_id_newCommand" style="display: none">
                                         <input value="<?echo $sending_price?>" name="sending_price_newCommand" style="display: none">
 

@@ -2,14 +2,24 @@
 include_once ('./MainController.php');
 include_once ('../modals/Database.php');
 require('../modals/PDF2.php');
+session_start();
+if(isset($_GET["command_id_bill"])){
+    $database = new Database();
+    $command = $database->executeQuery("SELECT id FROM commands WHERE id=? AND user_id=?",array($_GET["command_id_bill"],$_SESSION["user_id"]));
+    $database->closeConnection();
+    if(count($command)>0){
+        createBill($_GET["command_id_bill"]);
+    } else{
+        header("location: ../pages/botiga_view/login.php");
+    }
+}
 
 
 function createBill($command_id){
     $database = new Database();
-    $command = $database->executeQuery("SELECT * FROM commands WHERE id=?",array($command_id));
+    $command = $database->executeQuery("SELECT * FROM commands WHERE id=?",array($command_id))[0];
     $commandItems = $database->executeQuery("SELECT * FROM commandItems WHERE command_id=?",array($command_id));
-    $user = $database->executeQuery("SELECT * from users WHERE id=?",array($command["user_id"]));
-    $address = $database->executeQuery("SELECT * FROM addressesCommands WHERE id=?",array($command["address_command_id"]));
+    $address = $database->executeQuery("SELECT * FROM addressesCommands WHERE id=?",array($command["address_command_id"]))[0];
     $pdf = new PDF2();
     $pdf->AddPage();
 
@@ -92,8 +102,6 @@ function createBill($command_id){
     $pdf->Ln();
     $pdf->SetFillColor(66, 135, 245);
     $pdf->ImprovedTable($header,$data);
-
     $pdf->Output('I' , 'pdffiles/factura.pdf');
-    header("location: ../pages/botiga_view/index.php");
 
 }

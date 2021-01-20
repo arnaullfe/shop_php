@@ -1,15 +1,19 @@
 <?php
-include_once('../../modals/Database.php');
-include_once('../../controllers/UserTokenController.php');
+include_once("../../modals/Database.php");
+include_once('../../modals/Address.php');
 include_once('../../controllers/MainController.php');
+include_once('../../controllers/UserTokenController.php');
 session_start();
-$database = new Database();
-$cart_user = $database->executeQuery("SELECT id FROM carts WHERE user_id = ?",array($_SESSION["user_id"]));
-if (!isset($_GET["cart_id"]) || !isset($_SESSION["user_info"]) || count($cart_user)==0) {
-    $database->closeConnection();
-    header('location: ./index.php');
+if (!isset($_SESSION["user_info"])) {
+    header("location: ./index.php");
 }
-
+$database = new Database();
+$commands = $database->executeQuery('SELECT shop.commands.*,SUM(shop.commandItems.total_iva_price)+shop.commands.sending_price as "total",
+shop.addressesCommands.name as "address_name",shop.addressesCommands.lastnames as "address_lastnames"
+FROM shop.commands,shop.commandItems,shop.addressesCommands WHERE shop.commands.id = shop.commandItems.command_id 
+AND shop.commands.address_command_id= shop.addressesCommands.id AND shop.commands.user_id=? GROUP BY shop.commands.id ORDER BY shop.commands.created_at DESC;',array($_SESSION["user_id"]));
+//cart
+$cart_user = $database->executeQuery("SELECT id FROM carts WHERE user_id = ?", array($_SESSION["user_id"]));
 $cartItems = $database->executeQuery('SELECT shop.cartItems.*,
 shop.products.name as "product_name",shop.products.description as "product_desc",shop.products.price_iva as "product_price",shop.products.id as "product_id",
 shop.discounts.discount,shop.images_product.url
@@ -20,10 +24,11 @@ shop.discounts.discount = (SELECT max(discount) FROM shop.discounts WHERE shop.d
 LEFT JOIN shop.images_product ON shop.cartItems.product_id = shop.images_product.id_product
 WHERE shop.products.activated = 1', array($_SESSION["user_id"]));
 $items_number = $database->executeQuery('SELECT count(*) as "items" FROM shop.cartItems WHERE cart_id = (SELECT id FROM shop.carts WHERE user_id=?)', array($_SESSION["user_id"]))[0]["items"];
-$database->closeConnection();
 $final_price = calculateItemsPrices($cartItems);
 $money_saved = calculatSave($cartItems);
+$database->closeConnection();
 ?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -64,6 +69,7 @@ $money_saved = calculatSave($cartItems);
     <link rel="stylesheet" href="css/owl-carousel.css">
     <!-- Slicknav -->
     <link rel="stylesheet" href="css/slicknav.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Eshop StyleSheet -->
     <link rel="stylesheet" href="css/reset.css">
@@ -111,7 +117,7 @@ $money_saved = calculatSave($cartItems);
                     <!--/ End Search Form -->
                     <div class="mobile-nav"></div>
                 </div>
-                <div class="col-lg-8 col-md-7 col-12">
+                <div class="col-lg-7 col-md-4 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
                             <select>
@@ -127,7 +133,7 @@ $money_saved = calculatSave($cartItems);
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-12">
+                <div class="col-lg-3 col-md-5 col-12">
                     <div class="right-bar">
                         <!-- Search Form -->
                         <?php if (isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])): ?>
@@ -138,18 +144,20 @@ $money_saved = calculatSave($cartItems);
                                        style="font-size: 18px;background-color: transparent;cursor: pointer">
                                         <img class="" src='<?php echo $_SESSION["user_info"][0]["image"] ?>'
                                              style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
-                                        <?php echo $_SESSION["user_info"][0]["name"] ?>
+                                        <?php echo $_SESSION["user_info"][0]["name"]; ?>
                                     </a>
 
                                     <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="./profile.php"><i
                                                     class="fas fa-user mr-3"></i>El meu perfil</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="./user_commands.php"><i class="fas fa-archive mr-3"></i>Les
+                                        <a class="dropdown-item" href="./user_commands.php"><i
+                                                    class="fas fa-archive mr-3"></i>Les
                                             meves comandes</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="../admin_view/login.php"><i
-                                                    class="fas fa-sign-out-alt mr-3 text-danger"></i>Logout</a>
+                                        <a class="dropdown-item" href="#"><i
+                                                    class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar
+                                            sessió</a>
                                     </div>
                                 </div>
                             </div>
@@ -162,21 +170,23 @@ $money_saved = calculatSave($cartItems);
                                     <span><? echo $items_number ?> Producte<?php if ($items_number > 1 || $items_number == 0) {
                                             echo "s";
                                         } ?></span>
-                                        <a href="./cart.php?cart_id=<?echo $cart_user[0]['id']?>">Veure cistella</a>
+                                        <a href="./cart.php?cart_id=<? echo $cart_user[0]['id'] ?>">Veure
+                                            cistella</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <? foreach ($cartItems as $item): ?>
                                             <li>
                                                 <a href="#" class="remove" title="Remove this item"><i
                                                             class="fa fa-remove"></i></a>
-                                                <a class="cart-img" href="./product.php?product_id=<?echo $item['id']?>">
-                                                    <?if(isset($item['url']) && $item['url']!=null):?>
-                                                        <img src="<?echo $item['url']?>"
+                                                <a class="cart-img"
+                                                   href="./product.php?product_id=<? echo $item['id'] ?>">
+                                                    <? if (isset($item['url']) && $item['url'] != null): ?>
+                                                        <img src="<? echo $item['url'] ?>"
                                                              alt="#">
-                                                    <?else:?>
+                                                    <? else: ?>
                                                         <img src="https://via.placeholder.com/70x70"
                                                              alt="#">
-                                                    <?endif;?>
+                                                    <? endif; ?>
 
                                                 </a>
                                                 <h4>
@@ -201,7 +211,8 @@ $money_saved = calculatSave($cartItems);
                                                 <span class="total-amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
                                             <? endif; ?>
                                         </div>
-                                        <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn animate">Anar a pagar</a>
+                                        <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id'] ?>"
+                                           class="btn animate">Anar a pagar</a>
                                     </div>
                                 </div>
                                 <!--/ End Shopping Item -->
@@ -216,6 +227,7 @@ $money_saved = calculatSave($cartItems);
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Header Inner -->
     <div class="header-inner">
@@ -260,8 +272,8 @@ $money_saved = calculatSave($cartItems);
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="./index.php">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a href="./cart.php">Cistella</a></li>
+                        <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="./user_commands.php">Les meves comandes</a></li>
                     </ul>
                 </div>
             </div>
@@ -270,156 +282,91 @@ $money_saved = calculatSave($cartItems);
 </div>
 <!-- End Breadcrumbs -->
 
-<!-- Shopping Cart -->
-<div class="shopping-cart section">
+<!-- Start Checkout -->
+<section class="shop checkout section">
     <div class="container">
+        <?php if ($_SESSION["changes_email_message"]): ?>
+            <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                <?php echo $_SESSION["changes_email_message"] ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <? endif; ?>
+
+        <?php if ($_SESSION["changes_message"]): ?>
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <?php echo $_SESSION["changes_message"] ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <? endif; ?>
         <div class="row">
             <div class="col-12">
-                <!-- Shopping Summery -->
-                <table class="table shopping-summery">
-                    <thead>
-                    <tr class="main-hading">
-                        <th>PRODUCTE</th>
-                        <th>NOM</th>
-                        <th class="text-center">PREU</th>
-                        <th class="text-center">QUANTITAT</th>
-                        <th class="text-center">TOTAL</th>
-                        <th class="text-center"><i class="ti-trash remove-icon"></i></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <? foreach ($cartItems as $item): ?>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
                         <tr>
-                            <td class="image" data-title="No">
-                                <?if($item['url']!=null):?>
-                                    <img src="<?echo $item['url']?>" alt="#">
-                                <?endif;?>
-                            </td>
-                            <td class="product-des" data-title="Description">
-                                <p class="product-name"><a
-                                            href="./product.php?product_id=<? echo $item['product_id'] ?>"><? echo $item["product_name"] ?></a>
-                                </p>
-                                <p class="product-des"><? echo $item["product_desc"] ?></p>
-                            </td>
-                            <td class="price" data-title="Price">
-                                <? if (isset($item["discount"]) && $item["discount"] != null): ?>
-                                <span style="color: gray;text-decoration: line-through;"><? echo formatPrice($item["product_price"]) ?> €</span>
-                                <span><? echo formatPrice(calculateNewPrice($item["product_price"], $item["discount"])) ?> €</span>
-                            <? else: ?>
-                                <span><? echo formatPrice($item["product_price"]) ?> €</span></td>
-                                <? endif; ?>
-                            </td>
-
-                            <td class="qty" data-title="Qty"><!-- Input Order -->
-                                <div class="input-group">
-                                    <div class="button minus">
-                                        <button type="button" class="btn btn-primary btn-number" disabled="disabled"
-                                                data-type="minus" data-field="quant[3]">
-                                            <i class="ti-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" name="quant[3]" class="input-number" data-min="1" data-max="100"
-                                           value="<? echo $item["units"] ?>">
-                                    <div class="button plus">
-                                        <button type="button" class="btn btn-primary btn-number" data-type="plus"
-                                                data-field="quant[3]">
-                                            <i class="ti-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!--/ End Input Order -->
-                            </td>
-                            <td class="total-amount" data-title="Total">
-                                <? if (isset($item["discount"]) && $item["discount"] != null): ?>
-                                <span><? echo formatPrice((calculateNewPrice($item["product_price"], $item["discount"]) * $item["units"])) ?> €</span>
-                            </td>
-                        <? else: ?>
-                            <span><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
-                        <? endif; ?>
-
-
-                            </td>
-                            <td class="action" data-title="Remove">
-                                <form action="../../controllers/CartItemController.php" method="post">
-                                    <input name="product_id_deleteCart" style="display: none" value="<?echo $item['product_id']?>">
-                                    <button type="submit" style="background-color: transparent;border: none;"><i class="ti-trash remove-icon"></i></button>
-                                </form>
-                            </td>
+                            <th>Número de comanda</th>
+                            <th>Estat</th>
+                            <th>Hora i data</th>
+                            <th>Nom destinatari</th>
+                            <th>Enviament</th>
+                            <th>Total</th>
+                            <th>Accions</th>
                         </tr>
-                    <? endforeach; ?>
-                    </tbody>
-                </table>
-                <!--/ End Shopping Summery -->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <!-- Total Amount -->
-                <div class="total-amount">
-                    <div class="row">
-
-                        <div class="col-lg-8 col-md-5 col-12">
-                            <div class="left">
-                                <!--	<div class="coupon">
-                                        <form action="#" target="_blank">
-                                            <input name="Coupon" placeholder="Enter Your Coupon">
-                                            <button class="btn">Apply</button>
-                                        </form>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Shipping (+10$)</label>
-                                    </div>-->
-                            </div>
-                        </div>
-                       <?if(count($cartItems)>0):?>
-                           <div class="col-lg-4 col-md-7 col-12">
-                               <div class="right">
-                                   <ul>
-                                       <li>Total cistella<span><?echo formatPrice($final_price)?> €</span></li>
-                                       <li>Enviament
-                                           <?if($final_price>=50):?>
-                                               <span>Gratuït</span>
-                                           <?else:?>
-                                               <span><?echo formatPrice(5)?> €</span>
-                                           <?endif;?>
-                                       </li>
-                                       <?if($money_saved>0):?>
-                                           <li>Estalvi<span><?echo formatPrice($money_saved)?> €</span></li>
-                                       <?endif;?>
-                                       <li class="last">Total a pagar
-                                           <?if($final_price>=50):?>
-                                               <span><?echo formatPrice($final_price)?> €</span>
-                                           <?else:?>
-                                               <span><?echo formatPrice($final_price+5)?> €</span>
-                                           <?endif;?>
-                                           </li>
-                                   </ul>
-                                   <div class="button5">
-                                       <a href="./checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn">Pagar</a>
-                                       <a href="./shop-grid.php" class="btn">Continuar comprant</a>
-                                   </div>
-                               </div>
-                           </div>
-                        <?endif;?>
-                    </div>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Número de comanda</th>
+                            <th>Estat</th>
+                            <th>Hora i data</th>
+                            <th>Nom destinatari</th>
+                            <th>Enviament</th>
+                            <th>Total</th>
+                            <th>Accions</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <?php foreach ($commands as $command): ?>
+                            <tr>
+                                <td><?php echo str_pad($command['id'],6,'0',STR_PAD_LEFT)?></td>
+                                <td><?php echo $command['status']?></td>
+                                <td><?php echo formatDate($command['created_at'])?></td>
+                                <td>
+                                    <?php echo $command["address_name"]." ".$command["address_lastnames"];?>
+                                </td>
+                                <td>
+                                    <?php echo formatPrice($command["sending_price"]);?> €
+                                </td>
+                                <td>
+                                    <?php echo formatPrice($command["total"]) ;?> €
+                                </td>
+                                <td>
+                                    <a href="../../controllers/PdfController.php?command_id_bill=<?echo $command['id']?>" target="_blank" class="btn" title="Factura" style="font-size: 30px;background-color: #F7931C">
+                                        <i class="fas fa-receipt"></i></a>
+                                </td>
+                            </tr>
+                        <? endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
-                <!--/ End Total Amount -->
             </div>
         </div>
-    </div>
-</div>
-<!--/ End Shopping Cart -->
+</section>
+<!--/ End Checkout -->
 
 <!-- Start Shop Services Area  -->
-<section class="shop-services section">
+<section class="shop-services section home">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-12">
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-rocket"></i>
-                    <h4>Free shiping</h4>
-                    <p>Orders over $100</p>
+                    <h4>Enviament gratuït</h4>
+                    <p>En comandes de més de 50€</p>
                 </div>
                 <!-- End Single Service -->
             </div>
@@ -427,8 +374,8 @@ $money_saved = calculatSave($cartItems);
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-reload"></i>
-                    <h4>Free Return</h4>
-                    <p>Within 30 days returns</p>
+                    <h4>Devolucions gratuïtes</h4>
+                    <p>Amb compres de menys de 30 dies</p>
                 </div>
                 <!-- End Single Service -->
             </div>
@@ -436,8 +383,8 @@ $money_saved = calculatSave($cartItems);
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-lock"></i>
-                    <h4>Sucure Payment</h4>
-                    <p>100% secure payment</p>
+                    <h4>Pagament segur</h4>
+                    <p>Seguretat 100% a l'hora de pagar</p>
                 </div>
                 <!-- End Single Service -->
             </div>
@@ -445,15 +392,15 @@ $money_saved = calculatSave($cartItems);
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-tag"></i>
-                    <h4>Best Peice</h4>
-                    <p>Guaranteed price</p>
+                    <h4>El millor preu</h4>
+                    <p>Garantim el millor preu del mercat</p>
                 </div>
                 <!-- End Single Service -->
             </div>
         </div>
     </div>
 </section>
-<!-- End Shop Newsletter -->
+<!-- End Shop Services -->
 
 <!-- Start Shop Newsletter  -->
 <section class="shop-newsletter section">
@@ -464,7 +411,8 @@ $money_saved = calculatSave($cartItems);
                     <!-- Start Newsletter Inner -->
                     <div class="inner">
                         <h4>Newsletter</h4>
-                        <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                        <p> Subscriu-te al nostre butlletí de notícies i obtindràs un <span>10%</span> de descompte
+                            en la primera compra</p>
                         <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
                             <input name="EMAIL" placeholder="Your email address" required="" type="email">
                             <button class="btn">Subscribe</button>
@@ -478,127 +426,6 @@ $money_saved = calculatSave($cartItems);
 </section>
 <!-- End Shop Newsletter -->
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close"
-                                                                                                  aria-hidden="true"></span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row no-gutters">
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <!-- Product Slider -->
-                        <div class="product-gallery">
-                            <div class="quickview-slider-active">
-                                <div class="single-slider">
-                                    <img src="images/modal1.jpg" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="images/modal2.jpg" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="images/modal3.jpg" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="images/modal4.jpg" alt="#">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Product slider -->
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <div class="quickview-content">
-                            <h2>Flared Shift Dress</h2>
-                            <div class="quickview-ratting-review">
-                                <div class="quickview-ratting-wrap">
-                                    <div class="quickview-ratting">
-                                        <i class="yellow fa fa-star"></i>
-                                        <i class="yellow fa fa-star"></i>
-                                        <i class="yellow fa fa-star"></i>
-                                        <i class="yellow fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <a href="#"> (1 customer review)</a>
-                                </div>
-                                <div class="quickview-stock">
-                                    <span><i class="fa fa-check-circle-o"></i> in stock</span>
-                                </div>
-                            </div>
-                            <h3>$29.00</h3>
-                            <div class="quickview-peragraph">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad
-                                    impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo
-                                    ipsum numquam.</p>
-                            </div>
-                            <div class="size">
-                                <div class="row">
-                                    <div class="col-lg-6 col-12">
-                                        <h5 class="title">Size</h5>
-                                        <select>
-                                            <option selected="selected">s</option>
-                                            <option>m</option>
-                                            <option>l</option>
-                                            <option>xl</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <h5 class="title">Color</h5>
-                                        <select>
-                                            <option selected="selected">orange</option>
-                                            <option>purple</option>
-                                            <option>black</option>
-                                            <option>pink</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="quantity">
-                                <!-- Input Order -->
-                                <div class="input-group">
-                                    <div class="button minus">
-                                        <button type="button" class="btn btn-primary btn-number" disabled="disabled"
-                                                data-type="minus" data-field="quant[1]">
-                                            <i class="ti-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000"
-                                           value="1">
-                                    <div class="button plus">
-                                        <button type="button" class="btn btn-primary btn-number" data-type="plus"
-                                                data-field="quant[1]">
-                                            <i class="ti-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <!--/ End Input Order -->
-                            </div>
-                            <div class="add-to-cart">
-                                <a href="#" class="btn">Add to cart</a>
-                                <a href="#" class="btn min"><i class="ti-heart"></i></a>
-                                <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
-                            </div>
-                            <div class="default-social">
-                                <h4 class="share-now">Share:</h4>
-                                <ul>
-                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                    <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal end -->
-
 <!-- Start Footer Area -->
 <footer class="footer">
     <!-- Footer Top -->
@@ -611,10 +438,13 @@ $money_saved = calculatSave($cartItems);
                         <div class="logo">
                             <a href="index.php"><img src="images/logo2.png" alt="#"></a>
                         </div>
-                        <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros
-                            eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+                        <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna
+                            eros
+                            eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+                            facilisis
                             luctus, metus.</p>
-                        <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span>
+                        <p class="call">Got Question? Call us 24/7<span><a
+                                        href="tel:123456789">+0123 456 789</a></span>
                         </p>
                     </div>
                     <!-- End Single Widget -->
@@ -680,7 +510,8 @@ $money_saved = calculatSave($cartItems);
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <div class="left">
-                            <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">Wpthemesgrid</a> -
+                            <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com"
+                                                   target="_blank">Wpthemesgrid</a> -
                                 All Rights Reserved.</p>
                         </div>
                     </div>
@@ -732,5 +563,21 @@ $money_saved = calculatSave($cartItems);
 <script src="js/easing.js"></script>
 <!-- Active JS -->
 <script src="js/active.js"></script>
+
+<script src="../botiga_view/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../botiga_view/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="../botiga_view/js/demo/datatables-demo.js"></script>
+
+
 </body>
 </html>
+<?php
+unset($_SESSION["lastnames_changes"]);
+unset($_SESSION["name_changes"]);
+unset($_SESSION["email_changes"]);
+unset($_SESSION["changes_errors"]);
+unset($_SESSION["changes_message"]);
+unset($_SESSION["changes_email_message"]);
+?>

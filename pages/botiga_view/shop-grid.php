@@ -152,7 +152,7 @@ $num = 0;
                                             <a class="dropdown-item" href="./profile.php"><i
                                                         class="fas fa-user mr-3"></i>El meu perfil</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#"><i class="fas fa-archive mr-3"></i>Les
+                                            <a class="dropdown-item" href="./user_commands.php"><i class="fas fa-archive mr-3"></i>Les
                                                 meves comandes</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#"><i
