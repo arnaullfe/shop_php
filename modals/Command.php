@@ -36,7 +36,9 @@ class Command
     function insertItemsInDatabase(){
         $database = new Database();
         foreach ($this->items as $item){
+            $database->executeQuery("UPDATE product SET units= units - ? WHERE id=?",array($item->units,$item->product_id));
             $database->executeQuery("INSERT INTO commandItems (command_id,units,discount,category_id,category_name,category_desc,product_id,product_name,product_desc,product_iva,price_iva_unit,total_iva_price,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",$item->getInsertValues());
+
         }
         $database->closeConnection();
     }

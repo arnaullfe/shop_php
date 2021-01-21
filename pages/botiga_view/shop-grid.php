@@ -6,7 +6,17 @@ session_start();
 $database = new Database();
 $products = [];
 $text = "Tots els productes";
-if (isset($_GET["category_id"])) {
+
+if(isset($_GET["category_id"]) && isset($_GET["product_name"])){
+    if($_GET["category_id"]=="*"){
+        $products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.discount FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() WHERE shop.products.name LIKE ? ORDER BY products.id DESC;", array('%'.$_GET["product_name"].'%'));
+        $text = "Tots els productes ";
+    }else{
+        $products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.discount FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() WHERE shop.products.name LIKE ? AND shop.products.category_id = ? ORDER BY products.id DESC;", array("%".$_GET["product_name"]."%",$_GET["category_id"]));
+        $categ = $database->executeQuery("SELECT * FROM productCategory WHERE id=?", array($_GET["category_id"]));
+        $text = "Categoria " . $categ[0]["name"];
+    }
+} else if (isset($_GET["category_id"])) {
     $products = $database->executeQuery("SELECT shop.products.*,shop.images_product.url,shop.productCategory.name as 'category',shop.tags.name as 'tag_name',shop.tags.color as 'tag_color',shop.discounts.discount FROM shop.products LEFT JOIN shop.productCategory ON shop.products.category_id = shop.productCategory.id LEFT JOIN shop.tags ON shop.products.tag_id = shop.tags.id LEFT JOIN shop.images_product ON shop.images_product.id_product = shop.products.id LEFT JOIN shop.discounts ON shop.products.id = shop.discounts.id_product AND shop.discounts.start_date <= now() and shop.discounts.end_date>= now() WHERE shop.products.category_id = ? ORDER BY products.id DESC;", array($_GET["category_id"]));
     $categ = $database->executeQuery("SELECT * FROM productCategory WHERE id=?", array($_GET["category_id"]));
     $text = "Categoria " . $categ[0]["name"];
@@ -121,16 +131,14 @@ $num = 0;
                     <div class="col-lg-7 col-md-4 col-12">
                         <div class="search-bar-top">
                             <div class="search-bar">
-                                <select>
-                                    <option selected="selected">All Category</option>
-                                    <option>watch</option>
-                                    <option>mobile</option>
-                                    <option>kid’s item</option>
+                                <select onchange="changeValuesSearchBar()" id="category_id_search">
+                                    <option selected="selected" value="*">Tots</option>
+                                    <?foreach ($categories as $cat):?>
+                                        <option value="<?echo $cat['id']?>"><?echo $cat["name"]?></option>
+                                    <?endforeach;?>
                                 </select>
-                                <form>
-                                    <input name="search" placeholder="Search Products Here....." type="search">
-                                    <button class="btnn"><i class="ti-search"></i></button>
-                                </form>
+                                <input name="search" placeholder="Cerca els teus productes....." type="search" id="name_search" oninput="changeValuesSearchBar()">
+                                <a class="btnn" href="./shop-grid.php" id="search_button"><i class="ti-search"></i></a>
                             </div>
                         </div>
                     </div>
@@ -367,13 +375,6 @@ $num = 0;
                                         <? else: ?>
                                             <p class="price"><?php echo number_format($product["price_iva"], 2, ",", ".") . " €" ?></p>
                                         <? endif; ?>
-                                        <ul class="reviews">
-                                            <li class="yellow"><i class="ti-star"></i></li>
-                                            <li class="yellow"><i class="ti-star"></i></li>
-                                            <li class="yellow"><i class="ti-star"></i></li>
-                                            <li><i class="ti-star"></i></li>
-                                            <li><i class="ti-star"></i></li>
-                                        </ul>
                                     </div>
                                 </div>
                             <? endforeach; ?>
@@ -717,7 +718,12 @@ $num = 0;
     <script src="js/easing.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
-
+    <script>
+        function changeValuesSearchBar(){
+            console.log("on change",document.getElementById("category_id_search").value)
+            document.getElementById("search_button").href = './shop-grid.php?category_id='+document.getElementById("category_id_search").value+'&product_name='+document.getElementById("name_search").value;
+        }
+    </script>
     </body>
     </html>
 <?php

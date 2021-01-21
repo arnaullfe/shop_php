@@ -1,3 +1,12 @@
+<?php
+include_once ('../../modals/Database.php');
+session_start();
+
+$database = new Database();
+$categories = $database->executeQuery("SELECT * FROM shop.productCategory WHERE id IN(SELECT shop.products.category_id FROM shop.products WHERE activated=1) AND activated=1", array(1));
+$database->closeConnection();
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -88,18 +97,16 @@
 						</div>
 						<div class="col-lg-8 col-md-7 col-12">
 							<div class="search-bar-top">
-								<div class="search-bar">
-									<select>
-										<option selected="selected">All Category</option>
-										<option>watch</option>
-										<option>mobile</option>
-										<option>kid’s item</option>
-									</select>
-									<form>
-										<input name="search" placeholder="Search Products Here....." type="search">
-										<button class="btnn"><i class="ti-search"></i></button>
-									</form>
-								</div>
+                                <div class="search-bar">
+                                    <select onchange="changeValuesSearchBar()" id="category_id_search">
+                                        <option selected="selected" value="*">Tots</option>
+                                        <?foreach ($categories as $cat):?>
+                                            <option value="<?echo $cat['id']?>"><?echo $cat["name"]?></option>
+                                        <?endforeach;?>
+                                    </select>
+                                    <input name="search" placeholder="Cerca els teus productes....." type="search" id="name_search" oninput="changeValuesSearchBar()">
+                                    <a class="btnn" href="./shop-grid.php" id="search_button"><i class="ti-search"></i></a>
+                                </div>
 							</div>
 						</div>
 						<div class="col-lg-2 col-md-3 col-12">
@@ -460,5 +467,12 @@
 	<script src="js/map-script.js"></script>
 	<!-- Active JS -->
 	<script src="js/active.js"></script>
+
+    <script>
+        function changeValuesSearchBar(){
+            console.log("on change",document.getElementById("category_id_search").value)
+            document.getElementById("search_button").href = './shop-grid.php?category_id='+document.getElementById("category_id_search").value+'&product_name='+document.getElementById("name_search").value;
+        }
+    </script>
 </body>
 </html>

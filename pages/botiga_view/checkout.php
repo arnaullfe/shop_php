@@ -31,6 +31,7 @@ $sending_price = ($final_price<50)? 5:0;
 $money_saved = calculatSave($cartItems);
 //adreçes
 $addresses = $database->executeQuery("SELECT * FROM addresses WHERE user_id=? ORDER BY id DESC",array($_SESSION["user_id"]));
+$categories = $database->executeQuery("SELECT * FROM shop.productCategory WHERE id IN(SELECT shop.products.category_id FROM shop.products WHERE activated=1) AND activated=1", array(1));
 $database->closeConnection();
 
 ?>
@@ -124,16 +125,14 @@ $database->closeConnection();
                     <div class="col-lg-7 col-md-4 col-12">
                         <div class="search-bar-top">
                             <div class="search-bar">
-                                <select>
-                                    <option selected="selected">All Category</option>
-                                    <option>watch</option>
-                                    <option>mobile</option>
-                                    <option>kid’s item</option>
+                                <select onchange="changeValuesSearchBar()" id="category_id_search">
+                                    <option selected="selected" value="*">Tots</option>
+                                    <?foreach ($categories as $cat):?>
+                                        <option value="<?echo $cat['id']?>"><?echo $cat["name"]?></option>
+                                    <?endforeach;?>
                                 </select>
-                                <form>
-                                    <input name="search" placeholder="Search Products Here....." type="search">
-                                    <button class="btnn"><i class="ti-search"></i></button>
-                                </form>
+                                <input name="search" placeholder="Cerca els teus productes....." type="search" id="name_search" oninput="changeValuesSearchBar()">
+                                <a class="btnn" href="./shop-grid.php" id="search_button"><i class="ti-search"></i></a>
                             </div>
                         </div>
                     </div>
@@ -575,5 +574,11 @@ $database->closeConnection();
     function selectChange(){
         document.getElementById("address_id_newCommand").value = document.getElementById("select_address").value;
     }
+
+    function changeValuesSearchBar(){
+        console.log("on change",document.getElementById("category_id_search").value)
+        document.getElementById("search_button").href = './shop-grid.php?category_id='+document.getElementById("category_id_search").value+'&product_name='+document.getElementById("name_search").value;
+    }
 </script>
+
 </html>
