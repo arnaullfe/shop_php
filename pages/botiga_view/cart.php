@@ -272,6 +272,14 @@ $money_saved = calculatSave($cartItems);
 <!-- Shopping Cart -->
 <div class="shopping-cart section">
     <div class="container">
+        <?php if (isset($_SESSION["message_error"])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php echo $_SESSION["message_error"] ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <? endif; ?>
         <div class="row">
             <div class="col-12">
                 <!-- Shopping Summery -->
@@ -312,18 +320,25 @@ $money_saved = calculatSave($cartItems);
                             <td class="qty" data-title="Qty"><!-- Input Order -->
                                 <div class="input-group">
                                     <div class="button minus">
-                                        <button type="button" class="btn btn-primary btn-number" disabled="disabled"
-                                                data-type="minus" data-field="quant[3]">
+                                        <form action="../../controllers/CartItemController.php" method="post">
+                                            <input name="minus_one_cart_id" value="<?echo $item['cart_id']?>" style="display: none">
+                                            <input name="minus_one_product_id" value="<?echo $item['product_id']?>" style="display: none">
+                                        <button type="submit" class="btn btn-primary">
                                             <i class="ti-minus"></i>
                                         </button>
+                                        </form>
                                     </div>
-                                    <input type="text" name="quant[3]" class="input-number" data-min="1" data-max="100"
-                                           value="<? echo $item["units"] ?>">
+                                    <input type="text" name="quant[3]" class="input-number" data-min="0" data-max="100"
+                                           value="<? echo $item["units"] ?>" readonly>
                                     <div class="button plus">
-                                        <button type="button" class="btn btn-primary btn-number" data-type="plus"
-                                                data-field="quant[3]">
-                                            <i class="ti-plus"></i>
-                                        </button>
+                                        <form action="../../controllers/CartItemController.php" method="post">
+                                            <input name="add_one_cart_id" value="<?echo $item['cart_id']?>" style="display: none">
+                                            <input name="add_one_product_id" value="<?echo $item['product_id']?>" style="display: none">
+                                            <button type="submit" class="btn btn-primary" >
+                                                <i class="ti-plus"></i>
+                                            </button>
+                                        </form>
+
                                     </div>
                                 </div>
                                 <!--/ End Input Order -->
@@ -740,3 +755,7 @@ $money_saved = calculatSave($cartItems);
 </script>
 </body>
 </html>
+
+<?php
+unset($_SESSION["message_error"]);
+?>

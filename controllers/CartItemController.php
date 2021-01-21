@@ -2,7 +2,7 @@
 include_once ('../modals/CartItem.php');
 include_once ('../modals/Database.php');
 include_once ('./MainController.php');
-
+session_start();
 if(isset($_POST["product_id_addCart"])){
     if(!isset($_SESSION["user_id"])){
         header("location: ../pages/admin_view/login.php");
@@ -51,6 +51,32 @@ if(isset($_POST["product_id_editCart"])){
         }
         $database->closeConnection();
     }
+}
+
+if(isset($_POST["add_one_cart_id"])){
+    unset($_SESSION["message_error"]);
+    $database = new Database();
+    $units_product = $database->executeQuery("SELECT units FROM products WHERE id=?",array($_POST["add_one_product_id"]))[0]['units'];
+    $units = $database->executeQuery('SELECT units FROM cartItems WHERE cart_id=? AND product_id=?',array($_POST["add_one_cart_id"],$_POST["add_one_product_id"]))[0]['units'];
+    if(($units+1)<=$units_product){
+        $database->executeQuery("UPDATE cartItems SET units = units+1 WHERE cart_id=? AND product_id=?",array($_POST["add_one_cart_id"],$_POST["add_one_product_id"]));
+        $database->closeConnection();
+    }else{
+        $_SESSION["message_error"] = "<strong>Error!</strong>No hi ha prous unitats";
+    }
+    header("location: ../pages/botiga_view/cart.php?cart_id=".$_POST["add_one_cart_id"]);
+}
+
+if(isset($_POST["minus_one_cart_id"])){
+    $database = new Database();
+    $units = $database->executeQuery('SELECT units FROM cartItems WHERE cart_id=? AND product_id=?',array($_POST["minus_one_cart_id"],$_POST["minus_one_product_id"]))[0]['units'];
+    if($units>1){
+        $database->executeQuery("UPDATE cartItems SET units = units-1 WHERE cart_id=? AND product_id=?",array($_POST["minus_one_cart_id"],$_POST["minus_one_product_id"]));
+    } else{
+        $database->executeQuery("DELETE FROM cartItems WHERE cart_id=? AND product_id=?",array($_POST["minus_one_cart_id"],$_POST["minus_one_product_id"]));
+    }
+    $database->closeConnection();
+    header("location: ../pages/botiga_view/cart.php?cart_id=".$_POST["minus_one_cart_id"]);
 }
 
 if(isset($_POST["product_id_deleteCart"])){
