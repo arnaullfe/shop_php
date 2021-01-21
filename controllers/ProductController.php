@@ -9,6 +9,17 @@ use Aws\S3\Exception\S3Exception;
 date_default_timezone_set('Europe/Madrid');
 session_start();
 
+
+if(isset($_GET["product_id_delete"])){
+    $database = new Database();
+    $database->executeQuery("DELETE FROM products WHERE id=?",array($_GET["product_id_delete"]));
+    $database->executeQuery("DELETE FROM images_product WHERE id_product=?",array($_GET["product_id_delete"]));
+    $database->executeQuery("DELETE FROM cartItems WHERE product_id=?",array($_GET["product_id_delete"]));
+    $database->executeQuery("DELETE FROM discounts WHERE id_product=?",array($_GET["product_id_delete"]));
+    $database->executeQuery("UPDATE highlights SET highlight_type = 0 WHERE product_id=?",array($_GET["product_id_delete"]));
+    header("location: ../pages/admin_view/list-products.php");
+}
+
 if(isset($_POST["image_newProduct"])){
     $_POST["image_newProduct"] = json_decode($_POST["image_newProduct"]);
     $name = round(microtime(true) * 1000)."_".$_POST["image_newProduct"]->name_file;
@@ -162,9 +173,9 @@ function uploadImages($id){
             'version'=> 'latest',
             'region'=> 'us-east-1',
             'credentials'=>[
-                'key'=> 'ASIA2CQKGXJ5CYYOF23E',
-                'secret' => 'Qy7mI++ceUmSDMLIXo6a2nefvHebSBhoVH4+RUdw',
-                'token' => 'FwoGZXIvYXdzEOX//////////wEaDLhnGB99ip5S0xwmpSLKASADLDYjuWKrJ6mksj/i/qFGAfiCP5q2nCnYlyTIOvgdlehn4QCQhL5aEynm0kR7iumWSobfvKRoikf0omApZLt2vVp3UjgOfCi0J96ucD/adx+a3VB5m3SVyQqmq25t7D9biLWDV5pEpYZ32Cykuxwz+XoNcgyJ1bBiZ+ax/ILVMmxW0Sc/rkLcgfd3H/GvVJk+DotqJE5rMF5M+5p9g1nTjnKxThoQDWZiCPWuFyZX9qQHmHr1TeLZrzc99wvCEJ6XLRJri+Rs0Z0oyKSngAYyLQBmpMZpXZXpHZZ3L/sUB/Oi9FS+bVZcFEHbA9fPG7+KY+2D054vOI+5pQ2maQ=='
+                'key'=> 'ASIA2CQKGXJ5LYKXQOCB',
+                'secret' => 'r09gGc5ptSJFVB42o7ens8Z5RFGKKRouTNHS8Ffc',
+                'token' => 'FwoGZXIvYXdzEOb//////////wEaDJLRr2MXpWMSwOqCFCLKAQl8Jd22Yp0Ej4fthul8zdY1R9AK5kPmwWp3yUfO0jR5VsjMPQLMc0BS9WNuyoTcVQqGMYDgeG2AsTgb3MVGmnuVhU9X5TJDoK52ETYHRvQn0gz7MG90NKkazkpxa/Fwtir2lVrsjxQ8X493FdzSBKSPjOXy65MtJgcufZr/C6IF29/0P/GC98aZb+6/0A5ZtVySfzX9gKeyfpRNtF0aKjwF/qvyCMgukasgciwCQ/Snq9kn2l35hziMfdlOLR7OoeR7j4obHUrAQ4Ioq72ngAYyLTLZw7VYQcLcFzdye46JwoVXWodmdZonbwFwLM1QuomfBDp+g2kuYpPNc2U2Cg=='
             ]
         ]);
         $database = new Database();

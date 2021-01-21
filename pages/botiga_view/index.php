@@ -486,7 +486,7 @@ $database->closeConnection();
                     <div class="single-service">
                         <i class="ti-rocket"></i>
                         <h4>Enviament gratuït</h4>
-                        <p>EN Comandes superiors a 100€</p>
+                        <p>EN Comandes superiors a 50€</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
