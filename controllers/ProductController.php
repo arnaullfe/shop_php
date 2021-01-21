@@ -162,9 +162,9 @@ function uploadImages($id){
             'version'=> 'latest',
             'region'=> 'us-east-1',
             'credentials'=>[
-                'key'=> 'ASIA2CQKGXJ5GGBEUCID',
-                'secret' => 'JZNxVOeurq8QQCbr3zw+J3+QUWYP+lerHFC9XHcR',
-                'token' => 'FwoGZXIvYXdzEPH//////////wEaDI6SXtot2r+R1iXVjiLKAfX6YuVIqO/e9uowEBrMTJvgFlIMR6kTzXCjNCnqn4DVO1VWPQrNRhlCIy8qxPWUcSER5jPhnwRp35VF5+AYeP0F22FotSzZk7N2vU2z8QEN3nLMDg30havz4UK741tU2xfdNARZ1lB0X8hD5TNtoW3PTs4GdULCIWvRUQ2mL10dUaEPAK9fpcLZee0txWH/T/9ns/S3yNMpT/lU3K9GT/eYNX/mGQSTwOfrfKTQgOuCL7koSc+hPsQHBvdlyxW+LNKT8JrHqoJZ+Vwoxezx/wUyLTSGGcAj+i7rAChYLu54+kHwkidu90qKMb2EGb0tbz/Lt//tWP565atabQDhTQ=='
+                'key'=> 'ASIA2CQKGXJ5CYYOF23E',
+                'secret' => 'Qy7mI++ceUmSDMLIXo6a2nefvHebSBhoVH4+RUdw',
+                'token' => 'FwoGZXIvYXdzEOX//////////wEaDLhnGB99ip5S0xwmpSLKASADLDYjuWKrJ6mksj/i/qFGAfiCP5q2nCnYlyTIOvgdlehn4QCQhL5aEynm0kR7iumWSobfvKRoikf0omApZLt2vVp3UjgOfCi0J96ucD/adx+a3VB5m3SVyQqmq25t7D9biLWDV5pEpYZ32Cykuxwz+XoNcgyJ1bBiZ+ax/ILVMmxW0Sc/rkLcgfd3H/GvVJk+DotqJE5rMF5M+5p9g1nTjnKxThoQDWZiCPWuFyZX9qQHmHr1TeLZrzc99wvCEJ6XLRJri+Rs0Z0oyKSngAYyLQBmpMZpXZXpHZZ3L/sUB/Oi9FS+bVZcFEHbA9fPG7+KY+2D054vOI+5pQ2maQ=='
             ]
         ]);
         $database = new Database();

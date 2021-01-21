@@ -94,6 +94,7 @@ if(!isset($_SESSION["user_info"])){
                     <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="list-tags.php"><b>Tags</b></a>
                     <a class="collapse-item" href="list-discounts.php"><b>Descomptes</b></a>
+                    <a class="collapse-item" href="list-highlight.php"><b>Productes destacats</b></a>
                 </div>
             </div>
         </li>

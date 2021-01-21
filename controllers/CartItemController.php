@@ -82,7 +82,7 @@ if(isset($_POST["minus_one_cart_id"])){
 if(isset($_GET["product_id_deleteCart"])){
     $database = new Database();
     $database->executeQuery("DELETE FROM cartItems WHERE product_id=? AND cart_id=(SELECT id FROM carts WHERE user_id=?)",array($_GET["product_id_deleteCart"],$_SESSION["user_id"]));
-    $cart_id = $database->executeQuery('SELECT id FROM carts WHERE user_id=?',array($_SESSION["user_id"]));
+    $cart_id = $database->executeQuery('SELECT id FROM carts WHERE user_id=?',array($_SESSION["user_id"]))[0]['id'];
     $database->closeConnection();
     header("location: ../pages/botiga_view/cart.php?cart_id=$cart_id");
 }

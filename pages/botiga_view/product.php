@@ -154,15 +154,11 @@ $database->closeConnection();
                                             <a class="dropdown-item" href="./user_commands.php"><i class="fas fa-archive mr-3"></i>Les
                                                 meves comandes</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#"><i
+                                            <a class="dropdown-item" href="../admin_view/login.php"><i
                                                     class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar
                                                 sessió</a>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="sinlge-bar ">
-                                    <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o"
-                                                                                             aria-hidden="true"></i></a>
                                 </div>
                                 <div class="sinlge-bar shopping">
                                     <a href="#" class="single-icon"><i class="ti-bag"></i> <span

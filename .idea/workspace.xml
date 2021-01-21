@@ -22,14 +22,15 @@
     <list default="true" id="03cfc97f-c50e-42e6-8007-47a2959da8c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/CartItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/CartItemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-categories.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/list-users.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/list-users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/admin_view/new-product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin_view/new-product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/checkout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/botiga_view/js/map-script.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/js/map-script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/botiga_view/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/shop-grid.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/botiga_view/user_commands.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/botiga_view/user_commands.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +157,7 @@
       <workItem from="1610879396340" duration="23267000" />
       <workItem from="1610983237701" duration="2838000" />
       <workItem from="1611163773177" duration="16237000" />
-      <workItem from="1611236400491" duration="10993000" />
+      <workItem from="1611236400491" duration="16575000" />
     </task>
     <servers />
   </component>

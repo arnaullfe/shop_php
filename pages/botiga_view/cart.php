@@ -85,7 +85,6 @@ $money_saved = calculatSave($cartItems);
     </div>
 </div>
 <!-- End Preloader -->
-
 <!-- Header -->
 <header class="header shop">
     <div class="middle-inner">
@@ -112,7 +111,7 @@ $money_saved = calculatSave($cartItems);
                     <!--/ End Search Form -->
                     <div class="mobile-nav"></div>
                 </div>
-                <div class="col-lg-8 col-md-7 col-12">
+                <div class="col-lg-7 col-md-4 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
                             <select onchange="changeValuesSearchBar()" id="category_id_search">
@@ -126,7 +125,7 @@ $money_saved = calculatSave($cartItems);
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-12">
+                <div class="col-lg-3 col-md-5 col-12">
                     <div class="right-bar">
                         <!-- Search Form -->
                         <?php if (isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])): ?>
@@ -137,7 +136,7 @@ $money_saved = calculatSave($cartItems);
                                        style="font-size: 18px;background-color: transparent;cursor: pointer">
                                         <img class="" src='<?php echo $_SESSION["user_info"][0]["image"] ?>'
                                              style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
-                                        <?php echo $_SESSION["user_info"][0]["name"] ?>
+                                        <?php echo $_SESSION["user_info"][0]["name"]; ?>
                                     </a>
 
                                     <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
@@ -148,7 +147,8 @@ $money_saved = calculatSave($cartItems);
                                             meves comandes</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="../admin_view/login.php"><i
-                                                    class="fas fa-sign-out-alt mr-3 text-danger"></i>Logout</a>
+                                                    class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar
+                                            sessió</a>
                                     </div>
                                 </div>
                             </div>
@@ -161,21 +161,23 @@ $money_saved = calculatSave($cartItems);
                                     <span><? echo $items_number ?> Producte<?php if ($items_number > 1 || $items_number == 0) {
                                             echo "s";
                                         } ?></span>
-                                        <a href="./cart.php?cart_id=<?echo $cart_user[0]['id']?>">Veure cistella</a>
+                                        <a href="./cart.php?cart_id=<? echo $cart_user[0]['id'] ?>">Veure
+                                            cistella</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <? foreach ($cartItems as $item): ?>
                                             <li>
                                                 <a href="../../controllers/CartItemController.php?product_id_deleteCart=<?echo $item['product_id']?>" class="remove" title="Remove this item"><i
                                                             class="fa fa-remove"></i></a>
-                                                <a class="cart-img" href="./product.php?product_id=<?echo $item['id']?>">
-                                                    <?if(isset($item['url']) && $item['url']!=null):?>
-                                                        <img src="<?echo $item['url']?>"
+                                                <a class="cart-img"
+                                                   href="./product.php?product_id=<? echo $item['id'] ?>">
+                                                    <? if (isset($item['url']) && $item['url'] != null): ?>
+                                                        <img src="<? echo $item['url'] ?>"
                                                              alt="#">
-                                                    <?else:?>
+                                                    <? else: ?>
                                                         <img src="https://via.placeholder.com/70x70"
                                                              alt="#">
-                                                    <?endif;?>
+                                                    <? endif; ?>
 
                                                 </a>
                                                 <h4>
@@ -200,7 +202,8 @@ $money_saved = calculatSave($cartItems);
                                                 <span class="total-amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
                                             <? endif; ?>
                                         </div>
-                                        <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn animate">Anar a pagar</a>
+                                        <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id'] ?>"
+                                           class="btn animate">Anar a pagar</a>
                                     </div>
                                 </div>
                                 <!--/ End Shopping Item -->
@@ -230,12 +233,6 @@ $money_saved = calculatSave($cartItems);
                                         <ul class="nav main-menu menu navbar-nav">
                                             <li><a href="./index.php">Home</a></li>
                                             <li><a href="./shop-grid.php">Productes</a></li>
-                                            <li><a href="#">Informació<i class="ti-angle-down"></i></a>
-                                                <ul class="dropdown">
-                                                    <li><a href="blog-single-sidebar.php">Blog</a></li>
-                                                    <li><a href="blog-single-sidebar.php">Reviews</a></li>
-                                                </ul>
-                                            </li>
                                             <li><a href="contact.php">Contacte</a></li>
                                         </ul>
                                     </div>
@@ -354,10 +351,8 @@ $money_saved = calculatSave($cartItems);
 
                             </td>
                             <td class="action" data-title="Remove">
-                                <form action="../../controllers/CartItemController.php" method="post">
-                                    <input name="product_id_deleteCart" style="display: none" value="<?echo $item['product_id']?>">
-                                    <button type="submit" style="background-color: transparent;border: none;"><i class="ti-trash remove-icon"></i></button>
-                                </form>
+                                    <input value="<?echo $item['product_id']?>" name="product_id_deleteCart" style="display: none" >
+                                    <a href="../../controllers/CartItemController.php?product_id_deleteCart=<?echo $item['product_id']?>"  type="submit" style="background-color: transparent;border: none;"><i class="ti-trash remove-icon"></i></a>
                             </td>
                         </tr>
                     <? endforeach; ?>
