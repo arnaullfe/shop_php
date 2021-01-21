@@ -1,8 +1,24 @@
 <?php
 include_once ('../../modals/Database.php');
+include_once ('../../controllers/MainController.php');
 session_start();
 
 $database = new Database();
+$categories = $database->executeQuery("SELECT * FROM shop.productCategory WHERE id IN(SELECT shop.products.category_id FROM shop.products WHERE activated=1) AND activated=1", array(1));
+//cart
+$cart_user = $database->executeQuery("SELECT id FROM carts WHERE user_id = ?", array($_SESSION["user_id"]));
+$cartItems = $database->executeQuery('SELECT shop.cartItems.*,
+shop.products.name as "product_name",shop.products.description as "product_desc",shop.products.price_iva as "product_price",shop.products.id as "product_id",
+shop.discounts.discount,shop.images_product.url
+FROM shop.cartItems 
+LEFT JOIN shop.products ON shop.cartItems.product_id = shop.products.id
+LEFT JOIN shop.discounts ON shop.cartItems.product_id = shop.discounts.id_product AND
+shop.discounts.discount = (SELECT max(discount) FROM shop.discounts WHERE shop.discounts.id_product = shop.cartItems.product_id)
+LEFT JOIN shop.images_product ON shop.cartItems.product_id = shop.images_product.id_product
+WHERE shop.products.activated = 1', array($_SESSION["user_id"]));
+$items_number = $database->executeQuery('SELECT count(*) as "items" FROM shop.cartItems WHERE cart_id = (SELECT id FROM shop.carts WHERE user_id=?)', array($_SESSION["user_id"]))[0]["items"];
+$final_price = calculateItemsPrices($cartItems);
+$money_saved = calculatSave($cartItems);
 $categories = $database->executeQuery("SELECT * FROM shop.productCategory WHERE id IN(SELECT shop.products.category_id FROM shop.products WHERE activated=1) AND activated=1", array(1));
 $database->closeConnection();
 ?>
@@ -66,138 +82,174 @@ $database->closeConnection();
 		</div>
 	</div>
 	<!-- End Preloader -->
-	
-	
-		
-		<!-- Header -->
-		<header class="header shop">
-			<div class="middle-inner">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-12">
-							<!-- Logo -->
-							<div class="logo">
-								<a href="index.php"><img src="images/logo.png" alt="logo"></a>
-							</div>
-							<!--/ End Logo -->
-							<!-- Search Form -->
-							<div class="search-top">
-								<div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
-								<!-- Search Form -->
-								<div class="search-top">
-									<form class="search-form">
-										<input type="text" placeholder="Search here..." name="search">
-										<button value="search" type="submit"><i class="ti-search"></i></button>
-									</form>
-								</div>
-								<!--/ End Search Form -->
-							</div>
-							<!--/ End Search Form -->
-							<div class="mobile-nav"></div>
-						</div>
-						<div class="col-lg-8 col-md-7 col-12">
-							<div class="search-bar-top">
-                                <div class="search-bar">
-                                    <select onchange="changeValuesSearchBar()" id="category_id_search">
-                                        <option selected="selected" value="*">Tots</option>
-                                        <?foreach ($categories as $cat):?>
-                                            <option value="<?echo $cat['id']?>"><?echo $cat["name"]?></option>
-                                        <?endforeach;?>
-                                    </select>
-                                    <input name="search" placeholder="Cerca els teus productes....." type="search" id="name_search" oninput="changeValuesSearchBar()">
-                                    <a class="btnn" href="./shop-grid.php" id="search_button"><i class="ti-search"></i></a>
+
+
+
+    <!-- Header -->
+    <header class="header shop">
+        <div class="middle-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-12">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.php"><img src="images/logo.png" alt="logo"></a>
+                        </div>
+                        <!--/ End Logo -->
+                        <!-- Search Form -->
+                        <div class="search-top">
+                            <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                            <!-- Search Form -->
+                            <div class="search-top">
+                                <form class="search-form">
+                                    <input type="text" placeholder="Search here..." name="search">
+                                    <button value="search" type="submit"><i class="ti-search"></i></button>
+                                </form>
+                            </div>
+                            <!--/ End Search Form -->
+                        </div>
+                        <!--/ End Search Form -->
+                        <div class="mobile-nav"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-4 col-12">
+                        <div class="search-bar-top">
+                            <div class="search-bar">
+                                <select onchange="changeValuesSearchBar()" id="category_id_search">
+                                    <option selected="selected" value="*">Tots</option>
+                                    <?foreach ($categories as $cat):?>
+                                        <option value="<?echo $cat['id']?>"><?echo $cat["name"]?></option>
+                                    <?endforeach;?>
+                                </select>
+                                <input name="search" placeholder="Cerca els teus productes....." type="search" id="name_search" oninput="changeValuesSearchBar()">
+                                <a class="btnn" href="./shop-grid.php" id="search_button"><i class="ti-search"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-5 col-12">
+                        <div class="right-bar">
+                            <!-- Search Form -->
+                            <?php if (isset($_SESSION["token_login"]) && isset($_SESSION["user_id"]) && isset($_SESSION["user_info"])): ?>
+                                <div class="sinlge-bar ">
+                                    <div class="dropdown">
+                                        <a class="single-icon dropdown-toggle" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-expanded="false"
+                                           style="font-size: 18px;background-color: transparent;cursor: pointer">
+                                            <img class="" src='<?php echo $_SESSION["user_info"][0]["image"] ?>'
+                                                 style="vertical-align: middle;width: 2vw;height: 2vw;min-width: 30px;min-height: 30px;border-radius: 50%;margin-top: -5px"/>
+                                            <?php echo $_SESSION["user_info"][0]["name"]; ?>
+                                        </a>
+
+                                        <div class="dropdown-menu mr-5" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="./profile.php"><i
+                                                        class="fas fa-user mr-3"></i>El meu perfil</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="./user_commands.php"><i
+                                                        class="fas fa-archive mr-3"></i>Les
+                                                meves comandes</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#"><i
+                                                        class="fas fa-sign-out-alt mr-3 text-danger"></i>Tancar
+                                                sessió</a>
+                                        </div>
+                                    </div>
                                 </div>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-12">
-							<div class="right-bar">
-								<!-- Search Form -->
-								<div class="sinlge-bar">
-									<a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-								</div>
-								<div class="sinlge-bar">
-									<a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-								</div>
-								<div class="sinlge-bar shopping">
-									<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
-									<!-- Shopping Item -->
-									<div class="shopping-item">
-										<div class="dropdown-cart-header">
-											<span>2 Items</span>
-											<a href="#">View Cart</a>
-										</div>
-										<ul class="shopping-list">
-											<li>
-												<a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-												<a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-												<h4><a href="#">Woman Ring</a></h4>
-												<p class="quantity">1x - <span class="amount">$99.00</span></p>
-											</li>
-											<li>
-												<a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-												<a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-												<h4><a href="#">Woman Necklace</a></h4>
-												<p class="quantity">1x - <span class="amount">$35.00</span></p>
-											</li>
-										</ul>
-										<div class="bottom">
-											<div class="total">
-												<span>Total</span>
-												<span class="total-amount">$134.00</span>
-											</div>
-											<a href="checkout.php" class="btn animate">Checkout</a>
-										</div>
-									</div>
-									<!--/ End Shopping Item -->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Header Inner -->
-			<div class="header-inner">
-				<div class="container">
-					<div class="cat-nav-head">
-						<div class="row">
-							<div class="col-12">
-								<div class="menu-area">
-									<!-- Main Menu -->
-									<nav class="navbar navbar-expand-lg">
-										<div class="navbar-collapse">	
-											<div class="nav-inner">	
-												<ul class="nav main-menu menu navbar-nav">
-													<li class="active"><a href="#">Home</a></li>
-													<li><a href="#">Product</a></li>												
-													<li><a href="#">Service</a></li>
-													<li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
-														<ul class="dropdown">
-															<li><a href="shop-grid.php">Shop Grid</a></li>
-															<li><a href="cart.php">Cart</a></li>
-															<li><a href="checkout.php">Checkout</a></li>
-														</ul>
-													</li>
-													<li><a href="#">Pages</a></li>									
-													<li><a href="#">Blog<i class="ti-angle-down"></i></a>
-														<ul class="dropdown">
-															<li><a href="blog-single-sidebar.php">Blog Single Sidebar</a></li>
-														</ul>
-													</li>
-													<li><a href="contact.php">Contact Us</a></li>
-												</ul>
-											</div>
-										</div>
-									</nav>
-									<!--/ End Main Menu -->	
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Header Inner -->
-		</header>
-		<!--/ End Header -->
+                                <div class="sinlge-bar shopping">
+                                    <a href="#" class="single-icon"><i class="ti-bag"></i> <span
+                                                class="total-count"><? echo $items_number ?></span></a>
+                                    <!-- Shopping Item -->
+                                    <div class="shopping-item">
+                                        <div class="dropdown-cart-header">
+                                    <span><? echo $items_number ?> Producte<?php if ($items_number > 1 || $items_number == 0) {
+                                            echo "s";
+                                        } ?></span>
+                                            <a href="./cart.php?cart_id=<? echo $cart_user[0]['id'] ?>">Veure
+                                                cistella</a>
+                                        </div>
+                                        <ul class="shopping-list">
+                                            <? foreach ($cartItems as $item): ?>
+                                                <li>
+                                                    <a href="../../controllers/CartItemController.php?product_id_deleteCart=<?echo $item['product_id']?>" class="remove" title="Remove this item"><i
+                                                                class="fa fa-remove"></i></a>
+                                                    <a class="cart-img"
+                                                       href="./product.php?product_id=<? echo $item['id'] ?>">
+                                                        <? if (isset($item['url']) && $item['url'] != null): ?>
+                                                            <img src="<? echo $item['url'] ?>"
+                                                                 alt="#">
+                                                        <? else: ?>
+                                                            <img src="https://via.placeholder.com/70x70"
+                                                                 alt="#">
+                                                        <? endif; ?>
+
+                                                    </a>
+                                                    <h4>
+                                                        <a href="./product.php?product_id=<? echo $item['product_id'] ?>"><? echo $item["product_name"] ?></a>
+                                                    </h4>
+                                                    <p class="quantity"><? echo $item["units"] ?>x
+                                                        - <? if (isset($item["discount"]) && $item["discount"] != null): ?>
+                                                            <span class="amount"><? echo formatPrice((calculateNewPrice($item["product_price"], $item["discount"]) * $item["units"])) ?> €</span></td>
+                                                        <? else: ?>
+                                                            <span class="amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
+                                                        <? endif; ?></p>
+                                                </li>
+                                            <? endforeach; ?>
+                                        </ul>
+                                        <div class="bottom">
+                                            <div class="total">
+                                                <span>Total</span>
+                                                <? if (isset($item["discount"]) && $item["discount"] != null): ?>
+                                                    <span class="total-amount"><? echo formatPrice((calculateNewPrice($item["product_price"], $item["discount"]) * $item["units"])) ?> €</span>
+                                                    </td>
+                                                <? else: ?>
+                                                    <span class="total-amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
+                                                <? endif; ?>
+                                            </div>
+                                            <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id'] ?>"
+                                               class="btn animate">Anar a pagar</a>
+                                        </div>
+                                    </div>
+                                    <!--/ End Shopping Item -->
+                                </div>
+                            <? else: ?>
+                                <div class="sinlge-bar ">
+                                    <a href="../admin_view/login.php" class="single-icon"><i class="fa fa-user-circle-o"
+                                                                                             aria-hidden="true"></i></a>
+                                </div>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Header Inner -->
+        <div class="header-inner">
+            <div class="container">
+                <div class="cat-nav-head">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="menu-area">
+                                <!-- Main Menu -->
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="navbar-collapse">
+                                        <div class="nav-inner">
+                                            <ul class="nav main-menu menu navbar-nav">
+                                                <li><a href="./index.php">Home</a></li>
+                                                <li><a href="./shop-grid.php">Productes</a></li>
+                                                <li><a href="contact.php">Contacte</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <!--/ End Main Menu -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Header Inner -->
+    </header>
+    <!--/ End Header -->
 	
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -224,44 +276,44 @@ $database->closeConnection();
 						<div class="col-lg-8 col-12">
 							<div class="form-main">
 								<div class="title">
-									<h4>Get in touch</h4>
-									<h3>Write us a message</h3>
+									<h4>Fes-nos un toc!</h4>
+									<h3>Escriu-nos un missatge</h3>
 								</div>
 								<form class="form" method="post" action="mail/mail.php">
 									<div class="row">
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Name<span>*</span></label>
+												<label>Nom<span>*</span></label>
 												<input name="name" type="text" placeholder="">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Subjects<span>*</span></label>
+												<label>Cognoms<span>*</span></label>
 												<input name="subject" type="text" placeholder="">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Email<span>*</span></label>
+												<label>Email<span>*</span></label>
 												<input name="email" type="email" placeholder="">
 											</div>	
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Phone<span>*</span></label>
+												<label>Telèfon<span>*</span></label>
 												<input name="company_name" type="text" placeholder="">
 											</div>	
 										</div>
 										<div class="col-12">
 											<div class="form-group message">
-												<label>your message<span>*</span></label>
+												<label>El teu missatge<span>*</span></label>
 												<textarea name="message" placeholder=""></textarea>
 											</div>
 										</div>
 										<div class="col-12">
 											<div class="form-group button">
-												<button type="submit" class="btn ">Send Message</button>
+												<button type="submit" class="btn ">Enviar</button>
 											</div>
 										</div>
 									</div>
@@ -272,25 +324,25 @@ $database->closeConnection();
 							<div class="single-head">
 								<div class="single-info">
 									<i class="fa fa-phone"></i>
-									<h4 class="title">Call us Now:</h4>
+									<h4 class="title">Truca'ns al:</h4>
 									<ul>
-										<li>+123 456-789-1120</li>
-										<li>+522 672-452-1120</li>
+										<li>938837865</li>
+										<li>608112437</li>
 									</ul>
 								</div>
 								<div class="single-info">
 									<i class="fa fa-envelope-open"></i>
 									<h4 class="title">Email:</h4>
 									<ul>
-										<li><a href="mailto:info@yourwebsite.com">info@yourwebsite.com</a></li>
-										<li><a href="mailto:info@yourwebsite.com">support@yourwebsite.com</a></li>
+										<li><a href="mailto:info@yourwebsite.com">hola@eshop.com</a></li>
+										<li><a href="mailto:info@yourwebsite.com">support@eshop.com</a></li>
 									</ul>
 								</div>
 								<div class="single-info">
 									<i class="fa fa-location-arrow"></i>
-									<h4 class="title">Our Address:</h4>
+									<h4 class="title">La nostra adreça:</h4>
 									<ul>
-										<li>KA-62/1, Travel Agency, 45 Grand Central Terminal, New York.</li>
+										<li>Carrer autista March, s/n, 08570 Torelló, Barcelona</li>
 									</ul>
 								</div>
 							</div>

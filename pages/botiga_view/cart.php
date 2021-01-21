@@ -166,7 +166,7 @@ $money_saved = calculatSave($cartItems);
                                     <ul class="shopping-list">
                                         <? foreach ($cartItems as $item): ?>
                                             <li>
-                                                <a href="#" class="remove" title="Remove this item"><i
+                                                <a href="../../controllers/CartItemController.php?product_id_deleteCart=<?echo $item['product_id']?>" class="remove" title="Remove this item"><i
                                                             class="fa fa-remove"></i></a>
                                                 <a class="cart-img" href="./product.php?product_id=<?echo $item['id']?>">
                                                     <?if(isset($item['url']) && $item['url']!=null):?>

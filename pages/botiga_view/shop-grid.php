@@ -101,7 +101,6 @@ $num = 0;
         </div>
     </div>
     <!-- End Preloader -->
-
     <!-- Header -->
     <header class="header shop">
         <div class="middle-inner">
@@ -178,21 +177,23 @@ $num = 0;
                                     <span><? echo $items_number ?> Producte<?php if ($items_number > 1 || $items_number == 0) {
                                             echo "s";
                                         } ?></span>
-                                            <a href="./cart.php?cart_id=<?echo $cart_user[0]['id']?>">Veure cistella</a>
+                                            <a href="./cart.php?cart_id=<? echo $cart_user[0]['id'] ?>">Veure
+                                                cistella</a>
                                         </div>
                                         <ul class="shopping-list">
                                             <? foreach ($cartItems as $item): ?>
                                                 <li>
-                                                    <a href="#" class="remove" title="Remove this item"><i
+                                                    <a href="../../controllers/CartItemController.php?product_id_deleteCart=<?echo $item['product_id']?>" class="remove" title="Remove this item"><i
                                                                 class="fa fa-remove"></i></a>
-                                                    <a class="cart-img" href="./product.php?product_id=<?echo $item['id']?>">
-                                                        <?if(isset($item['url']) && $item['url']!=null):?>
-                                                            <img src="<?echo $item['url']?>"
+                                                    <a class="cart-img"
+                                                       href="./product.php?product_id=<? echo $item['id'] ?>">
+                                                        <? if (isset($item['url']) && $item['url'] != null): ?>
+                                                            <img src="<? echo $item['url'] ?>"
                                                                  alt="#">
-                                                        <?else:?>
+                                                        <? else: ?>
                                                             <img src="https://via.placeholder.com/70x70"
                                                                  alt="#">
-                                                        <?endif;?>
+                                                        <? endif; ?>
 
                                                     </a>
                                                     <h4>
@@ -217,7 +218,8 @@ $num = 0;
                                                     <span class="total-amount"><? echo formatPrice(($item["product_price"] * $item["units"])) ?> €</span></td>
                                                 <? endif; ?>
                                             </div>
-                                            <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id']?>" class="btn animate">Anar a pagar</a>
+                                            <a href="checkout.php?cart_id=<?php echo $cart_user[0]['id'] ?>"
+                                               class="btn animate">Anar a pagar</a>
                                         </div>
                                     </div>
                                     <!--/ End Shopping Item -->
@@ -228,11 +230,11 @@ $num = 0;
                                                                                              aria-hidden="true"></i></a>
                                 </div>
                             <? endif; ?>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <!-- Header Inner -->
         <div class="header-inner">
@@ -247,13 +249,7 @@ $num = 0;
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li><a href="./index.php">Home</a></li>
-                                                <li class="active"><a href="./shop-grid.php">Productes</a></li>
-                                                <li><a href="#">Informació<i class="ti-angle-down"></i></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="blog-single-sidebar.php">Blog</a></li>
-                                                        <li><a href="blog-single-sidebar.php">Reviews</a></li>
-                                                    </ul>
-                                                </li>
+                                                <li><a href="./shop-grid.php">Productes</a></li>
                                                 <li><a href="contact.php">Contacte</a></li>
                                             </ul>
                                         </div>

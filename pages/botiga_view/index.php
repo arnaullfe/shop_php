@@ -195,7 +195,7 @@ $database->closeConnection();
                                         <ul class="shopping-list">
                                             <? foreach ($cartItems as $item): ?>
                                                 <li>
-                                                    <a href="#" class="remove" title="Remove this item"><i
+                                                    <a href="../../controllers/CartItemController.php?product_id_deleteCart=<?echo $item['product_id']?>" class="remove" title="Remove this item"><i
                                                                 class="fa fa-remove"></i></a>
                                                     <a class="cart-img" href="./product.php?product_id=<?echo $item['id']?>">
                                                         <?if(isset($item['url']) && $item['url']!=null):?>
@@ -271,14 +271,6 @@ $database->closeConnection();
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li class="active"><a href="#">Home</a></li>
                                                 <li><a href="shop-grid.php">Productes</a></li>
-                                                <li><a href="#">Informació<i class="ti-angle-down"></i></a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="blog-single-sidebar.php">Blog</a></li>
-                                                        <li><a href="blog-single-sidebar.php">Reviews dels clients</a>
-                                                        </li>
-
-                                                    </ul>
-                                                </li>
                                                 <li><a href="contact.php">Contacte</a></li>
                                             </ul>
                                         </div>
