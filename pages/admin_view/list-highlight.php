@@ -6,7 +6,8 @@ if(!isset($_SESSION["user_info"])){
     header("location: ../botiga_view/index.php");
 } else{
     $database = new Database();
-    $users = $database->executeQuery("SELECT * FROM users", array());
+    $highlights = $database->executeQuery("SELECT *,shop.products.name as 'product_name' FROM shop.highlights,shop.products WHERE shop.highlights.product_id=shop.products.id;", array());
+    $products = $database->executeQuery("SELECT * FROM products",array());
     $database->closeConnection();
 }
 ?>
@@ -21,14 +22,15 @@ if(!isset($_SESSION["user_info"])){
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Eshop</title>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../botiga_view/images/favicon.png">
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -38,14 +40,15 @@ if(!isset($_SESSION["user_info"])){
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 </head>
 
 <body id="page-top">
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -66,10 +69,10 @@ if(!isset($_SESSION["user_info"])){
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="index.php">
-               <b>
-                   <i class="fas fa-fw fa-tachometer-alt"></i>
-                   <span>Tauler de control</span></a>
-               </b>
+                <b>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Tauler de control</span></a>
+            </b>
         </li>
 
         <!-- Divider -->
@@ -83,8 +86,8 @@ if(!isset($_SESSION["user_info"])){
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <b><i class="fas fa-clipboard-check"></i>
+               aria-expanded="true" aria-controls="collapseTwo" style="color: white">
+                <b><i class="fas fa-clipboard-check"  style="color: white"></i>
                     <span>Productes</span></b>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -94,6 +97,7 @@ if(!isset($_SESSION["user_info"])){
                     <a class="collapse-item" href="list-products.php"><b>Productes i estoc</b></a>
                     <a class="collapse-item" href="list-tags.php"><b>Tags</b></a>
                     <a class="collapse-item" href="list-discounts.php"><b>Descomptes</b></a>
+                    <a class="collapse-item" href="list-highlight.php"><b>Productes destacats</b></a>
                 </div>
             </div>
         </li>
@@ -109,15 +113,8 @@ if(!isset($_SESSION["user_info"])){
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="list-users.php" >
-               <b><i class="fas fa-users" style="color: white"></i>
-                   <span style="color: white">Usuaris</span></a></b>
-        </li>
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.php">
-               <b><i class="fas fa-fw fa-chart-area"></i>
-                   <span>Informació</span></a></b>
+                <b><i class="fas fa-users"></i>
+                    <span>Usuaris</span></a></b>
         </li>
 
         <!-- Divider -->
@@ -130,7 +127,6 @@ if(!isset($_SESSION["user_info"])){
 
     </ul>
     <!-- End of Sidebar -->
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -149,6 +145,7 @@ if(!isset($_SESSION["user_info"])){
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
+
 
                     <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -177,91 +174,65 @@ if(!isset($_SESSION["user_info"])){
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
+                <?php if(isset($_SESSION["message"])):?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?php echo $_SESSION["message"]?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?endif;?>
+                <?php if(isset($_SESSION["error_message"])):?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?php echo $_SESSION["error_message"]?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?endif;?>
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Llista d'usuaris</h1>
-                <p class="mb-4">Administració de tot el llistat d'usuaris del sistema.</p>
+                <h1 class="h3 mb-2 text-gray-800">Llista de productes destacats</h1>
+                <p class="mb-4">Administració dels productes destacats</p>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold" style="color: #F7941D">Usuaris</h6>
+                        <h6 class="m-0 font-weight-bold d-inline-block" style="color: #F7941D">Productes destacats</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Nom i cognoms</th>
-                                    <th>Email</th>
+                                    <th>Títol destacat</th>
+                                    <th>Producte</th>
                                     <th>Tipus</th>
                                     <th>Estat</th>
-                                    <th>Últim login</th>
                                     <th>Accions</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Nom i cognoms</th>
-                                    <th>Email</th>
+                                    <th>Títol destacat</th>
+                                    <th>Producte</th>
                                     <th>Tipus</th>
                                     <th>Estat</th>
-                                    <th>Últim login</th>
                                     <th>Accions</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <?php foreach ($users as $user): ?>
+                                <?php foreach ($highlights as $highlight): ?>
                                     <tr>
-                                        <td><?php echo $user["name"] . " " . $user["lastnames"] ?></td>
-                                        <td><?php echo $user["email"] ?></td>
-                                        <td style="text-align: center;">
-                                            <?php if ($user["role"] == 0 || $user["role"] == 1): ?>
-                                                <select class="form-control" id="<?php echo "check-".$user["id"]?>" onchange="adminAction(<?php echo $user["id"]?>)">
-                                                    <option value="0">Client</option>
-                                                    <option  value="1" <?php  if($user["role"] == 1){echo "selected";}?>>Administrador</option>
-                                                    <?php if($_SESSION["user_info"][0]["role"]==2):?>
-                                                        <option  value="2">Superadministrador</option>
-                                                    <?endif;?>
-                                                </select>
-                                            <?php else: ?>
-                                                <select class="form-control" id="<?php echo "check-".$user["id"]?>" disabled>
-                                                        <option  value="2">Superadministrador</option>
-                                                </select>
-                                            <? endif; ?>
-                                        </td>
-                                        <td><?php if ($user["banned"] == 1): ?>
-                                                Banejat
-                                            <?php elseif ($user["activated"] == 1): ?>
-                                                Activat
-                                            <?php else: ?>
-                                                No activat
-                                            <? endif; ?>
-                                        </td>
-                                        <td><?php
-                                            if ($user["last_session"] == null) {
-                                                echo "No ha fet login";
-                                            } else {
-                                                echo formatDate($user["last_session"]);
-                                            }
-                                            ?>
-
-                                        </td>
+                                        <td><?php echo $highlight["title"]?></td>
+                                        <td><?php echo $highlight["product_name"]?></td>
+                                        <td><?php echo "Producte destacat"?></td>
+                                        <td><?php if($highlight["highlight_type"]==1):
+                                                echo "Activat";
+                                            else:
+                                                echo "Desactivat";
+                                            endif; ?> </td>
                                         <td>
-                                            <?php if ($user["role"] < 2 || $user["banned"] == 1): ?>
-                                                <?php if ($user["banned"] == 0): ?>
-                                                    <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=1"?>' class="btn btn-warning btn-sm" title="Banejar"><i class="fas fa-ban"></i></a>
-                                                <?php else: ?>
-                                                    <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_ban=".$user["id"]."&status_ban=0"?>' class="btn btn-success btn-sm" title="Desbanejar"><i
-                                                                class="fas fa-undo-alt"></i></a>
-                                                <?php endif; ?>
-                                                <a href='<?php echo "http://".$_SERVER["SERVER_NAME"]."/controllers/UserController.php?id_delete=".$user["id"]?>' class="btn btn-danger btn-sm" title="Eliminar usuari"><i class="fas fa-trash-alt"></i></a>
-                                            <? else: ?>
-                                                <button class="btn btn-warning btn-sm" title="Banejar" disabled><i
-                                                            class="fas fa-ban"></i></button>
-                                                <button class="btn btn-danger btn-sm" title="Eliminar usuari" disabled>
-                                                    <i class="fas fa-trash-alt"></i></button>
-                                            <? endif; ?>
+                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editHighlight" title="Editar"><i class="fas fa-edit"></i></button>
                                         </td>
                                     </tr>
                                 <? endforeach; ?>
@@ -317,6 +288,47 @@ if(!isset($_SESSION["user_info"])){
         </div>
     </div>
 </div>
+
+<!--create category modal-->
+
+<div class="modal fade" id="editHighlight" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Editar producte destacat</h6>
+            </div>
+            <form action="../../controllers/HighlightsController.php" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-form-label mr-3">Activat: </label>
+                        <input type="checkbox" data-toggle="toggle" name="activated_highlight" data-onstyle="success" value="on">
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Producte destacat</label>
+                        <select name="product_id_highlight" class="form-control" id="product_id_highlight" >
+                            <?php foreach ($products as $product):?>
+                                <option value="<?php echo $product['id']?>"
+                                <?if($highlights[0]["product_id"]==$product['id']){ echo "selected";}?>><?php echo $product['name']?></option>
+                            <?php endforeach;?>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Producte destacat:</label>
+                        <input type="text" name="name_highlight" class="form-control" value="<?echo $highlights[0]["title"]?>">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel·lar</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -333,23 +345,8 @@ if(!isset($_SESSION["user_info"])){
 
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
-
-<script>
-    function adminAction(id){
-        var action = document.getElementById("check-"+id).value;
-        $.ajax({
-            type: "GET",
-            url: '../../controllers/UserController.php',
-            data: {"id_admin": id,"status_admin":action},
-            dataType: 'JSON',
-            success: function (response) {
-                console.log("END")
-                location.reload();
-            }
-        })
-    }
-
-</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 <style>
     .page-item.active .page-link {
@@ -357,6 +354,7 @@ if(!isset($_SESSION["user_info"])){
         border: 1px solid #F7941D;
     }
 </style>
+
 
 </body>
 
@@ -367,4 +365,11 @@ function formatDate($date){
     $date = new DateTime($date);
     return date_format($date,"d/m/Y H:i:s");
 }
+
+function calculateDiscount($new_price,$old_price){
+    $diff = $old_price - $new_price;
+
+}
+unset($_SESSION["message"]);
+unset($_SESSION["error_message"]);
 ?>

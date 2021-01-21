@@ -306,7 +306,7 @@ $database->closeConnection();
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+                        <thead style="background-color: #F7921C">
                         <tr>
                             <th>Número de comanda</th>
                             <th>Estat</th>
@@ -317,7 +317,7 @@ $database->closeConnection();
                             <th>Accions</th>
                         </tr>
                         </thead>
-                        <tfoot>
+                        <tfoot style="background-color: #F7921C">
                         <tr>
                             <th>Número de comanda</th>
                             <th>Estat</th>
@@ -344,8 +344,8 @@ $database->closeConnection();
                                     <?php echo formatPrice($command["total"]) ;?> €
                                 </td>
                                 <td>
-                                    <a href="../../controllers/PdfController.php?command_id_bill=<?echo $command['id']?>" target="_blank" class="btn" title="Factura" style="font-size: 30px;background-color: #F7931C">
-                                        <i class="fas fa-receipt"></i></a>
+                                    <a href="../../controllers/PdfController.php?command_id_bill=<?echo $command['id']?>" target="_blank" class="btn" title="Factura" style="font-size: 30px;color: white;text-decoration: none">
+                                        <i class="fas fa-file-pdf"></i></a>
                                 </td>
                             </tr>
                         <? endforeach; ?>
